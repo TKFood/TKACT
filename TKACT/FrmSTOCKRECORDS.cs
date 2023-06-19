@@ -173,7 +173,9 @@ namespace TKACT
         public void CHECKADD()
         {
             string MESSAGES = "";
-            if(string.IsNullOrEmpty(textBox3.Text))
+
+            //戶號
+            if (string.IsNullOrEmpty(textBox3.Text))
             {
                 MESSAGES = MESSAGES + "戶號 不可空白";
             }
@@ -194,7 +196,50 @@ namespace TKACT
                
             }
 
-            if(!string.IsNullOrEmpty(MESSAGES))
+            //股東姓名
+            if (string.IsNullOrEmpty(textBox4.Text))
+            {
+                MESSAGES = MESSAGES + " 股東姓名 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox4.Text))
+            {
+                string input = textBox4.Text;     
+
+                if (input.Length >=3 )
+                {
+                    // 輸入為 4 位數字
+                    // 在這裡處理符合條件的情況
+                }
+                else
+                {
+                    MESSAGES = MESSAGES + " 股東姓名 至少3個中文字 ";
+                }
+
+            }
+
+            //身份證字號或統一編號
+            //通訊地郵遞區號
+            //通訊地址
+            //戶籍地郵遞區號
+            //戶籍地址
+            //出生 / 設立日期
+            //銀行名稱
+            //分行名稱
+            //銀行代碼
+            //帳號
+            //住家電話
+            //手機號碼
+            //e - mail
+            //護照號碼
+            //英文名
+            //父
+            //母
+            //配偶
+
+
+
+            //MESSAGES
+            if (!string.IsNullOrEmpty(MESSAGES))
             {
                 MessageBox.Show(MESSAGES);
             }
@@ -209,6 +254,12 @@ namespace TKACT
         {
             CHECKADD();
         }
+        private void textBox4_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+
+
         #region BUTTON
 
         private void button1_Click(object sender, EventArgs e)
@@ -221,8 +272,9 @@ namespace TKACT
         }
 
 
+
         #endregion
 
-      
+     
     }
 }
