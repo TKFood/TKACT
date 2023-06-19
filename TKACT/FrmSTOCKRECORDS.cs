@@ -218,15 +218,126 @@ namespace TKACT
             }
 
             //身份證字號或統一編號
+            if (string.IsNullOrEmpty(textBox5.Text))
+            {
+                MESSAGES = MESSAGES + " 身份證字號或統一編號 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox5.Text))
+            {
+                string input = textBox5.Text;
+
+                if (input.Length == 8 && Regex.IsMatch(input, @"^\d+$"))
+                {
+                    // 符合條件 1：長度為 8 位且全為數字                    
+                }
+                else if (input.Length == 10 && Regex.IsMatch(input, @"^[A-Za-z]\d{9}$"))
+                {
+                    // 符合條件 2：長度為 10 位，開頭為一個英文字母，其餘 9 位為數字                    
+                }
+                else
+                {
+                    MESSAGES = MESSAGES + " 法人：8位數字、自然人1英文字+9位數字 ";
+                }
+
+            }
             //通訊地郵遞區號
+            if (string.IsNullOrEmpty(textBox6.Text))
+            {
+                MESSAGES = MESSAGES + " 通訊地郵遞區號 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox6.Text))
+            {
+                string input = textBox6.Text;
+
+                if (input.Length == 6 && Regex.IsMatch(input, @"^\d+$"))
+                {
+                    // 符合條件 1：長度為 8 位且全為數字                    
+                }               
+                else
+                {
+                    MESSAGES = MESSAGES + "通訊地郵遞區號 6位數字 ";
+                }
+
+            }
             //通訊地址
+            if (string.IsNullOrEmpty(textBox7.Text))
+            {
+                MESSAGES = MESSAGES + " 通訊地址 不可空白";
+            }
             //戶籍地郵遞區號
+            if (string.IsNullOrEmpty(textBox8.Text))
+            {
+                MESSAGES = MESSAGES + " 通訊地郵遞區號 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox8.Text))
+            {
+                string input = textBox8.Text;
+
+                if (input.Length == 6 && Regex.IsMatch(input, @"^\d+$"))
+                {
+                    // 符合條件 1：長度為 8 位且全為數字                    
+                }
+                else
+                {
+                    MESSAGES = MESSAGES + "通訊地郵遞區號 6位數字 ";
+                }
+
+            }
             //戶籍地址
+            if (string.IsNullOrEmpty(textBox9.Text))
+            {
+                MESSAGES = MESSAGES + " 戶籍地址 不可空白";
+            }
             //出生 / 設立日期
+
             //銀行名稱
+            if (string.IsNullOrEmpty(textBox10.Text))
+            {
+                MESSAGES = MESSAGES + " 銀行名稱 不可空白";
+            }
             //分行名稱
+            if (string.IsNullOrEmpty(textBox11.Text))
+            {
+                MESSAGES = MESSAGES + " 分行名稱 不可空白";
+            }
             //銀行代碼
+            if (string.IsNullOrEmpty(textBox12.Text))
+            {
+                MESSAGES = MESSAGES + " 銀行代碼 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox12.Text))
+            {
+                string input = textBox12.Text;
+
+                if (input.Length == 7 && Regex.IsMatch(input, @"^\d+$"))
+                {
+                    // 符合條件 1：長度為 8 位且全為數字                    
+                }
+                else
+                {
+                    MESSAGES = MESSAGES + "銀行代碼 7位數字 ";
+                }
+
+            }
             //帳號
+            if (string.IsNullOrEmpty(textBox13.Text))
+            {
+                MESSAGES = MESSAGES + " 帳號 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox13.Text))
+            {
+                string input = textBox13.Text;
+
+                if (input.Length >= 11 && Regex.IsMatch(input, @"^\d+$"))
+                {
+                    // 符合條件 1：長度為 8 位且全為數字                    
+                }
+                else
+                {
+                    MESSAGES = MESSAGES + "帳號 11~14碼數字 ";
+                }
+
+            }
             //住家電話
             //手機號碼
             //e - mail
@@ -258,8 +369,49 @@ namespace TKACT
         {
             CHECKADD();
         }
+        private void textBox5_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+        private void textBox6_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
 
+        private void textBox7_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
 
+        private void textBox8_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+
+        private void textBox9_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+
+        private void textBox10_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+
+        private void textBox11_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+
+        private void textBox12_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
+
+        private void textBox13_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
         #region BUTTON
 
         private void button1_Click(object sender, EventArgs e)
@@ -273,8 +425,10 @@ namespace TKACT
 
 
 
+
+
         #endregion
 
-     
+       
     }
 }
