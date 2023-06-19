@@ -170,13 +170,59 @@ namespace TKACT
             }
         }
 
-     
+        public void CHECKADD()
+        {
+            string MESSAGES = "";
+            if(string.IsNullOrEmpty(textBox3.Text))
+            {
+                MESSAGES = MESSAGES + "戶號 不可空白";
+            }
+            if (!string.IsNullOrEmpty(textBox3.Text))
+            {
+                string input = textBox3.Text;
+                int number;
+
+                if (input.Length == 4 && int.TryParse(input, out number))
+                {
+                    // 輸入為 4 位數字
+                    // 在這裡處理符合條件的情況
+                }
+                else
+                {
+                    MESSAGES = MESSAGES + " 戶號 要為4位數字 ";
+                }
+               
+            }
+
+            if(!string.IsNullOrEmpty(MESSAGES))
+            {
+                MessageBox.Show(MESSAGES);
+            }
+            
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            CHECKADD();
+        }
         #region BUTTON
 
         private void button1_Click(object sender, EventArgs e)
         {
             Search(textBox1.Text,textBox2.Text);
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         #endregion
+
+      
     }
 }
