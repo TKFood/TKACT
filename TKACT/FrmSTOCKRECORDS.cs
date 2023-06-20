@@ -43,6 +43,7 @@ namespace TKACT
 
             comboBox1load();
             comboBox2load();
+            comboBox3load();
 
         }
 
@@ -54,6 +55,10 @@ namespace TKACT
         public void comboBox2load()
         {
             LoadComboBoxData(comboBox2, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE KINDS='異動原因' ORDER BY ID", "KEYS", "KEYS");
+        }
+        public void comboBox3load()
+        {
+            LoadComboBoxData(comboBox3, "SELECT [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE [KINDS]='異動原因轉讓' ORDER BY [ID]", "KEYS", "KEYS");
         }
         public void LoadComboBoxData(ComboBox comboBox, string query, string valueMember, string displayMember)
         {
@@ -1323,6 +1328,174 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
+
+        public void TKSTOCKSTRANS_ADD(
+            string IDFORM
+            , string IDTO
+            , string DATEOFCHANGE
+            , string REASOFORCHANGE
+            , string STOCKACCOUNTNUMBERFORM
+            , string STOCKNAMEFORM
+            , string STOCKACCOUNTNUMBERTO
+            , string STOCKNAMETO
+            , string TRANSFERREDSHARES
+            , string PARVALUEPERSHARE
+            , string TRADINGPRICEPERSHARE
+            , string TOTALTRADINGAMOUNT
+            , string SECURITIESTRANSACTIONTAXAMOUNT
+            , string TRANSFERREDSHARESHUNDREDTHOUSANDS
+            , string TRANSFERREDSHARESTENSOFTHOUSANDS
+            , string TRANSFERREDSHARESTHOUSANDS
+            , string TRANSFERREDSHARESIRREGULARLOTS
+            , string HOLDINGSHARES
+            )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                                
+                                   
+                                    INSERT INTO  [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    (
+                                    [IDFORM]
+                                    ,[IDTO]
+                                    ,[DATEOFCHANGE]
+                                    ,[REASOFORCHANGE]
+                                    ,[STOCKACCOUNTNUMBERFORM]
+                                    ,[STOCKNAMEFORM]
+                                    ,[STOCKACCOUNTNUMBERTO]
+                                    ,[STOCKNAMETO]
+                                    ,[TRANSFERREDSHARES]
+                                    ,[PARVALUEPERSHARE]
+                                    ,[TRADINGPRICEPERSHARE]
+                                    ,[TOTALTRADINGAMOUNT]
+                                    ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                    ,[TRANSFERREDSHARESHUNDREDTHOUSANDS]
+                                    ,[TRANSFERREDSHARESTENSOFTHOUSANDS]
+                                    ,[TRANSFERREDSHARESTHOUSANDS]
+                                    ,[TRANSFERREDSHARESIRREGULARLOTS]
+                                    ,[HOLDINGSHARES]
+                                    )
+                                    VALUES
+                                    (
+                                    '{0}'
+                                    ,'{1}'
+                                    ,'{2}'
+                                    ,'{3}'
+                                    ,'{4}'
+                                    ,'{5}'
+                                    ,'{6}'
+                                    ,'{7}'
+                                    ,'{8}'
+                                    ,'{9}'
+                                    ,'{10}'
+                                    ,'{11}'
+                                    ,'{12}'
+                                    ,'{13}'
+                                    ,'{14}'
+                                    ,'{15}'
+                                    ,'{16}'
+                                    ,'{17}'
+
+                                    )
+                                   
+                                        
+                                        ",IDFORM
+                                    ,IDTO
+                                    ,DATEOFCHANGE
+                                    ,REASOFORCHANGE
+                                    ,STOCKACCOUNTNUMBERFORM
+                                    ,STOCKNAMEFORM
+                                    ,STOCKACCOUNTNUMBERTO
+                                    ,STOCKNAMETO
+                                    ,TRANSFERREDSHARES
+                                    ,PARVALUEPERSHARE
+                                    ,TRADINGPRICEPERSHARE
+                                    ,TOTALTRADINGAMOUNT
+                                    ,SECURITIESTRANSACTIONTAXAMOUNT
+                                    ,TRANSFERREDSHARESHUNDREDTHOUSANDS
+                                    ,TRANSFERREDSHARESTENSOFTHOUSANDS
+                                    ,TRANSFERREDSHARESTHOUSANDS
+                                    ,TRANSFERREDSHARESIRREGULARLOTS
+                                    ,HOLDINGSHARES
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public void TKSTOCKSTRANS_UPDATE(
+            string SERNO
+            , string IDFORM
+            , string IDTO
+            , string DATEOFCHANGE
+            , string REASOFORCHANGE
+            , string STOCKACCOUNTNUMBERFORM
+            , string STOCKNAMEFORM
+            , string STOCKACCOUNTNUMBERTO
+            , string STOCKNAMETO
+            , string TRANSFERREDSHARES
+            , string PARVALUEPERSHARE
+            , string TRADINGPRICEPERSHARE
+            , string TOTALTRADINGAMOUNT
+            , string SECURITIE
+            )
+        {
+
+        }
+
+        public void TKSTOCKSTRANS_DELETE(string SERNO)
+        {
+
+        }
         public void CHECKADD(TextBox TEXTBOXIN)
         {
             string MESSAGES = "";
@@ -2109,9 +2282,34 @@ namespace TKACT
             Search_DG5(textBox72.Text, textBox73.Text);
         }
 
+        private void button10_Click(object sender, EventArgs e)
+        {
+            TKSTOCKSTRANS_ADD(
+             textBox74.Text
+             , textBox75.Text
+             , dateTimePicker5.Value.ToString("yyyy/MM/dd")
+             , comboBox3.SelectedValue.ToString()
+             , textBox76.Text
+             , textBox77.Text
+             , textBox78.Text
+             , textBox79.Text
+             , textBox80.Text
+             , textBox81.Text
+             , textBox82.Text
+             , textBox83.Text
+             , textBox84.Text
+             , textBox85.Text
+             , textBox86.Text
+             , textBox87.Text
+             , textBox88.Text
+             , textBox89.Text
+             );
 
-        #endregion
+            Search_DG5(textBox72.Text, textBox73.Text);
+        }
+
+    #endregion
 
 
-    }
+}
 }
