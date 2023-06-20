@@ -763,6 +763,8 @@ namespace TKACT
                     textBox42.Text = row.Cells["配偶"].Value.ToString();
                     textBox43.Text = row.Cells["ID"].Value.ToString();
 
+                    dateTimePicker2.Value = Convert.ToDateTime(row.Cells["DATEOFBIRTH"].Value.ToString());
+
                 }
                 else
                 {
@@ -1385,7 +1387,7 @@ namespace TKACT
                 , textBox41.Text
                 , textBox42.Text
                 ,"N"
-                  , textBox43.Text
+                , textBox43.Text
                 );
 
             //Search_DG2(textBox23.Text, textBox24.Text, comboBox1.SelectedValue.ToString());
