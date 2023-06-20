@@ -316,6 +316,7 @@ namespace TKACT
                                 ,[INCREASEDSHARESIRREGULARLOTS] AS '增資股票號碼(不定額股)'
                                 ,[HOLDINGSHARES] AS '持有股數'
                                 ,[SERNO]
+                                ,[CAPITALINCREASERECORDDATE]
 
                                 FROM [TKACT].[dbo].[TKSTOCKSTRANSADD]
                                 WHERE 1=1
@@ -887,6 +888,51 @@ namespace TKACT
                 }
                 else
                 {
+
+
+                }
+            }
+        }
+
+        private void dataGridView4_SelectionChanged(object sender, EventArgs e)
+        {
+            string SERNO = "";
+            textBox46.Text = "";
+            textBox47.Text = "";
+            textBox48.Text = "";
+            textBox49.Text = "";
+            textBox50.Text = "";
+            textBox51.Text = "";
+            textBox52.Text = "";
+            textBox53.Text = "";
+            textBox54.Text = "";
+            textBox55.Text = "";
+            textBox56.Text = "";
+            textBox57.Text = "";
+
+            if (dataGridView4.CurrentRow != null)
+            {
+                int rowindex = dataGridView4.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView4.Rows[rowindex];
+                    SERNO = row.Cells["SERNO"].Value.ToString();
+                    textBox58.Text = row.Cells["SERNO"].Value.ToString();
+                    textBox59.Text = row.Cells["戶號"].Value.ToString();
+                    textBox60.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox61.Text = row.Cells["增資股數"].Value.ToString();
+                    textBox62.Text = row.Cells["每股面額"].Value.ToString();
+                    textBox63.Text = row.Cells["每股成交價格"].Value.ToString();
+                    textBox64.Text = row.Cells["成交總額"].Value.ToString();
+                    textBox65.Text = row.Cells["增資股票號碼(十萬股)"].Value.ToString();
+                    textBox66.Text = row.Cells["增資股票號碼(萬股)"].Value.ToString();
+                    textBox67.Text = row.Cells["增資股票號碼(千股)"].Value.ToString();
+                    textBox68.Text = row.Cells["增資股票號碼(不定額股)"].Value.ToString();
+                    textBox69.Text = row.Cells["持有股數"].Value.ToString();
+
+                    dateTimePicker4.Value= Convert.ToDateTime(row.Cells["CAPITALINCREASERECORDDATE"].Value.ToString());
+                    //comboBox2.SelectedValue= row.Cells["異動原因"].Value.ToString();
+                    comboBox2.SelectedText = row.Cells["異動原因"].Value.ToString();
 
 
                 }
@@ -1759,6 +1805,11 @@ namespace TKACT
             Search_DG4(textBox44.Text, textBox45.Text);
         }
 
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
 
