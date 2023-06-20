@@ -128,6 +128,7 @@ namespace TKACT
                                 ,[FATHER] AS '父'
                                 ,[MOTHER] AS '母'
                                 ,[SPOUSE] AS '配偶'
+                                ,[COMMENTS] AS '備註'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[DATEOFBIRTH] 
                                 FROM [TKACT].[dbo].[TKSTOCKS]
@@ -191,6 +192,7 @@ namespace TKACT
                                 ,[FATHER] AS '父'
                                 ,[MOTHER] AS '母'
                                 ,[SPOUSE] AS '配偶'
+                                ,[COMMENTS] AS '備註'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[DATEOFBIRTH] 
                                 ,[ID]
@@ -259,6 +261,7 @@ namespace TKACT
                                 ,[FATHER] AS '父'
                                 ,[MOTHER] AS '母'
                                 ,[SPOUSE] AS '配偶'
+                                ,[COMMENTS] AS '備註'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[ISUPDATE] AS '是否更新'
                                 ,[DATEOFBIRTH] 
@@ -422,6 +425,7 @@ namespace TKACT
                                 , string FATHER
                                 , string MOTHER
                                 , string SPOUSE
+                                , string COMMENTS
             )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -471,6 +475,7 @@ namespace TKACT
                                     ,[FATHER]
                                     ,[MOTHER]
                                     ,[SPOUSE]
+                                    ,[COMMENTS]
                                     )
                                     VALUES
                                     (
@@ -495,6 +500,7 @@ namespace TKACT
                                     ,'{18}'
                                     ,'{19}'
                                     ,'{20}'
+                                    ,'{21}'
                                     )
                                         
                                         ", CREATEDATES
@@ -518,6 +524,7 @@ namespace TKACT
                                         , FATHER
                                         , MOTHER
                                         , SPOUSE
+                                        , COMMENTS
                                         );
 
 
@@ -575,6 +582,7 @@ namespace TKACT
                                , string SPOUSE
                                , string ISUPDATE
                                , string ID
+                               , string COMMENTS
            )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -626,6 +634,7 @@ namespace TKACT
                                     ,[SPOUSE]
                                     ,[ISUPDATE]
                                     ,[ID]
+                                    ,[COMMENTS]
                                     )
                                     VALUES
                                     (
@@ -652,6 +661,7 @@ namespace TKACT
                                     ,'{20}'
                                     ,'{21}'
                                     ,'{22}'
+                                    ,'{23}'
                                     )
                                         
                                         ", CREATEDATES
@@ -677,6 +687,7 @@ namespace TKACT
                                         , SPOUSE
                                         , ISUPDATE
                                         , ID
+                                        , COMMENTS
                                         );
 
 
@@ -732,6 +743,7 @@ namespace TKACT
             , string FATHER
             , string MOTHER
             , string SPOUSE
+            , string COMMENTS
             )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -780,6 +792,7 @@ namespace TKACT
                                     ,[FATHER]='{18}'
                                     ,[MOTHER]='{19}'
                                     ,[SPOUSE]='{20}'
+                                    ,[COMMENTS]='{21}'
                                     WHERE [ID]='{0}'
                                         
                                         ", ID
@@ -803,6 +816,7 @@ namespace TKACT
                                         , FATHER
                                         , MOTHER
                                         , SPOUSE
+                                        , COMMENTS
                                         );
 
 
@@ -859,6 +873,7 @@ namespace TKACT
             textBox41.Text = "";
             textBox42.Text = "";
             textBox43.Text = "";
+            textBox71.Text = "";
 
             if (dataGridView2.CurrentRow != null)
             {
@@ -886,6 +901,7 @@ namespace TKACT
                     textBox40.Text = row.Cells["父"].Value.ToString();
                     textBox41.Text = row.Cells["母"].Value.ToString();
                     textBox42.Text = row.Cells["配偶"].Value.ToString();
+                    textBox71.Text = row.Cells["備註"].Value.ToString();
                     textBox43.Text = row.Cells["ID"].Value.ToString();
 
                     dateTimePicker2.Value = Convert.ToDateTime(row.Cells["DATEOFBIRTH"].Value.ToString());
@@ -1870,6 +1886,7 @@ namespace TKACT
                 , textBox19.Text
                 , textBox20.Text
                 , textBox21.Text
+                , textBox70.Text
                 );
 
             Search(textBox1.Text, textBox2.Text);
@@ -1910,6 +1927,7 @@ namespace TKACT
                 , textBox42.Text
                 , "N"
                 , textBox43.Text
+                , textBox71.Text
                 );
 
             UPDATE_TO_TKSTOCKS(
@@ -1934,6 +1952,7 @@ namespace TKACT
                                , textBox40.Text
                                , textBox41.Text
                                , textBox42.Text
+                               , textBox71.Text
                                );
 
             Search_DG2(textBox22.Text, textBox23.Text);
