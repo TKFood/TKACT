@@ -48,7 +48,7 @@ namespace TKACT
         #region FUNCTION
         public void comboBox1load()
         {
-            //LoadComboBoxData(comboBox1, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHER ", "KEYS", "KEYS");
+            LoadComboBoxData(comboBox1, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE KINDS='異動原因' ORDER BY ID", "KEYS", "KEYS");
         }
         public void LoadComboBoxData(ComboBox comboBox, string query, string valueMember, string displayMember)
         {
@@ -267,6 +267,67 @@ namespace TKACT
             sbSql.AppendFormat(@"  ");
 
             SEARCH(sbSql.ToString(), dataGridView3, SortedColumn, SortedModel);
+        }
+
+        public void Search_DG4(string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+            StringBuilder sbSqlQuery3 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+            sbSqlQuery3.Clear();
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                sbSqlQuery1.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+
+
+
+            sbSql.AppendFormat(@"
+                                
+                                SELECT 
+                                '民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([CAPITALINCREASERECORDDATE],1,4))-1911))+'年'+SUBSTRING([CAPITALINCREASERECORDDATE],6,2)+'月'+SUBSTRING([CAPITALINCREASERECORDDATE],9,2) +'日' AS '增資基準日'
+                                ,[REASONFORCHANGE] AS '異動原因'
+                                ,[STOCKACCOUNTNUMBER] AS '戶號'
+                                ,[STOCKNAME] AS '股東姓名'
+                                ,[INCREASEDSHARES] AS '增資股數'
+                                ,[PARVALUPERSHARE] AS '每股面額'
+                                ,[TRADINGPRICEPERSHARE] AS '每股成交價格'
+                                ,[TOTALTRADINGAMOUNT] AS '成交總額'
+                                ,[INCREASEDSHARESHUNDREDTHOUSANDS] AS '增資股票號碼(十萬股)'
+                                ,[INCREASEDSHARESTENSOFTHOUSANDS] AS '增資股票號碼(萬股)'
+                                ,[INCREASEDSHARESTHOUSANDS] AS '增資股票號碼(千股)'
+                                ,[INCREASEDSHARESIRREGULARLOTS] AS '增資股票號碼(不定額股)'
+                                ,[HOLDINGSHARES] AS '持有股數'
+                                ,[SERNO]
+
+                                FROM [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                WHERE 1=1
+                                {0}
+                                {1}
+                                ORDER BY [STOCKACCOUNTNUMBER],SERNO
+
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
+
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView4, SortedColumn, SortedModel);
         }
 
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
@@ -832,6 +893,132 @@ namespace TKACT
             }
         }
 
+        public void TKSTOCKSTRANSADD_ADD(
+             string CAPITALINCREASERECORDDATE
+            , string REASONFORCHANGE
+            , string STOCKACCOUNTNUMBER
+            , string STOCKNAME
+            , string INCREASEDSHARES
+            , string PARVALUPERSHARE
+            , string TRADINGPRICEPERSHARE
+            , string TOTALTRADINGAMOUNT
+            , string INCREASEDSHARESHUNDREDTHOUSANDS
+            , string INCREASEDSHARESTENSOFTHOUSANDS
+            , string INCREASEDSHARESTHOUSANDS
+            , string INCREASEDSHARESIRREGULARLOTS
+            , string HOLDINGSHARES
+            , string ID
+            )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                                  
+                                   
+                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    (
+                                   [CAPITALINCREASERECORDDATE]
+                                    ,[REASONFORCHANGE]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    ,[INCREASEDSHARES]
+                                    ,[PARVALUPERSHARE]
+                                    ,[TRADINGPRICEPERSHARE]
+                                    ,[TOTALTRADINGAMOUNT]
+                                    ,[INCREASEDSHARESHUNDREDTHOUSANDS]
+                                    ,[INCREASEDSHARESTENSOFTHOUSANDS]
+                                    ,[INCREASEDSHARESTHOUSANDS]
+                                    ,[INCREASEDSHARESIRREGULARLOTS]
+                                    ,[HOLDINGSHARES]
+                                    ,[ID]
+                                    )
+                                    VALUES
+                                    (
+                                    '{0}'
+                                    ,'{1}'
+                                    ,'{2}'
+                                    ,'{3}'
+                                    ,'{4}'
+                                    ,'{5}'
+                                    ,'{6}'
+                                    ,'{7}'
+                                    ,'{8}'
+                                    ,'{9}'
+                                    ,'{10}'
+                                    ,'{11}'
+                                    ,'{12}'
+                                    ,'{13}'
+                                
+                                    )
+                                        
+                                        ",
+                                         CAPITALINCREASERECORDDATE
+                                        , REASONFORCHANGE
+                                        , STOCKACCOUNTNUMBER
+                                        , STOCKNAME
+                                        , INCREASEDSHARES
+                                        , PARVALUPERSHARE
+                                        , TRADINGPRICEPERSHARE
+                                        , TOTALTRADINGAMOUNT
+                                        , INCREASEDSHARESHUNDREDTHOUSANDS
+                                        , INCREASEDSHARESTENSOFTHOUSANDS
+                                        , INCREASEDSHARESTHOUSANDS
+                                        , INCREASEDSHARESIRREGULARLOTS
+                                        , HOLDINGSHARES
+                                        , ID
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
 
         public void CHECKADD(TextBox TEXTBOXIN)
         {
@@ -1371,7 +1558,62 @@ namespace TKACT
         {
             CHECKADD(textBox35);
         }
+        private void textBox48_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // 阻止輸入非數字字符
+            }
 
+            // 檢查輸入長度是否超過 7
+            if (textBox1.Text.Length >= 7 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // 阻止輸入超過指定長度的字符
+            }
+        }
+        private void textBox50_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true; // 阻止輸入非數字、控制字符或小數點
+            }
+
+            // 檢查是否已輸入小數點
+            if (e.KeyChar == '.' && textBox1.Text.Contains('.'))
+            {
+                e.Handled = true; // 阻止輸入多個小數點
+            }
+
+            // 檢查小數點後位數
+            if (textBox1.Text.Contains('.'))
+            {
+                string[] parts = textBox1.Text.Split('.');
+                if (parts.Length > 1 && parts[1].Length >= 5 && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true; // 阻止輸入超過五位小數
+                }
+            }
+        }
+        private void textBox48_TextChanged(object sender, EventArgs e)
+        {
+            SET_TEXTBOX51();
+        }
+
+        private void textBox50_TextChanged(object sender, EventArgs e)
+        {
+            SET_TEXTBOX51();
+        }
+
+        public void SET_TEXTBOX51()
+        {
+            if(!string.IsNullOrEmpty(textBox48.Text) && !string.IsNullOrEmpty(textBox50.Text))
+            {
+                decimal result = Convert.ToDecimal(textBox48.Text) * Convert.ToDecimal(textBox50.Text);
+                int roundedResult = (int)Math.Round(result);
+                string roundedResultString = roundedResult.ToString();
+                textBox51.Text = roundedResultString;
+            }
+        }
         #endregion
 
 
@@ -1490,10 +1732,38 @@ namespace TKACT
             }
         }
 
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            Search_DG4(textBox44.Text, textBox45.Text);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TKSTOCKSTRANSADD_ADD(
+             dateTimePicker3.Value.ToString("yyyy/MM/dd")
+            , comboBox1.SelectedValue.ToString()
+            , textBox46.Text
+            , textBox47.Text
+            , textBox48.Text
+            , textBox49.Text
+            , textBox50.Text
+            , textBox51.Text
+            , textBox52.Text
+            , textBox53.Text
+            , textBox54.Text
+            , textBox55.Text
+            , textBox56.Text
+            , textBox57.Text
+            );
+
+            Search_DG4(textBox44.Text, textBox45.Text);
+        }
+
+
 
 
         #endregion
 
-      
+
     }
 }
