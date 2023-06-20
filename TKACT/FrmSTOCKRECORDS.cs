@@ -1545,15 +1545,177 @@ namespace TKACT
             , string PARVALUEPERSHARE
             , string TRADINGPRICEPERSHARE
             , string TOTALTRADINGAMOUNT
-            , string SECURITIE
+            , string SECURITIESTRANSACTIONTAXAMOUNT
+            , string TRANSFERREDSHARESHUNDREDTHOUSANDS
+            , string TRANSFERREDSHARESTENSOFTHOUSANDS
+            , string TRANSFERREDSHARESTHOUSANDS
+            , string TRANSFERREDSHARESIRREGULARLOTS
+            , string HOLDINGSHARES
             )
         {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
 
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                               
+                                   
+                                    UPDATE  [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    SET
+                                    [IDFORM]='{1}'
+                                    ,[IDTO]='{2}'
+                                    ,[DATEOFCHANGE]='{3}'
+                                    ,[REASOFORCHANGE]='{4}'
+                                    ,[STOCKACCOUNTNUMBERFORM]='{5}'
+                                    ,[STOCKNAMEFORM]='{6}'
+                                    ,[STOCKACCOUNTNUMBERTO]='{7}'
+                                    ,[STOCKNAMETO]='{8}'
+                                    ,[TRANSFERREDSHARES]='{9}'
+                                    ,[PARVALUEPERSHARE]='{10}'
+                                    ,[TRADINGPRICEPERSHARE]='{11}'
+                                    ,[TOTALTRADINGAMOUNT]='{12}'
+                                    ,[SECURITIESTRANSACTIONTAXAMOUNT]='{13}'
+                                    ,[TRANSFERREDSHARESHUNDREDTHOUSANDS]='{14}'
+                                    ,[TRANSFERREDSHARESTENSOFTHOUSANDS]='{15}'
+                                    ,[TRANSFERREDSHARESTHOUSANDS]='{16}'
+                                    ,[TRANSFERREDSHARESIRREGULARLOTS]='{17}'
+                                    ,[HOLDINGSHARES]='{18}'
+                                    WHERE [SERNO]='{0}'
+                                    
+
+                                    ", SERNO
+                                    ,  IDFORM
+                                    ,  IDTO
+                                    ,  DATEOFCHANGE
+                                    ,  REASOFORCHANGE
+                                    ,  STOCKACCOUNTNUMBERFORM
+                                    ,  STOCKNAMEFORM
+                                    ,  STOCKACCOUNTNUMBERTO
+                                    ,  STOCKNAMETO
+                                    ,  TRANSFERREDSHARES
+                                    ,  PARVALUEPERSHARE
+                                    ,  TRADINGPRICEPERSHARE
+                                    ,  TOTALTRADINGAMOUNT
+                                    ,  SECURITIESTRANSACTIONTAXAMOUNT
+                                    ,  TRANSFERREDSHARESHUNDREDTHOUSANDS
+                                    ,  TRANSFERREDSHARESTENSOFTHOUSANDS
+                                    ,  TRANSFERREDSHARESTHOUSANDS
+                                    ,  TRANSFERREDSHARESIRREGULARLOTS
+                                    ,  HOLDINGSHARES
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
         }
 
         public void TKSTOCKSTRANS_DELETE(string SERNO)
         {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
 
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                              
+                                   
+                                    DELETE  [TKACT].[dbo].[TKSTOCKSTRANS]                                   
+                                    WHERE [SERNO]='{0}'
+                                    ", SERNO                                   
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
         }
         public void CHECKADD(TextBox TEXTBOXIN)
         {
@@ -2405,12 +2567,48 @@ namespace TKACT
 
         private void button11_Click(object sender, EventArgs e)
         {
+            TKSTOCKSTRANS_UPDATE
+                (
+                 textBox106.Text.Trim()
+                , textBox104.Text.Trim()
+                , textBox105.Text.Trim()
+                , dateTimePicker6.Value.ToString("yyyy/MM/dd")
+                , comboBox4.SelectedValue.ToString()
+                , textBox90.Text.Trim()
+                , textBox91.Text.Trim()
+                , textBox92.Text.Trim()
+                , textBox93.Text.Trim()
+                , textBox94.Text.Trim()
+                , textBox95.Text.Trim()
+                , textBox96.Text.Trim()
+                , textBox97.Text.Trim()
+                , textBox98.Text.Trim()
+                , textBox99.Text.Trim()
+                , textBox100.Text.Trim()
+                , textBox101.Text.Trim()
+                , textBox102.Text.Trim()
+                , textBox103.Text.Trim()
 
+                );
+
+            Search_DG5(textBox72.Text, textBox73.Text);
         }
 
         private void button12_Click(object sender, EventArgs e)
-        {
+        {           
+            // 顯示確認對話框
+            DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
 
+            // 檢查使用者是否按下了確定按鈕
+            if (result == DialogResult.OK)
+            {
+                // 確認後執行的動作
+                // TODO: 在這裡執行您的程式碼
+                // 例如：
+                TKSTOCKSTRANS_DELETE(textBox106.Text.Trim());
+                Search_DG5(textBox72.Text, textBox73.Text);
+
+            }
         }
 
 
