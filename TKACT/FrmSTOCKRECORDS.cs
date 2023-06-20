@@ -102,7 +102,7 @@ namespace TKACT
 
 
             sbSql.AppendFormat(@"
-                                SELECT 
+                               SELECT 
                                 [STOCKACCOUNTNUMBER] AS '戶號'
                                 ,[STOCKNAME] AS '股東姓名'
                                 ,[IDNUMBER] AS '身份證字號或統一編號'
@@ -110,7 +110,7 @@ namespace TKACT
                                 ,[MAILINGADDRESS] AS '通訊地址'
                                 ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
                                 ,[REGISTEREDADDRESS] AS '戶籍地址'
-                                ,[DATEOFBIRTH] AS '出生/設立日期'
+                                ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFBIRTH],1,4))-1911))+'年'+SUBSTRING([DATEOFBIRTH],6,2)+'月'+SUBSTRING([DATEOFBIRTH],9,2) +'日' AS '出生/設立日期'
                                 ,[BANKNAME] AS '銀行名稱'
                                 ,[BRANCHNAME] AS '分行名稱'
                                 ,[BANKCODE] AS '銀行代碼'
@@ -124,6 +124,7 @@ namespace TKACT
                                 ,[MOTHER] AS '母'
                                 ,[SPOUSE] AS '配偶'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
+                                ,[DATEOFBIRTH] 
                                 FROM [TKACT].[dbo].[TKSTOCKS]
                                 WHERE 1=1
                                 {0}
@@ -135,7 +136,71 @@ namespace TKACT
             SEARCH(sbSql.ToString(), dataGridView1, SortedColumn, SortedModel);
         }
 
-        public void Search_DG2(string STOCKACCOUNTNUMBER, string STOCKNAME,string ISUPDATE)
+        public void Search_DG2(string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                sbSqlQuery1.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+
+
+            sbSql.AppendFormat(@"
+                                SELECT 
+                                [STOCKACCOUNTNUMBER] AS '戶號'
+                                ,[STOCKNAME] AS '股東姓名'
+                                ,[IDNUMBER] AS '身份證字號或統一編號'
+                                ,[POSTALCODE] AS '通訊地郵遞區號'
+                                ,[MAILINGADDRESS] AS '通訊地址'
+                                ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
+                                ,[REGISTEREDADDRESS] AS '戶籍地址'
+                                ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFBIRTH],1,4))-1911))+'年'+SUBSTRING([DATEOFBIRTH],6,2)+'月'+SUBSTRING([DATEOFBIRTH],9,2) +'日' AS '出生/設立日期'
+                               
+                                ,[BANKNAME] AS '銀行名稱'
+                                ,[BRANCHNAME] AS '分行名稱'
+                                ,[BANKCODE] AS '銀行代碼'
+                                ,[ACCOUNTNUMBER] AS '帳號'
+                                ,[HOMEPHONENUMBER] AS '住家電話'
+                                ,[MOBILEPHONENUMBER] AS '手機號碼'
+                                ,[EMAIL] AS 'e-mail'
+                                ,[PASSPORTNUMBER] AS '護照號碼'
+                                ,[ENGLISHNAME] AS '英文名'
+                                ,[FATHER] AS '父'
+                                ,[MOTHER] AS '母'
+                                ,[SPOUSE] AS '配偶'
+                                ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
+                                ,[DATEOFBIRTH] 
+
+                                FROM [TKACT].[dbo].[TKSTOCKS]
+                                WHERE 1=1
+                                {0}
+                                {1}
+                                ORDER BY [STOCKACCOUNTNUMBER] 
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString());
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView2, SortedColumn, SortedModel);
+        }
+
+        public void Search_DG3(string STOCKACCOUNTNUMBER, string STOCKNAME,string ISUPDATE)
         {
             StringBuilder sbSqlQuery1 = new StringBuilder();
             StringBuilder sbSqlQuery2 = new StringBuilder();
@@ -182,7 +247,8 @@ namespace TKACT
                                 ,[MAILINGADDRESS] AS '通訊地址'
                                 ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
                                 ,[REGISTEREDADDRESS] AS '戶籍地址'
-                                ,[DATEOFBIRTH] AS '出生/設立日期'
+                                ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFBIRTH],1,4))-1911))+'年'+SUBSTRING([DATEOFBIRTH],6,2)+'月'+SUBSTRING([DATEOFBIRTH],9,2) +'日' AS '出生/設立日期'
+                                
                                 ,[BANKNAME] AS '銀行名稱'
                                 ,[BRANCHNAME] AS '分行名稱'
                                 ,[BANKCODE] AS '銀行代碼'
@@ -197,6 +263,7 @@ namespace TKACT
                                 ,[SPOUSE] AS '配偶'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[ISUPDATE] AS '是否更新'
+                                ,[DATEOFBIRTH] 
                                 FROM [TKACT].[dbo].[TKSTOCKSCHAGES]
                                 WHERE 1=1
                                 {0}
@@ -206,7 +273,7 @@ namespace TKACT
                                   ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
             sbSql.AppendFormat(@"  ");
 
-            SEARCH(sbSql.ToString(), dataGridView2, SortedColumn, SortedModel);
+            SEARCH(sbSql.ToString(), dataGridView3, SortedColumn, SortedModel);
         }
 
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
@@ -423,6 +490,288 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
+
+        public void TKSTOCKSCHAGES_ADD(
+                               string CREATEDATES
+                               , string STOCKACCOUNTNUMBER
+                               , string STOCKNAME
+                               , string IDNUMBER
+                               , string POSTALCODE
+                               , string MAILINGADDRESS
+                               , string REGISTEREDPOSTALCODE
+                               , string REGISTEREDADDRESS
+                               , string DATEOFBIRTH
+                               , string BANKNAME
+                               , string BRANCHNAME
+                               , string BANKCODE
+                               , string ACCOUNTNUMBER
+                               , string HOMEPHONENUMBER
+                               , string MOBILEPHONENUMBER
+                               , string EMAIL
+                               , string PASSPORTNUMBER
+                               , string ENGLISHNAME
+                               , string FATHER
+                               , string MOTHER
+                               , string SPOUSE
+                               , string ISUPDATE
+                               , string ID
+           )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@" 
+                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSCHAGES]
+                                    (
+                                    [CREATEDATES]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    ,[IDNUMBER]
+                                    ,[POSTALCODE]
+                                    ,[MAILINGADDRESS]
+                                    ,[REGISTEREDPOSTALCODE]
+                                    ,[REGISTEREDADDRESS]
+                                    ,[DATEOFBIRTH]
+                                    ,[BANKNAME]
+                                    ,[BRANCHNAME]
+                                    ,[BANKCODE]
+                                    ,[ACCOUNTNUMBER]
+                                    ,[HOMEPHONENUMBER]
+                                    ,[MOBILEPHONENUMBER]
+                                    ,[EMAIL]
+                                    ,[PASSPORTNUMBER]
+                                    ,[ENGLISHNAME]
+                                    ,[FATHER]
+                                    ,[MOTHER]
+                                    ,[SPOUSE]
+                                    ,[ISUPDATE]
+                                    ,[ID]
+                                    )
+                                    VALUES
+                                    (
+                                    '{0}'
+                                    ,'{1}'
+                                    ,'{2}'
+                                    ,'{3}'
+                                    ,'{4}'
+                                    ,'{5}'
+                                    ,'{6}'
+                                    ,'{7}'
+                                    ,'{8}'
+                                    ,'{9}'
+                                    ,'{10}'
+                                    ,'{11}'
+                                    ,'{12}'
+                                    ,'{13}'
+                                    ,'{14}'
+                                    ,'{15}'
+                                    ,'{16}'
+                                    ,'{17}'
+                                    ,'{18}'
+                                    ,'{19}'
+                                    ,'{20}'
+                                    ,'{21}'
+                                    ,'{22}'
+                                    )
+                                        
+                                        ", CREATEDATES
+                                        , STOCKACCOUNTNUMBER
+                                        , STOCKNAME
+                                        , IDNUMBER
+                                        , POSTALCODE
+                                        , MAILINGADDRESS
+                                        , REGISTEREDPOSTALCODE
+                                        , REGISTEREDADDRESS
+                                        , DATEOFBIRTH
+                                        , BANKNAME
+                                        , BRANCHNAME
+                                        , BANKCODE
+                                        , ACCOUNTNUMBER
+                                        , HOMEPHONENUMBER
+                                        , MOBILEPHONENUMBER
+                                        , EMAIL
+                                        , PASSPORTNUMBER
+                                        , ENGLISHNAME
+                                        , FATHER
+                                        , MOTHER
+                                        , SPOUSE
+                                        , ISUPDATE
+                                        , ID
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public void UPDATE_TO_TKSTOCKS(string SERNO)
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@" 
+                                   
+                                        
+                                        ", SERNO);
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            string ID = "";
+            textBox26.Text = "";
+            textBox27.Text = "";
+            textBox28.Text = "";
+            textBox29.Text = "";
+            textBox30.Text = "";
+            textBox31.Text = "";
+            textBox32.Text = "";                
+            textBox25.Text = "";
+            textBox33.Text = "";
+            textBox34.Text = "";
+            textBox35.Text = "";
+            textBox24.Text = "";
+            textBox36.Text = "";
+            textBox37.Text = "";
+            textBox38.Text = "";
+            textBox39.Text = "";
+            textBox40.Text = "";
+            textBox41.Text = "";
+            textBox42.Text = "";
+            textBox43.Text = "";
+
+            if (dataGridView2.CurrentRow != null)
+            {
+                int rowindex = dataGridView2.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView2.Rows[rowindex];
+                    ID = row.Cells["ID"].Value.ToString();
+                    textBox26.Text = row.Cells["ID"].Value.ToString();
+                    textBox27.Text = row.Cells["ID"].Value.ToString();
+                    textBox28.Text = row.Cells["ID"].Value.ToString();
+                    textBox29.Text = row.Cells["ID"].Value.ToString();
+                    textBox30.Text = row.Cells["ID"].Value.ToString();
+                    textBox31.Text = row.Cells["ID"].Value.ToString();
+                    textBox32.Text = row.Cells["ID"].Value.ToString();
+                    textBox25.Text = row.Cells["ID"].Value.ToString();
+                    textBox33.Text = row.Cells["ID"].Value.ToString();
+                    textBox34.Text = row.Cells["ID"].Value.ToString();
+                    textBox35.Text = row.Cells["ID"].Value.ToString();
+                    textBox24.Text = row.Cells["ID"].Value.ToString();
+                    textBox36.Text = row.Cells["ID"].Value.ToString();
+                    textBox37.Text = row.Cells["ID"].Value.ToString();
+                    textBox38.Text = row.Cells["ID"].Value.ToString();
+                    textBox39.Text = row.Cells["ID"].Value.ToString();
+                    textBox40.Text = row.Cells["ID"].Value.ToString();
+                    textBox41.Text = row.Cells["ID"].Value.ToString();
+                    textBox42.Text = row.Cells["ID"].Value.ToString();
+                    textBox43.Text = row.Cells["ID"].Value.ToString();
+
+                }
+                else
+                {
+
+
+                }
+            }
+        }
+
 
         public void CHECKADD(TextBox TEXTBOXIN)
         {
@@ -851,6 +1200,8 @@ namespace TKACT
             
         }
 
+       
+
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
            
@@ -972,8 +1323,7 @@ namespace TKACT
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            DateTime selectedDate = dateTimePicker1.Value;
-            int republicOfChinaYear = selectedDate.Year - 1911;
+          
 
             TKSTOCKS_ADD(DateTime.Now.ToString("yyyy/MM/dd")
                 , textBox3.Text
@@ -983,7 +1333,7 @@ namespace TKACT
                 , textBox7.Text
                 , textBox8.Text
                 , textBox9.Text
-                , "民國 " + republicOfChinaYear + "年" + dateTimePicker1.Value.ToString("MM") + "月" + dateTimePicker1.Value.ToString("dd") + "日"
+                , dateTimePicker1.Value.ToString("yyyy/MM/dd") 
                 , textBox10.Text
                 , textBox11.Text
                 , textBox12.Text
@@ -1004,23 +1354,62 @@ namespace TKACT
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Search_DG2(textBox23.Text, textBox24.Text,comboBox1.SelectedValue.ToString());
+            Search_DG2(textBox22.Text, textBox23.Text);
+            Search_DG3(textBox22.Text, textBox23.Text,comboBox1.SelectedValue.ToString());
         }
 
 
         private void button4_Click(object sender, EventArgs e)
         {
+   
 
+            TKSTOCKSCHAGES_ADD(DateTime.Now.ToString("yyyy/MM/dd")
+                , textBox26.Text
+                , textBox27.Text
+                , textBox28.Text
+                , textBox29.Text
+                , textBox30.Text
+                , textBox31.Text
+                , textBox32.Text
+                , dateTimePicker2.Value.ToString("yyyy/MM/dd")
+                , textBox25.Text
+                , textBox33.Text
+                , textBox34.Text
+                , textBox35.Text
+                , textBox24.Text
+                , textBox36.Text
+                , textBox37.Text
+                , textBox38.Text
+                , textBox39.Text
+                , textBox40.Text
+                , textBox41.Text
+                , textBox42.Text
+                ,"N"
+                  , textBox43.Text
+                );
+
+            //Search_DG2(textBox23.Text, textBox24.Text, comboBox1.SelectedValue.ToString());
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
+            // 顯示確認對話框
+            DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
 
+            // 檢查使用者是否按下了確定按鈕
+            if (result == DialogResult.OK)
+            {
+                // 確認後執行的動作
+                // TODO: 在這裡執行您的程式碼
+                // 例如：
+                
+            }
         }
+
 
 
         #endregion
 
-       
+      
     }
 }
