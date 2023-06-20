@@ -188,7 +188,7 @@ namespace TKACT
                                 ,[SPOUSE] AS '配偶'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[DATEOFBIRTH] 
-
+                                ,[ID]
                                 FROM [TKACT].[dbo].[TKSTOCKS]
                                 WHERE 1=1
                                 {0}
@@ -742,25 +742,25 @@ namespace TKACT
                 {
                     DataGridViewRow row = dataGridView2.Rows[rowindex];
                     ID = row.Cells["ID"].Value.ToString();
-                    textBox26.Text = row.Cells["ID"].Value.ToString();
-                    textBox27.Text = row.Cells["ID"].Value.ToString();
-                    textBox28.Text = row.Cells["ID"].Value.ToString();
-                    textBox29.Text = row.Cells["ID"].Value.ToString();
-                    textBox30.Text = row.Cells["ID"].Value.ToString();
-                    textBox31.Text = row.Cells["ID"].Value.ToString();
-                    textBox32.Text = row.Cells["ID"].Value.ToString();
-                    textBox25.Text = row.Cells["ID"].Value.ToString();
-                    textBox33.Text = row.Cells["ID"].Value.ToString();
-                    textBox34.Text = row.Cells["ID"].Value.ToString();
-                    textBox35.Text = row.Cells["ID"].Value.ToString();
-                    textBox24.Text = row.Cells["ID"].Value.ToString();
-                    textBox36.Text = row.Cells["ID"].Value.ToString();
-                    textBox37.Text = row.Cells["ID"].Value.ToString();
-                    textBox38.Text = row.Cells["ID"].Value.ToString();
-                    textBox39.Text = row.Cells["ID"].Value.ToString();
-                    textBox40.Text = row.Cells["ID"].Value.ToString();
-                    textBox41.Text = row.Cells["ID"].Value.ToString();
-                    textBox42.Text = row.Cells["ID"].Value.ToString();
+                    textBox26.Text = row.Cells["戶號"].Value.ToString();
+                    textBox27.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox28.Text = row.Cells["身份證字號或統一編號"].Value.ToString();
+                    textBox29.Text = row.Cells["通訊地郵遞區號"].Value.ToString();
+                    textBox30.Text = row.Cells["通訊地址"].Value.ToString();
+                    textBox31.Text = row.Cells["戶籍地郵遞區號"].Value.ToString();
+                    textBox32.Text = row.Cells["戶籍地址"].Value.ToString();
+                    textBox25.Text = row.Cells["銀行名稱"].Value.ToString();
+                    textBox33.Text = row.Cells["分行名稱"].Value.ToString();
+                    textBox34.Text = row.Cells["銀行代碼"].Value.ToString();
+                    textBox35.Text = row.Cells["帳號"].Value.ToString();
+                    textBox24.Text = row.Cells["住家電話"].Value.ToString();
+                    textBox36.Text = row.Cells["手機號碼"].Value.ToString();
+                    textBox37.Text = row.Cells["e-mail"].Value.ToString();
+                    textBox38.Text = row.Cells["護照號碼"].Value.ToString();
+                    textBox39.Text = row.Cells["英文名"].Value.ToString();
+                    textBox40.Text = row.Cells["父"].Value.ToString();
+                    textBox41.Text = row.Cells["母"].Value.ToString();
+                    textBox42.Text = row.Cells["配偶"].Value.ToString();
                     textBox43.Text = row.Cells["ID"].Value.ToString();
 
                 }
