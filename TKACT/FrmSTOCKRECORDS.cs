@@ -2085,9 +2085,44 @@ namespace TKACT
             if(!string.IsNullOrEmpty(textBox48.Text) && !string.IsNullOrEmpty(textBox50.Text))
             {
                 decimal result = Convert.ToDecimal(textBox48.Text) * Convert.ToDecimal(textBox50.Text);
-                int roundedResult = (int)Math.Round(result);
+                Int64 roundedResult = (Int64)Math.Round(result);
                 string roundedResultString = roundedResult.ToString();
                 textBox51.Text = roundedResultString;
+            }
+        }
+        private void textBox80_TextChanged(object sender, EventArgs e)
+        {
+            SET_TEXTBOX83();
+        }
+
+        private void textBox82_TextChanged(object sender, EventArgs e)
+        {
+            SET_TEXTBOX83();
+        }
+        public void SET_TEXTBOX83()
+        {
+            if (!string.IsNullOrEmpty(textBox80.Text) && !string.IsNullOrEmpty(textBox82.Text))
+            {
+                decimal result = Convert.ToDecimal(textBox80.Text) * Convert.ToDecimal(textBox82.Text);
+                Int64 roundedResult = (Int64)Math.Round(result);
+                string roundedResultString = roundedResult.ToString();
+                textBox83.Text = roundedResultString;
+                
+            }
+        }
+
+        private void textBox83_TextChanged(object sender, EventArgs e)
+        {
+            if(comboBox3.SelectedValue.ToString().Equals("贈與"))
+            {
+                textBox84.Text = "0";
+            }
+            else
+            {
+                decimal result = Convert.ToDecimal(textBox83.Text) / 1000;
+                Int64 roundedResult = (Int64)Math.Round(result);
+                string roundedResultString = roundedResult.ToString();
+                textBox84.Text = roundedResultString;
             }
         }
         #endregion
@@ -2308,8 +2343,10 @@ namespace TKACT
             Search_DG5(textBox72.Text, textBox73.Text);
         }
 
-    #endregion
 
 
-}
+        #endregion
+
+       
+    }
 }
