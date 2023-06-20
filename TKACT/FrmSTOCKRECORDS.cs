@@ -48,7 +48,7 @@ namespace TKACT
         #region FUNCTION
         public void comboBox1load()
         {
-            LoadComboBoxData(comboBox1, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHER ", "KEYS", "KEYS");
+            //LoadComboBoxData(comboBox1, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHER ", "KEYS", "KEYS");
         }
         public void LoadComboBoxData(ComboBox comboBox, string query, string valueMember, string displayMember)
         {
@@ -200,7 +200,7 @@ namespace TKACT
             SEARCH(sbSql.ToString(), dataGridView2, SortedColumn, SortedModel);
         }
 
-        public void Search_DG3(string STOCKACCOUNTNUMBER, string STOCKNAME,string ISUPDATE)
+        public void Search_DG3(string STOCKACCOUNTNUMBER, string STOCKNAME)
         {
             StringBuilder sbSqlQuery1 = new StringBuilder();
             StringBuilder sbSqlQuery2 = new StringBuilder();
@@ -227,14 +227,7 @@ namespace TKACT
             {
                 sbSqlQuery2.AppendFormat(@" ");
             }
-            if (!string.IsNullOrEmpty(ISUPDATE))
-            {
-                sbSqlQuery3.AppendFormat(@" AND ISUPDATE ='{0}' ", ISUPDATE);
-            }
-            else
-            {
-                sbSqlQuery3.AppendFormat(@" ");
-            }
+      
 
 
             sbSql.AppendFormat(@"
@@ -634,7 +627,7 @@ namespace TKACT
                 {
                     tran.Commit();      //執行交易  
 
-                    MessageBox.Show("完成");
+                    //MessageBox.Show("完成");
 
                 }
 
@@ -650,7 +643,29 @@ namespace TKACT
             }
         }
 
-        public void UPDATE_TO_TKSTOCKS(string SERNO)
+        public void UPDATE_TO_TKSTOCKS(
+            string ID
+            , string STOCKACCOUNTNUMBER
+            , string STOCKNAME
+            , string IDNUMBER
+            , string POSTALCODE
+            , string MAILINGADDRESS
+            , string REGISTEREDPOSTALCODE
+            , string REGISTEREDADDRESS
+            , string DATEOFBIRTH
+            , string BANKNAME
+            , string BRANCHNAME
+            , string BANKCODE
+            , string ACCOUNTNUMBER
+            , string HOMEPHONENUMBER
+            , string MOBILEPHONENUMBER
+            , string EMAIL
+            , string PASSPORTNUMBER
+            , string ENGLISHNAME
+            , string FATHER
+            , string MOTHER
+            , string SPOUSE
+            )
         {
             SqlConnection sqlConn = new SqlConnection();
             SqlCommand sqlComm = new SqlCommand();
@@ -675,10 +690,53 @@ namespace TKACT
 
                 sbSql.Clear();
 
-                sbSql.AppendFormat(@" 
-                                   
+                sbSql.AppendFormat(@"                                    
+                                    UPDATE [TKACT].[dbo].[TKSTOCKS]
+                                    SET 
+                                    [STOCKACCOUNTNUMBER]='{1}'
+                                    ,[STOCKNAME]='{2}'
+                                    ,[IDNUMBER]='{3}'
+                                    ,[POSTALCODE]='{4}'
+                                    ,[MAILINGADDRESS]='{5}'
+                                    ,[REGISTEREDPOSTALCODE]='{6}'
+                                    ,[REGISTEREDADDRESS]='{7}'
+                                    ,[DATEOFBIRTH]='{8}'
+                                    ,[BANKNAME]='{9}'
+                                    ,[BRANCHNAME]='{10}'
+                                    ,[BANKCODE]='{11}'
+                                    ,[ACCOUNTNUMBER]='{12}'
+                                    ,[HOMEPHONENUMBER]='{13}'
+                                    ,[MOBILEPHONENUMBER]='{14}'
+                                    ,[EMAIL]='{15}'
+                                    ,[PASSPORTNUMBER]='{16}'
+                                    ,[ENGLISHNAME]='{17}'
+                                    ,[FATHER]='{18}'
+                                    ,[MOTHER]='{19}'
+                                    ,[SPOUSE]='{20}'
+                                    WHERE [ID]='{0}'
                                         
-                                        ", SERNO);
+                                        ", ID
+                                        , STOCKACCOUNTNUMBER
+                                        , STOCKNAME
+                                        , IDNUMBER
+                                        , POSTALCODE
+                                        , MAILINGADDRESS
+                                        , REGISTEREDPOSTALCODE
+                                        , REGISTEREDADDRESS
+                                        , DATEOFBIRTH
+                                        , BANKNAME
+                                        , BRANCHNAME
+                                        , BANKCODE
+                                        , ACCOUNTNUMBER
+                                        , HOMEPHONENUMBER
+                                        , MOBILEPHONENUMBER
+                                        , EMAIL
+                                        , PASSPORTNUMBER
+                                        , ENGLISHNAME
+                                        , FATHER
+                                        , MOTHER
+                                        , SPOUSE
+                                        );
 
 
                 cmd.Connection = sqlConn;
@@ -1357,13 +1415,13 @@ namespace TKACT
         private void button3_Click(object sender, EventArgs e)
         {
             Search_DG2(textBox22.Text, textBox23.Text);
-            Search_DG3(textBox22.Text, textBox23.Text,comboBox1.SelectedValue.ToString());
+            Search_DG3(textBox22.Text, textBox23.Text);
         }
 
 
         private void button4_Click(object sender, EventArgs e)
         {
-   
+
 
             TKSTOCKSCHAGES_ADD(DateTime.Now.ToString("yyyy/MM/dd")
                 , textBox26.Text
@@ -1386,11 +1444,35 @@ namespace TKACT
                 , textBox40.Text
                 , textBox41.Text
                 , textBox42.Text
-                ,"N"
+                , "N"
                 , textBox43.Text
                 );
 
-            //Search_DG2(textBox23.Text, textBox24.Text, comboBox1.SelectedValue.ToString());
+            UPDATE_TO_TKSTOCKS(
+                               textBox43.Text
+                               , textBox26.Text
+                               , textBox27.Text
+                               , textBox28.Text
+                               , textBox29.Text
+                               , textBox30.Text
+                               , textBox31.Text
+                               , textBox32.Text
+                               , dateTimePicker2.Value.ToString("yyyy/MM/dd")
+                               , textBox25.Text
+                               , textBox33.Text
+                               , textBox34.Text
+                               , textBox35.Text
+                               , textBox24.Text
+                               , textBox36.Text
+                               , textBox37.Text
+                               , textBox38.Text
+                               , textBox39.Text
+                               , textBox40.Text
+                               , textBox41.Text
+                               , textBox42.Text
+                               );
+
+            Search_DG2(textBox22.Text, textBox23.Text);
         }
 
         private void button5_Click(object sender, EventArgs e)
