@@ -40,10 +40,40 @@ namespace TKACT
         public FrmSTOCKRECORDS()
         {
             InitializeComponent();
+
+            comboBox1load();
+
         }
 
         #region FUNCTION
+        public void comboBox1load()
+        {
+            LoadComboBoxData(comboBox1, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHER ", "KEYS", "KEYS");
+        }
+        public void LoadComboBoxData(ComboBox comboBox, string query, string valueMember, string displayMember)
+        {
+            //20210902密
+            Class1 TKID = new Class1();//用new 建立類別實體
+            SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
 
+            //資料庫使用者密碼解密
+            sqlsb.Password = TKID.Decryption(sqlsb.Password);
+            sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+            using (SqlConnection connection = new SqlConnection(sqlsb.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                comboBox.DataSource = dataTable;
+                comboBox.ValueMember = valueMember;
+                comboBox.DisplayMember = displayMember;
+            }
+        }
         public void Search(string STOCKACCOUNTNUMBER,string STOCKNAME)
         {
             StringBuilder sbSqlQuery1 = new StringBuilder();
@@ -102,11 +132,84 @@ namespace TKACT
                                   ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString());
             sbSql.AppendFormat(@"  ");
 
-            SEARCH_MANULINE(sbSql.ToString(), dataGridView1, SortedColumn, SortedModel);
+            SEARCH(sbSql.ToString(), dataGridView1, SortedColumn, SortedModel);
         }
 
-        #endregion
-        public void SEARCH_MANULINE(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
+        public void Search_DG2(string STOCKACCOUNTNUMBER, string STOCKNAME,string ISUPDATE)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+            StringBuilder sbSqlQuery3 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+            sbSqlQuery3.Clear();
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                sbSqlQuery1.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(ISUPDATE))
+            {
+                sbSqlQuery3.AppendFormat(@" AND ISUPDATE ='{0}' ", ISUPDATE);
+            }
+            else
+            {
+                sbSqlQuery3.AppendFormat(@" ");
+            }
+
+
+            sbSql.AppendFormat(@"
+                                SELECT 
+                                [SERNO] AS '流水號'
+                                ,[STOCKACCOUNTNUMBER] AS '戶號'
+                                ,[STOCKNAME] AS '股東姓名'
+                                ,[IDNUMBER] AS '身份證字號或統一編號'
+                                ,[POSTALCODE] AS '通訊地郵遞區號'
+                                ,[MAILINGADDRESS] AS '通訊地址'
+                                ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
+                                ,[REGISTEREDADDRESS] AS '戶籍地址'
+                                ,[DATEOFBIRTH] AS '出生/設立日期'
+                                ,[BANKNAME] AS '銀行名稱'
+                                ,[BRANCHNAME] AS '分行名稱'
+                                ,[BANKCODE] AS '銀行代碼'
+                                ,[ACCOUNTNUMBER] AS '帳號'
+                                ,[HOMEPHONENUMBER] AS '住家電話'
+                                ,[MOBILEPHONENUMBER] AS '手機號碼'
+                                ,[EMAIL] AS 'e-mail'
+                                ,[PASSPORTNUMBER] AS '護照號碼'
+                                ,[ENGLISHNAME] AS '英文名'
+                                ,[FATHER] AS '父'
+                                ,[MOTHER] AS '母'
+                                ,[SPOUSE] AS '配偶'
+                                ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
+                                ,[ISUPDATE] AS '是否更新'
+                                FROM [TKACT].[dbo].[TKSTOCKSCHAGES]
+                                WHERE 1=1
+                                {0}
+                                {1}
+                                {2}
+                                ORDER BY [STOCKACCOUNTNUMBER] 
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView2, SortedColumn, SortedModel);
+        }
+
+        public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
         {
             SqlConnection sqlConn = new SqlConnection();
             SqlCommand sqlComm = new SqlCommand();
@@ -350,6 +453,30 @@ namespace TKACT
                 }
             }
 
+            //戶號
+            if (TEXTBOXIN.Name.Equals("textBox26"))
+            {
+                if (string.IsNullOrEmpty(textBox26.Text))
+                {
+                    MESSAGES = MESSAGES + "戶號 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox26.Text))
+                {
+                    string input = textBox26.Text;
+                    int number;
+
+                    if (input.Length == 4 && int.TryParse(input, out number))
+                    {
+                        // 輸入為 4 位數字
+                        // 在這裡處理符合條件的情況
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + " 戶號 要為4位數字 ";
+                    }
+
+                }
+            }
 
             //股東姓名
             if (TEXTBOXIN.Name.Equals("textBox4"))
@@ -374,7 +501,31 @@ namespace TKACT
 
                 }
             }
-            
+
+            //股東姓名
+            if (TEXTBOXIN.Name.Equals("textBox27"))
+            {
+                if (string.IsNullOrEmpty(textBox27.Text))
+                {
+                    MESSAGES = MESSAGES + " 股東姓名 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox27.Text))
+                {
+                    string input = textBox27.Text;
+
+                    if (input.Length >= 3)
+                    {
+                        // 輸入為 4 位數字
+                        // 在這裡處理符合條件的情況
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + " 股東姓名 至少3個中文字 ";
+                    }
+
+                }
+            }
+
 
             //身份證字號或統一編號
             if (TEXTBOXIN.Name.Equals("textBox5"))
@@ -402,7 +553,33 @@ namespace TKACT
 
                 }
             }
-            
+            //身份證字號或統一編號
+            if (TEXTBOXIN.Name.Equals("textBox28"))
+            {
+                if (string.IsNullOrEmpty(textBox28.Text))
+                {
+                    MESSAGES = MESSAGES + " 身份證字號或統一編號 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox28.Text))
+                {
+                    string input = textBox28.Text;
+
+                    if (input.Length == 8 && Regex.IsMatch(input, @"^\d+$"))
+                    {
+                        // 符合條件 1：長度為 8 位且全為數字                    
+                    }
+                    else if (input.Length == 10 && Regex.IsMatch(input, @"^[A-Za-z]\d{9}$"))
+                    {
+                        // 符合條件 2：長度為 10 位，開頭為一個英文字母，其餘 9 位為數字                    
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + " 法人：8位數字、自然人1英文字+9位數字 ";
+                    }
+
+                }
+            }
+
             //通訊地郵遞區號
             if (TEXTBOXIN.Name.Equals("textBox6"))
             {
@@ -425,7 +602,29 @@ namespace TKACT
 
                 }
             }
-           
+            //通訊地郵遞區號
+            if (TEXTBOXIN.Name.Equals("textBox29"))
+            {
+                if (string.IsNullOrEmpty(textBox29.Text))
+                {
+                    MESSAGES = MESSAGES + " 通訊地郵遞區號 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox29.Text))
+                {
+                    string input = textBox29.Text;
+
+                    if (input.Length == 6 && Regex.IsMatch(input, @"^\d+$"))
+                    {
+                        // 符合條件 1：長度為 8 位且全為數字                    
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + "通訊地郵遞區號 6位數字 ";
+                    }
+
+                }
+            }
+
             //通訊地址
             if (TEXTBOXIN.Name.Equals("textBox7"))
             {
@@ -434,7 +633,16 @@ namespace TKACT
                     MESSAGES = MESSAGES + " 通訊地址 不可空白";
                 }
             }
-          
+
+            //通訊地址
+            if (TEXTBOXIN.Name.Equals("textBox30"))
+            {
+                if (string.IsNullOrEmpty(textBox30.Text))
+                {
+                    MESSAGES = MESSAGES + " 通訊地址 不可空白";
+                }
+            }
+
             //戶籍地郵遞區號
             if (TEXTBOXIN.Name.Equals("textBox8"))
             {
@@ -457,7 +665,30 @@ namespace TKACT
 
                 }
             }
-           
+
+            //戶籍地郵遞區號
+            if (TEXTBOXIN.Name.Equals("textBox31"))
+            {
+                if (string.IsNullOrEmpty(textBox31.Text))
+                {
+                    MESSAGES = MESSAGES + " 通訊地郵遞區號 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox31.Text))
+                {
+                    string input = textBox31.Text;
+
+                    if (input.Length == 6 && Regex.IsMatch(input, @"^\d+$"))
+                    {
+                        // 符合條件 1：長度為 8 位且全為數字                    
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + "通訊地郵遞區號 6位數字 ";
+                    }
+
+                }
+            }
+
             //戶籍地址
             if (TEXTBOXIN.Name.Equals("textBox9"))
             {
@@ -466,7 +697,15 @@ namespace TKACT
                     MESSAGES = MESSAGES + " 戶籍地址 不可空白";
                 }
             }
-        
+            //戶籍地址
+            if (TEXTBOXIN.Name.Equals("textBox32"))
+            {
+                if (string.IsNullOrEmpty(textBox32.Text))
+                {
+                    MESSAGES = MESSAGES + " 戶籍地址 不可空白";
+                }
+            }
+
             //出生 / 設立日期
 
             //銀行名稱
@@ -477,7 +716,15 @@ namespace TKACT
                     MESSAGES = MESSAGES + " 銀行名稱 不可空白";
                 }
             }
-         
+
+            //銀行名稱
+            if (TEXTBOXIN.Name.Equals("textBox25"))
+            {
+                if (string.IsNullOrEmpty(textBox25.Text))
+                {
+                    MESSAGES = MESSAGES + " 銀行名稱 不可空白";
+                }
+            }
             //分行名稱
             if (TEXTBOXIN.Name.Equals("textBox11"))
             {
@@ -486,7 +733,15 @@ namespace TKACT
                     MESSAGES = MESSAGES + " 分行名稱 不可空白";
                 }
             }
-          
+            //分行名稱
+            if (TEXTBOXIN.Name.Equals("textBox33"))
+            {
+                if (string.IsNullOrEmpty(textBox33.Text))
+                {
+                    MESSAGES = MESSAGES + " 分行名稱 不可空白";
+                }
+            }
+
             //銀行代碼
             if (TEXTBOXIN.Name.Equals("textBox12"))
             {
@@ -509,7 +764,29 @@ namespace TKACT
 
                 }
             }
-           
+            //銀行代碼
+            if (TEXTBOXIN.Name.Equals("textBox34"))
+            {
+                if (string.IsNullOrEmpty(textBox34.Text))
+                {
+                    MESSAGES = MESSAGES + " 銀行代碼 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox34.Text))
+                {
+                    string input = textBox34.Text;
+
+                    if (input.Length == 7 && Regex.IsMatch(input, @"^\d+$"))
+                    {
+                        // 符合條件 1：長度為 8 位且全為數字                    
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + "銀行代碼 7位數字 ";
+                    }
+
+                }
+            }
+
             //帳號
             if (TEXTBOXIN.Name.Equals("textBox13"))
             {
@@ -532,7 +809,29 @@ namespace TKACT
 
                 }
             }
-           
+            //帳號
+            if (TEXTBOXIN.Name.Equals("textBox35"))
+            {
+                if (string.IsNullOrEmpty(textBox35.Text))
+                {
+                    MESSAGES = MESSAGES + " 帳號 不可空白";
+                }
+                if (!string.IsNullOrEmpty(textBox35.Text))
+                {
+                    string input = textBox35.Text;
+
+                    if (input.Length >= 11 && Regex.IsMatch(input, @"^\d+$"))
+                    {
+                        // 符合條件 1：長度為 8 位且全為數字                    
+                    }
+                    else
+                    {
+                        MESSAGES = MESSAGES + "帳號 11~14碼數字 ";
+                    }
+
+                }
+            }
+
             //住家電話
             //手機號碼
             //e - mail
@@ -607,6 +906,64 @@ namespace TKACT
         {
             CHECKADD(textBox13);
         }
+        private void textBox26_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox26);
+        }
+
+        private void textBox27_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox27);
+        }
+
+        private void textBox28_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox28);
+        }
+
+        private void textBox29_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox29);
+        }
+
+        private void textBox30_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox30);
+        }
+
+        private void textBox31_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox31);
+        }
+
+        private void textBox32_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox32);
+        }
+
+        private void textBox25_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox25);
+        }
+
+        private void textBox33_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox33);
+        }
+
+        private void textBox34_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox34);
+        }
+
+        private void textBox35_Leave(object sender, EventArgs e)
+        {
+            CHECKADD(textBox35);
+        }
+
+        #endregion
+
+
         #region BUTTON
 
         private void button1_Click(object sender, EventArgs e)
@@ -645,7 +1002,21 @@ namespace TKACT
         }
 
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Search_DG2(textBox23.Text, textBox24.Text,comboBox1.SelectedValue.ToString());
+        }
 
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
         #endregion
