@@ -339,6 +339,71 @@ namespace TKACT
             SEARCH(sbSql.ToString(), dataGridView4, SortedColumn, SortedModel);
         }
 
+        public void Search_DG5(string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+            StringBuilder sbSqlQuery3 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+            sbSqlQuery3.Clear();
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                sbSqlQuery1.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+
+
+
+            sbSql.AppendFormat(@"
+                                SELECT
+                                [SERNO] AS '流水號'
+                                ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFCHANGE],1,4))-1911))+'年'+SUBSTRING([DATEOFCHANGE],6,2)+'月'+SUBSTRING([DATEOFCHANGE],9,2) +'日' AS '異動日期'
+                                ,[REASOFORCHANGE] AS '異動原因'
+                                ,[STOCKACCOUNTNUMBERFORM] AS '轉讓人戶號'
+                                ,[STOCKNAMEFORM] AS '轉讓人姓名'
+                                ,[STOCKACCOUNTNUMBERTO] AS '受讓人戶號'
+                                ,[STOCKNAMETO] AS '受讓人姓名'
+                                ,[TRANSFERREDSHARES] AS '轉讓股數'
+                                ,[PARVALUEPERSHARE] AS '每股面額'
+                                ,[TRADINGPRICEPERSHARE] AS '每股成交價格'
+                                ,[TOTALTRADINGAMOUNT] AS '成交總額'
+                                ,[SECURITIESTRANSACTIONTAXAMOUNT] AS '證券交易稅額'
+                                ,[TRANSFERREDSHARESHUNDREDTHOUSANDS] AS '轉讓股票號碼(十萬股)'
+                                ,[TRANSFERREDSHARESTENSOFTHOUSANDS] AS '轉讓股票號碼(萬股)'
+                                ,[TRANSFERREDSHARESTHOUSANDS] AS '轉讓股票號碼(千股)'
+                                ,[TRANSFERREDSHARESIRREGULARLOTS] AS '轉讓股票號碼(不定額股)'
+                                ,[HOLDINGSHARES] AS '持有股數'
+                                ,[IDFORM]
+                                ,[IDTO]
+                                ,[DATEOFCHANGE]
+                                FROM [TKACT].[dbo].[TKSTOCKSTRANS]
+                                WHERE 1=1
+                                {0}
+                                {1}
+                                ORDER BY [DATEOFCHANGE], [SERNO]
+
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
+
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView5, SortedColumn, SortedModel);
+        }
+
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -2038,6 +2103,10 @@ namespace TKACT
                 TKSTOCKSTRANSADD_DELETE(textBox58.Text);
                 Search_DG4(textBox44.Text, textBox45.Text);
             }
+        }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Search_DG5(textBox72.Text, textBox73.Text);
         }
 
 
