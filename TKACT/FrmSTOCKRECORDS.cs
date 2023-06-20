@@ -42,6 +42,7 @@ namespace TKACT
             InitializeComponent();
 
             comboBox1load();
+            comboBox2load();
 
         }
 
@@ -49,6 +50,10 @@ namespace TKACT
         public void comboBox1load()
         {
             LoadComboBoxData(comboBox1, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE KINDS='異動原因' ORDER BY ID", "KEYS", "KEYS");
+        }
+        public void comboBox2load()
+        {
+            LoadComboBoxData(comboBox2, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE KINDS='異動原因' ORDER BY ID", "KEYS", "KEYS");
         }
         public void LoadComboBoxData(ComboBox comboBox, string query, string valueMember, string displayMember)
         {
@@ -931,8 +936,8 @@ namespace TKACT
                     textBox69.Text = row.Cells["持有股數"].Value.ToString();
 
                     dateTimePicker4.Value= Convert.ToDateTime(row.Cells["CAPITALINCREASERECORDDATE"].Value.ToString());
-                    //comboBox2.SelectedValue= row.Cells["異動原因"].Value.ToString();
-                    comboBox2.SelectedText = row.Cells["異動原因"].Value.ToString();
+                    
+                    comboBox2.SelectedValue = row.Cells["異動原因"].Value.ToString();
 
 
                 }
@@ -1065,7 +1070,113 @@ namespace TKACT
             }
         }
 
+        public void TKSTOCKSTRANSADD_UPDATE(
+          string SERNO
+          , string CAPITALINCREASERECORDDATE
+          , string REASONFORCHANGE
+          , string STOCKACCOUNTNUMBER
+          , string STOCKNAME
+          , string INCREASEDSHARES
+          , string PARVALUPERSHARE
+          , string TRADINGPRICEPERSHARE
+          , string TOTALTRADINGAMOUNT
+          , string INCREASEDSHARESHUNDREDTHOUSANDS
+          , string INCREASEDSHARESTENSOFTHOUSANDS
+          , string INCREASEDSHARESTHOUSANDS
+          , string INCREASEDSHARESIRREGULARLOTS
+          , string HOLDINGSHARES
+         
+          )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
 
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                                
+                                   
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    SET 
+                                    [CAPITALINCREASERECORDDATE]='{1}'
+                                    ,[REASONFORCHANGE]='{2}'
+                                    ,[STOCKACCOUNTNUMBER]='{3}'
+                                    ,[STOCKNAME]='{4}'
+                                    ,[INCREASEDSHARES]='{5}'
+                                    ,[PARVALUPERSHARE]='{6}'
+                                    ,[TRADINGPRICEPERSHARE]='{7}'
+                                    ,[TOTALTRADINGAMOUNT]='{8}'
+                                    ,[INCREASEDSHARESHUNDREDTHOUSANDS]='{9}'
+                                    ,[INCREASEDSHARESTENSOFTHOUSANDS]='{10}'
+                                    ,[INCREASEDSHARESTHOUSANDS]='{11}'
+                                    ,[INCREASEDSHARESIRREGULARLOTS]='{12}'
+                                    ,[HOLDINGSHARES]='{13}'
+                                    WHERE [SERNO]='{0}'
+                                        
+                                        ",SERNO
+                                        , CAPITALINCREASERECORDDATE
+                                        , REASONFORCHANGE
+                                        , STOCKACCOUNTNUMBER
+                                        , STOCKNAME
+                                        , INCREASEDSHARES
+                                        , PARVALUPERSHARE
+                                        , TRADINGPRICEPERSHARE
+                                        , TOTALTRADINGAMOUNT
+                                        , INCREASEDSHARESHUNDREDTHOUSANDS
+                                        , INCREASEDSHARESTENSOFTHOUSANDS
+                                        , INCREASEDSHARESTHOUSANDS
+                                        , INCREASEDSHARESIRREGULARLOTS
+                                        , HOLDINGSHARES
+                                        
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
         public void CHECKADD(TextBox TEXTBOXIN)
         {
             string MESSAGES = "";
@@ -1808,7 +1919,25 @@ namespace TKACT
 
         private void button7_Click(object sender, EventArgs e)
         {
+            TKSTOCKSTRANSADD_UPDATE(
+            textBox58.Text
+         , dateTimePicker3.Value.ToString("yyyy/MM/dd")
+         , comboBox2.SelectedValue.ToString()
+         , textBox59.Text
+         , textBox60.Text
+         , textBox61.Text
+         , textBox62.Text
+         , textBox63.Text
+         , textBox64.Text
+         , textBox65.Text
+         , textBox66.Text
+         , textBox67.Text
+         , textBox68.Text
+         , textBox69.Text
+        
+         );
 
+            Search_DG4(textBox44.Text, textBox45.Text);
         }
 
 
