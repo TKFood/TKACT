@@ -461,7 +461,10 @@ namespace TKACT
                                 ,[ACTUALCASHDIVIDENDPAID] AS '實發現金股利'
                                 ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES] AS '盈餘增資配股數'
                                 ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES] AS '資本公積增資配股數'
-                                FROM [TKACT].[dbo].[TKSTOCKSDIV] 
+                                ,[EXDIVIDENDINTERESTRECORDDATE]
+                                ,[CASHDIVIDENDPAYMENTDATE]
+
+                                FROM [TKACT].[dbo].[TKSTOCKSDIV]                             
                                 WHERE 1=1
                                 {0}
                                 {1}
@@ -1144,6 +1147,50 @@ namespace TKACT
                     dateTimePicker6.Value = Convert.ToDateTime(row.Cells["DATEOFCHANGE"].Value.ToString());
 
                     comboBox4.SelectedValue = row.Cells["異動原因"].Value.ToString();
+
+                }
+            }
+        }
+
+        private void dataGridView6_SelectionChanged(object sender, EventArgs e)
+        {
+            string SERNO = "";
+
+            textBox119.Text = "";
+            textBox120.Text = "";
+            textBox121.Text = "";
+            textBox122.Text = "";
+            textBox123.Text = "";
+            textBox124.Text = "";
+            textBox125.Text = "";
+            textBox126.Text = "";
+            textBox127.Text = "";
+            textBox128.Text = "";
+            textBox129.Text = "";
+
+            if (dataGridView6.CurrentRow != null)
+            {
+                int rowindex = dataGridView6.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView6.Rows[rowindex];
+                    SERNO = row.Cells["流水號"].Value.ToString();
+                    textBox119.Text = row.Cells["戶號"].Value.ToString();
+                    textBox120.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox121.Text = row.Cells["每股配發現金股利"].Value.ToString();
+                    textBox122.Text = row.Cells["每股配發股票股利"].Value.ToString();
+                    textBox123.Text = row.Cells["應發股利現金股利"].Value.ToString();
+                    textBox124.Text = row.Cells["應發股利股票股利"].Value.ToString();
+                    textBox125.Text = row.Cells["應扣補充保費"].Value.ToString();
+                    textBox126.Text = row.Cells["實發現金股利"].Value.ToString();
+                    textBox127.Text = row.Cells["盈餘增資配股數"].Value.ToString();
+                    textBox128.Text = row.Cells["資本公積增資配股數"].Value.ToString();
+                    textBox129.Text = row.Cells["流水號"].Value.ToString();
+
+                    dateTimePicker9.Value = Convert.ToDateTime(row.Cells["EXDIVIDENDINTERESTRECORDDATE"].Value.ToString());
+                    dateTimePicker10.Value = Convert.ToDateTime(row.Cells["CASHDIVIDENDPAYMENTDATE"].Value.ToString());
+
+
 
                 }
             }
@@ -3000,6 +3047,46 @@ namespace TKACT
             , textBox118.Text
             );
             Search_DG6(textBox107.Text, textBox108.Text);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            TKSTOCKSDIV_UPDATE(
+           textBox129.Text
+           , textBox119.Text
+           , textBox120.Text
+           , dateTimePicker9.Value.ToString("yyyy/MM/dd")
+           , dateTimePicker10.Value.ToString("yyyy/MM/dd")
+           , textBox121.Text
+           , textBox122.Text
+           , textBox123.Text
+           , textBox124.Text
+           , textBox125.Text
+           , textBox126.Text
+           , textBox127.Text
+           , textBox128.Text
+
+           );
+            Search_DG6(textBox107.Text, textBox108.Text);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            // 顯示確認對話框
+            DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
+
+            // 檢查使用者是否按下了確定按鈕
+            if (result == DialogResult.OK)
+            {
+                // 確認後執行的動作
+                // TODO: 在這裡執行您的程式碼
+                // 例如：
+                TKSTOCKSDIV_DELETE(textBox129.Text);
+
+                Search_DG6(textBox107.Text, textBox108.Text);
+
+            }
+
         }
 
 
