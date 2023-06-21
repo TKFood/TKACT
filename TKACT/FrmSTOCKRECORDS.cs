@@ -1776,6 +1776,292 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
+
+        public void TKSTOCKSDIV_ADD(
+            string STOCKACCOUNTNUMBER
+            , string STOCKNAME
+            , string EXDIVIDENDINTERESTRECORDDATE
+            , string CASHDIVIDENDPAYMENTDATE
+            , string CASHDIVIDENDPERSHARE
+            , string STOCKDIVIDEND
+            , string DECLAREDCASHDIVIDEND
+            , string DECLAREDSTOCKDIVIDEND
+            , string SUPPLEMENTARYPREMIUMTOBEDEDUCTED
+            , string ACTUALCASHDIVIDENDPAID
+            , string CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
+            , string CAPITALIZATIONOFCAPITALSURPLUSSHARES
+            )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@" 
+                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSDIV] 
+                                    (
+                                    [STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    ,[EXDIVIDENDINTERESTRECORDDATE]
+                                    ,[CASHDIVIDENDPAYMENTDATE]
+                                    ,[CASHDIVIDENDPERSHARE]
+                                    ,[STOCKDIVIDEND]
+                                    ,[DECLAREDCASHDIVIDEND]
+                                    ,[DECLAREDSTOCKDIVIDEND]
+                                    ,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]
+                                    ,[ACTUALCASHDIVIDENDPAID]
+                                    ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]
+                                    ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]
+                                    )
+                                    VALUES
+                                    (
+                                    '{0}'
+                                    ,'{1}'
+                                    ,'{2}'
+                                    ,'{3}'
+                                    ,'{4}'
+                                    ,'{5}'
+                                    ,'{6}'
+                                    ,'{7}'
+                                    ,'{8}'
+                                    ,'{9}'
+                                    ,'{10}'
+                                    ,'{11}'
+                                    )
+
+                                        ",STOCKACCOUNTNUMBER
+                                    , STOCKNAME
+                                    , EXDIVIDENDINTERESTRECORDDATE
+                                    , CASHDIVIDENDPAYMENTDATE
+                                    , CASHDIVIDENDPERSHARE
+                                    , STOCKDIVIDEND
+                                    , DECLAREDCASHDIVIDEND
+                                    , DECLAREDSTOCKDIVIDEND
+                                    , SUPPLEMENTARYPREMIUMTOBEDEDUCTED
+                                    , ACTUALCASHDIVIDENDPAID
+                                    , CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
+                                    , CAPITALIZATIONOFCAPITALSURPLUSSHARES
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public void TKSTOCKSDIV_UPDATE(
+             string SERNO
+            , string STOCKACCOUNTNUMBER
+            , string STOCKNAME
+            , string EXDIVIDENDINTERESTRECORDDATE
+            , string CASHDIVIDENDPAYMENTDATE
+            , string CASHDIVIDENDPERSHARE
+            , string STOCKDIVIDEND
+            , string DECLAREDCASHDIVIDEND
+            , string DECLAREDSTOCKDIVIDEND
+            , string SUPPLEMENTARYPREMIUMTOBEDEDUCTED
+            , string ACTUALCASHDIVIDENDPAID
+            , string CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
+            , string CAPITALIZATIONOFCAPITALSURPLUSSHARES
+
+            )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                              
+                                   UPDATE  [TKACT].[dbo].[TKSTOCKSDIV] 
+                                    SET 
+                                    [STOCKACCOUNTNUMBER]='{1}'
+                                    ,[STOCKNAME]='{2}'
+                                    ,[EXDIVIDENDINTERESTRECORDDATE]='{3}'
+                                    ,[CASHDIVIDENDPAYMENTDATE]='{4}'
+                                    ,[CASHDIVIDENDPERSHARE]='{5}'
+                                    ,[STOCKDIVIDEND]='{6}'
+                                    ,[DECLAREDCASHDIVIDEND]='{7}'
+                                    ,[DECLAREDSTOCKDIVIDEND]='{8}'
+                                    ,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]='{9}'
+                                    ,[ACTUALCASHDIVIDENDPAID]='{10}'
+                                    ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]='{11}'
+                                    ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]='{12}'
+                                    WHERE  [SERNO]='{0}'
+                                   
+                                    ", SERNO
+                                    , STOCKACCOUNTNUMBER
+                                    , STOCKNAME
+                                    , EXDIVIDENDINTERESTRECORDDATE
+                                    , CASHDIVIDENDPAYMENTDATE
+                                    , CASHDIVIDENDPERSHARE
+                                    , STOCKDIVIDEND
+                                    , DECLAREDCASHDIVIDEND
+                                    , DECLAREDSTOCKDIVIDEND
+                                    , SUPPLEMENTARYPREMIUMTOBEDEDUCTED
+                                    , ACTUALCASHDIVIDENDPAID
+                                    , CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
+                                    , CAPITALIZATIONOFCAPITALSURPLUSSHARES
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public void TKSTOCKSDIV_DELETE(string SERNO)
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                              
+                                   
+                                    DELETE  [TKACT].[dbo].[TKSTOCKSDIV]                                   
+                                    WHERE [SERNO]='{0}'
+                                    ", SERNO
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易  
+
+                    MessageBox.Show("完成");
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+
         public void CHECKADD(TextBox TEXTBOXIN)
         {
             string MESSAGES = "";
@@ -2696,6 +2982,24 @@ namespace TKACT
             Search_DG6(textBox107.Text, textBox108.Text);
         }
 
+        private void button14_Click(object sender, EventArgs e)
+        {
+            TKSTOCKSDIV_ADD(
+            textBox109.Text
+            , textBox110.Text
+            , dateTimePicker7.Value.ToString("yyyy/MM/dd")
+            , dateTimePicker8.Value.ToString("yyyy/MM/dd")
+            , textBox111.Text
+            , textBox112.Text
+            , textBox113.Text
+            , textBox114.Text
+            , textBox115.Text
+            , textBox116.Text
+            , textBox117.Text
+            , textBox118.Text
+            );
+            Search_DG6(textBox107.Text, textBox108.Text);
+        }
 
 
         #endregion
