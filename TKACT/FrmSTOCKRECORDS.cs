@@ -414,6 +414,65 @@ namespace TKACT
             SEARCH(sbSql.ToString(), dataGridView5, SortedColumn, SortedModel);
         }
 
+
+        public void Search_DG6(string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+            StringBuilder sbSqlQuery3 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+            sbSqlQuery3.Clear();
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                sbSqlQuery1.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+
+
+
+            sbSql.AppendFormat(@"
+                                SELECT 
+                                [SERNO] AS '流水號'
+                                ,[STOCKACCOUNTNUMBER] AS '戶號'
+                                ,[STOCKNAME] AS '股東姓名'
+                                ,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'
+                                ,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'
+                                ,[CASHDIVIDENDPERSHARE] AS '每股配發現金股利'
+                                ,[STOCKDIVIDEND] AS '每股配發股票股利'
+                                ,[DECLAREDCASHDIVIDEND] AS '應發股利現金股利'
+                                ,[DECLAREDSTOCKDIVIDEND] AS '應發股利股票股利'
+                                ,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED] AS '應扣補充保費'
+                                ,[ACTUALCASHDIVIDENDPAID] AS '實發現金股利'
+                                ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES] AS '盈餘增資配股數'
+                                ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES] AS '資本公積增資配股數'
+                                FROM [TKACT].[dbo].[TKSTOCKSDIV] 
+                                WHERE 1=1
+                                {0}
+                                {1}
+                                ORDER BY  [SERNO]
+
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
+
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView6, SortedColumn, SortedModel);
+        }
+
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -2632,11 +2691,15 @@ namespace TKACT
 
             }
         }
+        private void button13_Click(object sender, EventArgs e)
+        {
+            Search_DG6(textBox107.Text, textBox108.Text);
+        }
 
 
 
         #endregion
 
-   
+
     }
 }
