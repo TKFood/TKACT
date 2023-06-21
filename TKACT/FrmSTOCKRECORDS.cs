@@ -450,8 +450,9 @@ namespace TKACT
                                 [SERNO] AS '流水號'
                                 ,[STOCKACCOUNTNUMBER] AS '戶號'
                                 ,[STOCKNAME] AS '股東姓名'
-                                ,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'
-                                ,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'
+                                ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([EXDIVIDENDINTERESTRECORDDATE],1,4))-1911))+'年'+SUBSTRING([EXDIVIDENDINTERESTRECORDDATE],6,2)+'月'+SUBSTRING([EXDIVIDENDINTERESTRECORDDATE],9,2) +'日' AS '除權/息基準日'
+                                ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([CASHDIVIDENDPAYMENTDATE],1,4))-1911))+'年'+SUBSTRING([CASHDIVIDENDPAYMENTDATE],6,2)+'月'+SUBSTRING([CASHDIVIDENDPAYMENTDATE],9,2) +'日' AS '現金股利發放日'
+
                                 ,[CASHDIVIDENDPERSHARE] AS '每股配發現金股利'
                                 ,[STOCKDIVIDEND] AS '每股配發股票股利'
                                 ,[DECLAREDCASHDIVIDEND] AS '應發股利現金股利'
