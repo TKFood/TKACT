@@ -2332,6 +2332,18 @@ namespace TKACT
             }
         }
 
+        public void SET_TEXTBOX97()
+        {
+            if (!string.IsNullOrEmpty(textBox94.Text) && !string.IsNullOrEmpty(textBox96.Text))
+            {
+                decimal result = Convert.ToDecimal(textBox94.Text) * Convert.ToDecimal(textBox96.Text);
+                Int64 roundedResult = (Int64)Math.Round(result);
+                string roundedResultString = roundedResult.ToString();
+                textBox97.Text = roundedResultString;
+
+            }
+        }
+
         private void textBox83_TextChanged(object sender, EventArgs e)
         {
             if(comboBox3.SelectedValue.ToString().Equals("贈與"))
@@ -2345,6 +2357,16 @@ namespace TKACT
                 string roundedResultString = roundedResult.ToString();
                 textBox84.Text = roundedResultString;
             }
+        }
+
+        private void textBox94_TextChanged(object sender, EventArgs e)
+        {
+            SET_TEXTBOX97();
+        }
+
+        private void textBox96_TextChanged(object sender, EventArgs e)
+        {
+            SET_TEXTBOX97();
         }
         #endregion
 
@@ -2612,8 +2634,9 @@ namespace TKACT
         }
 
 
+
         #endregion
 
-
+   
     }
 }
