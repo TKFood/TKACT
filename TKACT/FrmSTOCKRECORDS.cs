@@ -2109,6 +2109,146 @@ namespace TKACT
             }
         }
 
+        public DataTable FINE_TKSTOCKS_STOCKACCOUNTNUMBER(string STOCKNAME)
+        {
+            DataTable DT = new DataTable();
+            SqlConnection sqlConn = new SqlConnection();
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+            SqlCommandBuilder sqlCmdBuilder1 = new SqlCommandBuilder();
+            DataSet ds1 = new DataSet();
+            StringBuilder QUERYS = new StringBuilder();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sbSql.Clear();
+                QUERYS.Clear();
+                
+                
+                sbSql.AppendFormat(@"  
+                                    SELECT 
+                                    [STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    FROM [TKACT].[dbo].[TKSTOCKS]
+                                    WHERE [STOCKNAME] LIKE '%{0}%'
+
+                                    ", STOCKNAME);
+
+
+
+
+                adapter1 = new SqlDataAdapter(@"" + sbSql, sqlConn);
+
+                sqlCmdBuilder1 = new SqlCommandBuilder(adapter1);
+                sqlConn.Open();
+                ds1.Clear();
+                adapter1.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+
+                if (ds1.Tables["TEMPds1"].Rows.Count > 0)
+                {
+                    return ds1.Tables["TEMPds1"];
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public DataTable FINE_TKSTOCKS_STOCKNAME(string STOCKACCOUNTNUMBER)
+        {
+            DataTable DT = new DataTable();
+            SqlConnection sqlConn = new SqlConnection();
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+            SqlCommandBuilder sqlCmdBuilder1 = new SqlCommandBuilder();
+            DataSet ds1 = new DataSet();
+            StringBuilder QUERYS = new StringBuilder();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sbSql.Clear();
+                QUERYS.Clear();
+
+
+                sbSql.AppendFormat(@"  
+                                    SELECT 
+                                    [STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    FROM [TKACT].[dbo].[TKSTOCKS]
+                                    WHERE [STOCKACCOUNTNUMBER] LIKE '{0}%'
+
+                                    ", STOCKACCOUNTNUMBER);
+
+
+
+
+                adapter1 = new SqlDataAdapter(@"" + sbSql, sqlConn);
+
+                sqlCmdBuilder1 = new SqlCommandBuilder(adapter1);
+                sqlConn.Open();
+                ds1.Clear();
+                adapter1.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+
+                if (ds1.Tables["TEMPds1"].Rows.Count > 0)
+                {
+                    return ds1.Tables["TEMPds1"];
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+
+
 
         public void CHECKADD(TextBox TEXTBOXIN)
         {
@@ -2761,6 +2901,124 @@ namespace TKACT
         {
             SET_TEXTBOX97();
         }
+
+
+        private void textBox46_TextChanged(object sender, EventArgs e)
+        {
+            
+            
+        }
+
+        private void textBox46_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox47.Text = "";
+            if (!string.IsNullOrEmpty(textBox46.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox46.Text);
+                if (DT != null)
+                {
+                    textBox47.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                }
+                else
+                {
+                    textBox47.Text = "";
+                }
+            }
+           
+        }
+
+        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+               
+        }
+
+        private void textBox47_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox46.Text = "";
+            if (!string.IsNullOrEmpty(textBox47.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKACCOUNTNUMBER(textBox47.Text);
+                if (DT != null)
+                {
+                    textBox46.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
+                }
+                else
+                {
+                    textBox46.Text = "";
+                }
+            }
+        }
+
+        private void textBox76_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox77.Text = "";
+            if (!string.IsNullOrEmpty(textBox76.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox76.Text);
+                if (DT != null)
+                {
+                    textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                }
+                else
+                {
+                    textBox77.Text = "";
+                }
+            }
+        }
+
+        private void textBox77_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox76.Text = "";
+            if (!string.IsNullOrEmpty(textBox77.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKACCOUNTNUMBER(textBox77.Text);
+                if (DT != null)
+                {
+                    textBox76.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
+                }
+                else
+                {
+                    textBox76.Text = "";
+                }
+            }
+        }
+
+        private void textBox78_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox79.Text = "";
+            if (!string.IsNullOrEmpty(textBox78.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox78.Text);
+                if (DT != null)
+                {
+                    textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                }
+                else
+                {
+                    textBox79.Text = "";
+                }
+            }
+        }
+
+        private void textBox79_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox78.Text = "";
+            if (!string.IsNullOrEmpty(textBox79.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKACCOUNTNUMBER(textBox79.Text);
+                if (DT != null)
+                {
+                    textBox78.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
+                }
+                else
+                {
+                    textBox78.Text = "";
+                }
+            }
+        }
+
+
         #endregion
 
 
@@ -3090,8 +3348,14 @@ namespace TKACT
         }
 
 
+
+
+
+
+
+
         #endregion
 
-
+      
     }
 }
