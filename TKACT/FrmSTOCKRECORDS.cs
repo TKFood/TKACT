@@ -124,7 +124,7 @@ namespace TKACT
                                 ,[POSTALCODE] AS '通訊地郵遞區號'
                                 ,[MAILINGADDRESS] AS '通訊地址'
                                 ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
-                                ,[REGISTEREDADDRESS] AS '戶籍地址'
+                                ,[REGISTEREDADDRESS] AS '戶籍/設立地址'
                                 ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFBIRTH],1,4))-1911))+'年'+SUBSTRING([DATEOFBIRTH],6,2)+'月'+SUBSTRING([DATEOFBIRTH],9,2) +'日' AS '出生/設立日期'
                                 ,[BANKNAME] AS '銀行名稱'
                                 ,[BRANCHNAME] AS '分行名稱'
@@ -187,7 +187,7 @@ namespace TKACT
                                 ,[POSTALCODE] AS '通訊地郵遞區號'
                                 ,[MAILINGADDRESS] AS '通訊地址'
                                 ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
-                                ,[REGISTEREDADDRESS] AS '戶籍地址'
+                                ,[REGISTEREDADDRESS] AS '戶籍/設立地址'
                                 ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFBIRTH],1,4))-1911))+'年'+SUBSTRING([DATEOFBIRTH],6,2)+'月'+SUBSTRING([DATEOFBIRTH],9,2) +'日' AS '出生/設立日期'
                                
                                 ,[BANKNAME] AS '銀行名稱'
@@ -256,7 +256,7 @@ namespace TKACT
                                 ,[POSTALCODE] AS '通訊地郵遞區號'
                                 ,[MAILINGADDRESS] AS '通訊地址'
                                 ,[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
-                                ,[REGISTEREDADDRESS] AS '戶籍地址'
+                                ,[REGISTEREDADDRESS] AS '戶籍/設立地址'
                                 ,'民國'+CONVERT(NVARCHAR,(CONVERT(INT,SUBSTRING([DATEOFBIRTH],1,4))-1911))+'年'+SUBSTRING([DATEOFBIRTH],6,2)+'月'+SUBSTRING([DATEOFBIRTH],9,2) +'日' AS '出生/設立日期'
                                 
                                 ,[BANKNAME] AS '銀行名稱'
@@ -1026,7 +1026,7 @@ namespace TKACT
                     textBox29.Text = row.Cells["通訊地郵遞區號"].Value.ToString();
                     textBox30.Text = row.Cells["通訊地址"].Value.ToString();
                     textBox31.Text = row.Cells["戶籍地郵遞區號"].Value.ToString();
-                    textBox32.Text = row.Cells["戶籍地址"].Value.ToString();
+                    textBox32.Text = row.Cells["戶籍/設立地址"].Value.ToString();
                     textBox25.Text = row.Cells["銀行名稱"].Value.ToString();
                     textBox33.Text = row.Cells["分行名稱"].Value.ToString();
                     textBox34.Text = row.Cells["銀行代碼"].Value.ToString();
@@ -2515,20 +2515,20 @@ namespace TKACT
                 }
             }
 
-            //戶籍地址
+            //戶籍/設立地址
             if (TEXTBOXIN.Name.Equals("textBox9"))
             {
                 if (string.IsNullOrEmpty(textBox9.Text))
                 {
-                    MESSAGES = MESSAGES + " 戶籍地址 不可空白";
+                    MESSAGES = MESSAGES + " 戶籍/設立地址 不可空白";
                 }
             }
-            //戶籍地址
+            //戶籍/設立地址
             if (TEXTBOXIN.Name.Equals("textBox32"))
             {
                 if (string.IsNullOrEmpty(textBox32.Text))
                 {
-                    MESSAGES = MESSAGES + " 戶籍地址 不可空白";
+                    MESSAGES = MESSAGES + " 戶籍/設立地址 不可空白";
                 }
             }
 
@@ -3018,7 +3018,7 @@ namespace TKACT
             }
         }
 
-
+          
         #endregion
 
 
@@ -3026,7 +3026,7 @@ namespace TKACT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Search(textBox1.Text,textBox2.Text);
+            Search(textBox1.Text,textBox2.Text); 
         }
         private void button2_Click(object sender, EventArgs e)
         {
