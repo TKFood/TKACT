@@ -141,6 +141,7 @@ namespace TKACT
                                 ,[COMMENTS] AS '備註'
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[DATEOFBIRTH] 
+                                ,[ID]
                                 FROM [TKACT].[dbo].[TKSTOCKS]
                                 WHERE 1=1
                                 {0}
@@ -540,6 +541,7 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
+     
 
         public void TKSTOCKS_ADD(
                                 string CREATEDATES
@@ -987,7 +989,70 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            string ID = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
+            textBox10.Text = "";
+            textBox11.Text = "";
+            textBox12.Text = "";
+            textBox13.Text = "";
+            textBox14.Text = "";
+            textBox15.Text = "";
+            textBox16.Text = "";
+            textBox17.Text = "";
+            textBox18.Text = "";
+            textBox19.Text = "";
+            textBox20.Text = "";
+            textBox21.Text = "";
+            textBox70.Text = "";
+            textBox130.Text = "";
 
+            if (dataGridView1.CurrentRow != null)
+            {
+                int rowindex = dataGridView1.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView1.Rows[rowindex];
+                    ID = row.Cells["ID"].Value.ToString();
+                    textBox3.Text = row.Cells["戶號"].Value.ToString();
+                    textBox4.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox5.Text = row.Cells["身份證字號或統一編號"].Value.ToString();
+                    textBox6.Text = row.Cells["通訊地郵遞區號"].Value.ToString();
+                    textBox7.Text = row.Cells["通訊地址"].Value.ToString();
+                    textBox8.Text = row.Cells["戶籍地郵遞區號"].Value.ToString();
+                    textBox9.Text = row.Cells["戶籍/設立地址"].Value.ToString();
+                    textBox10.Text = row.Cells["銀行名稱"].Value.ToString();
+                    textBox11.Text = row.Cells["分行名稱"].Value.ToString();
+                    textBox12.Text = row.Cells["銀行代碼"].Value.ToString();
+                    textBox13.Text = row.Cells["帳號"].Value.ToString();
+                    textBox14.Text = row.Cells["住家電話"].Value.ToString();
+                    textBox15.Text = row.Cells["手機號碼"].Value.ToString();
+                    textBox16.Text = row.Cells["e-mail"].Value.ToString();
+                    textBox17.Text = row.Cells["護照號碼"].Value.ToString();
+                    textBox18.Text = row.Cells["英文名"].Value.ToString();
+                    textBox19.Text = row.Cells["父"].Value.ToString();
+                    textBox20.Text = row.Cells["母"].Value.ToString();
+                    textBox21.Text = row.Cells["配偶"].Value.ToString();
+                    textBox70.Text = row.Cells["備註"].Value.ToString();
+                    textBox130.Text = row.Cells["ID"].Value.ToString();
+
+                    dateTimePicker1.Value = Convert.ToDateTime(row.Cells["DATEOFBIRTH"].Value.ToString());
+
+                }
+                else
+                {
+
+
+                }
+            }
+        }
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
             string ID = "";
@@ -3354,8 +3419,9 @@ namespace TKACT
 
 
 
+
         #endregion
 
-      
+       
     }
 }

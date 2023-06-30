@@ -383,6 +383,7 @@
             this.textBox124 = new System.Windows.Forms.TextBox();
             this.textBox123 = new System.Windows.Forms.TextBox();
             this.label131 = new System.Windows.Forms.Label();
+            this.textBox130 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -620,6 +621,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(966, 164);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // tabControl2
             // 
@@ -654,6 +656,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
+            this.tableLayoutPanel2.Controls.Add(this.textBox130, 0, 9);
             this.tableLayoutPanel2.Controls.Add(this.textBox15, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox10, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
@@ -4433,6 +4436,15 @@
             this.label131.TabIndex = 59;
             this.label131.Text = "應發股利現金股利";
             // 
+            // textBox130
+            // 
+            this.textBox130.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox130.Location = new System.Drawing.Point(3, 368);
+            this.textBox130.Name = "textBox130";
+            this.textBox130.ReadOnly = true;
+            this.textBox130.Size = new System.Drawing.Size(135, 27);
+            this.textBox130.TabIndex = 90;
+            // 
             // FrmSTOCKRECORDS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -4892,5 +4904,6 @@
         private System.Windows.Forms.Label label137;
         private System.Windows.Forms.TextBox textBox129;
         private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.TextBox textBox130;
     }
 }
