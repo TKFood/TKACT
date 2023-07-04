@@ -55,7 +55,7 @@ namespace TKACT
         }
         public void comboBox2load()
         {
-            LoadComboBoxData(comboBox2, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE KINDS='異動原因' ORDER BY ID", "KEYS", "KEYS");
+            //LoadComboBoxData(comboBox2, "SELECT  [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE KINDS='異動原因' ORDER BY ID", "KEYS", "KEYS");
         }
         public void comboBox3load()
         {
@@ -1204,22 +1204,22 @@ namespace TKACT
                 {
                     DataGridViewRow row = dataGridView4.Rows[rowindex];
                     SERNO = row.Cells["SERNO"].Value.ToString();
-                    textBox58.Text = row.Cells["SERNO"].Value.ToString();
-                    textBox59.Text = row.Cells["戶號"].Value.ToString();
-                    textBox60.Text = row.Cells["股東姓名"].Value.ToString();
-                    textBox61.Text = row.Cells["增資股數"].Value.ToString();
-                    textBox62.Text = row.Cells["每股面額"].Value.ToString();
-                    textBox63.Text = row.Cells["每股成交價格"].Value.ToString();
-                    textBox64.Text = row.Cells["成交總額"].Value.ToString();
-                    textBox65.Text = row.Cells["增資股票號碼(十萬股)"].Value.ToString();
-                    textBox66.Text = row.Cells["增資股票號碼(萬股)"].Value.ToString();
-                    textBox67.Text = row.Cells["增資股票號碼(千股)"].Value.ToString();
-                    textBox68.Text = row.Cells["增資股票號碼(不定額股)"].Value.ToString();
-                    textBox69.Text = row.Cells["持有股數"].Value.ToString();
+                    textBox57.Text = row.Cells["SERNO"].Value.ToString();
+                    textBox46.Text = row.Cells["戶號"].Value.ToString();
+                    textBox47.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox48.Text = row.Cells["增資股數"].Value.ToString();
+                    textBox49.Text = row.Cells["每股面額"].Value.ToString();
+                    textBox50.Text = row.Cells["每股成交價格"].Value.ToString();
+                    textBox51.Text = row.Cells["成交總額"].Value.ToString();
+                    textBox52.Text = row.Cells["增資股票號碼(十萬股)"].Value.ToString();
+                    textBox53.Text = row.Cells["增資股票號碼(萬股)"].Value.ToString();
+                    textBox54.Text = row.Cells["增資股票號碼(千股)"].Value.ToString();
+                    textBox55.Text = row.Cells["增資股票號碼(不定額股)"].Value.ToString();
+                    textBox56.Text = row.Cells["持有股數"].Value.ToString();
 
-                    dateTimePicker4.Value= Convert.ToDateTime(row.Cells["CAPITALINCREASERECORDDATE"].Value.ToString());
-                    
-                    comboBox2.SelectedValue = row.Cells["異動原因"].Value.ToString();
+                    dateTimePicker3.Value= Convert.ToDateTime(row.Cells["CAPITALINCREASERECORDDATE"].Value.ToString());
+
+                    comboBox1.SelectedValue = row.Cells["異動原因"].Value.ToString();
 
 
                 }
@@ -3299,22 +3299,24 @@ namespace TKACT
         private void button7_Click(object sender, EventArgs e)
         {
             TKSTOCKSTRANSADD_UPDATE(
-            textBox58.Text
+            textBox57.Text
          , dateTimePicker3.Value.ToString("yyyy/MM/dd")
-         , comboBox2.SelectedValue.ToString()
-         , textBox59.Text
-         , textBox60.Text
-         , textBox61.Text
-         , textBox62.Text
-         , textBox63.Text
-         , textBox64.Text
-         , textBox65.Text
-         , textBox66.Text
-         , textBox67.Text
-         , textBox68.Text
-         , textBox69.Text
+         , comboBox1.SelectedValue.ToString()
+         , textBox46.Text
+         , textBox47.Text
+         , textBox48.Text
+         , textBox49.Text
+         , textBox50.Text
+         , textBox51.Text
+         , textBox52.Text
+         , textBox53.Text
+         , textBox54.Text
+         , textBox55.Text
+         , textBox56.Text
         
          );
+
+         
 
             Search_DG4(textBox44.Text, textBox45.Text);
         }
@@ -3330,7 +3332,7 @@ namespace TKACT
                 // 確認後執行的動作
                 // TODO: 在這裡執行您的程式碼
                 // 例如：
-                TKSTOCKSTRANSADD_DELETE(textBox58.Text);
+                TKSTOCKSTRANSADD_DELETE(textBox57.Text);
                 Search_DG4(textBox44.Text, textBox45.Text);
             }
         }
