@@ -2274,7 +2274,7 @@ namespace TKACT
                 SHARESIRREGULARLOTS_COUNT = 0;
             }
 
-            //股票號碼(十萬股) 
+            //轉讓股票號碼(十萬股)
             //INCREASEDSHARESHUNDREDTHOUSANDS_COUNT
             //SQL
             if (SHARESHUNDREDTHOUSANDS_COUNT >= 2)
@@ -2404,6 +2404,395 @@ namespace TKACT
                                         );
             }
 
+            //轉讓股票號碼(萬股)
+            //TRANSFERREDSHARESTENSOFTHOUSANDS
+            //SQL
+            if (SHARESTENSOFTHOUSANDS_COUNT >= 2)
+            {
+                //sbSql.Clear();
+
+                string SHARE = "";
+                string SHARE_PRE = TRANSFERREDSHARESTENSOFTHOUSANDS_ST.Substring(0, TRANSFERREDSHARESTENSOFTHOUSANDS_ST.Length - 7);
+                int SHARE_COUT = Convert.ToInt32(TRANSFERREDSHARESTENSOFTHOUSANDS_ST.Substring(TRANSFERREDSHARESTENSOFTHOUSANDS_ST.Length - 7, 7));
+                for (int i = 1; i <= SHARESTENSOFTHOUSANDS_COUNT; i++)
+                {
+                    SHARE = SHARE_PRE + PadNumberWithZero7(SHARE_COUT);
+
+                    sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESTENSOFTHOUSANDS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                        , IDFORM
+                                        , IDTO
+                                        , DATEOFCHANGE
+                                        , REASOFORCHANGE
+                                        , STOCKACCOUNTNUMBERFORM
+                                        , STOCKNAMEFORM
+                                        , STOCKACCOUNTNUMBERTO
+                                        , STOCKNAMETO
+                                        , TRANSFERREDSHARES
+                                        , PARVALUEPERSHARE
+                                        , TRADINGPRICEPERSHARE
+                                        , TOTALTRADINGAMOUNT
+                                        , SECURITIESTRANSACTIONTAXAMOUNT
+                                        , SHARE
+                                        , HOLDINGSHARES
+                                       );
+
+
+                    SHARE_COUT++;
+
+                }
+            }
+            else if (SHARESTENSOFTHOUSANDS_COUNT == 1)
+            {
+                sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESTENSOFTHOUSANDS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                         , IDFORM
+                                         , IDTO
+                                         , DATEOFCHANGE
+                                         , REASOFORCHANGE
+                                         , STOCKACCOUNTNUMBERFORM
+                                         , STOCKNAMEFORM
+                                         , STOCKACCOUNTNUMBERTO
+                                         , STOCKNAMETO
+                                         , TRANSFERREDSHARES
+                                         , PARVALUEPERSHARE
+                                         , TRADINGPRICEPERSHARE
+                                         , TOTALTRADINGAMOUNT
+                                         , SECURITIESTRANSACTIONTAXAMOUNT
+                                         , TRANSFERREDSHARESTENSOFTHOUSANDS_ST
+                                         , HOLDINGSHARES
+                                        );
+            }
+
+            //轉讓股票號碼(千股)
+            //SHARESTHOUSANDS_COUNT
+            //SQL
+            if (SHARESHUNDREDTHOUSANDS_COUNT >= 2)
+            {
+                //sbSql.Clear();
+
+                string SHARE = "";
+                string SHARE_PRE = TRANSFERREDSHARESTHOUSANDS_ST.Substring(0, TRANSFERREDSHARESTHOUSANDS_ST.Length - 7);
+                int SHARE_COUT = Convert.ToInt32(TRANSFERREDSHARESTHOUSANDS_ST.Substring(TRANSFERREDSHARESTHOUSANDS_ST.Length - 7, 7));
+                for (int i = 1; i <= SHARESTHOUSANDS_COUNT; i++)
+                {
+                    SHARE = SHARE_PRE + PadNumberWithZero7(SHARE_COUT);
+
+                    sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESTHOUSANDS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                        , IDFORM
+                                        , IDTO
+                                        , DATEOFCHANGE
+                                        , REASOFORCHANGE
+                                        , STOCKACCOUNTNUMBERFORM
+                                        , STOCKNAMEFORM
+                                        , STOCKACCOUNTNUMBERTO
+                                        , STOCKNAMETO
+                                        , TRANSFERREDSHARES
+                                        , PARVALUEPERSHARE
+                                        , TRADINGPRICEPERSHARE
+                                        , TOTALTRADINGAMOUNT
+                                        , SECURITIESTRANSACTIONTAXAMOUNT
+                                        , SHARE
+                                        , HOLDINGSHARES
+                                       );
+
+
+                    SHARE_COUT++;
+
+                }
+            }
+            else if (SHARESTHOUSANDS_COUNT == 1)
+            {
+                sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESTHOUSANDS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                         , IDFORM
+                                         , IDTO
+                                         , DATEOFCHANGE
+                                         , REASOFORCHANGE
+                                         , STOCKACCOUNTNUMBERFORM
+                                         , STOCKNAMEFORM
+                                         , STOCKACCOUNTNUMBERTO
+                                         , STOCKNAMETO
+                                         , TRANSFERREDSHARES
+                                         , PARVALUEPERSHARE
+                                         , TRADINGPRICEPERSHARE
+                                         , TOTALTRADINGAMOUNT
+                                         , SECURITIESTRANSACTIONTAXAMOUNT
+                                         , TRANSFERREDSHARESTHOUSANDS_ST
+                                         , HOLDINGSHARES
+                                        );
+            }
+
+            //轉讓股票號碼(不定額股)
+            //SHARESIRREGULARLOTS_COUNT
+            //SQL
+            if (SHARESHUNDREDTHOUSANDS_COUNT >= 2)
+            {
+                //sbSql.Clear();
+
+                string SHARE = "";
+                string SHARE_PRE = TRANSFERREDSHARESIRREGULARLOTS_ST.Substring(0, TRANSFERREDSHARESIRREGULARLOTS_ST.Length - 7);
+                int SHARE_COUT = Convert.ToInt32(TRANSFERREDSHARESIRREGULARLOTS_ST.Substring(TRANSFERREDSHARESIRREGULARLOTS_ST.Length - 7, 7));
+                for (int i = 1; i <= SHARESIRREGULARLOTS_COUNT; i++)
+                {
+                    SHARE = SHARE_PRE + PadNumberWithZero7(SHARE_COUT);
+
+                    sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESIRREGULARLOTS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                        , IDFORM
+                                        , IDTO
+                                        , DATEOFCHANGE
+                                        , REASOFORCHANGE
+                                        , STOCKACCOUNTNUMBERFORM
+                                        , STOCKNAMEFORM
+                                        , STOCKACCOUNTNUMBERTO
+                                        , STOCKNAMETO
+                                        , TRANSFERREDSHARES
+                                        , PARVALUEPERSHARE
+                                        , TRADINGPRICEPERSHARE
+                                        , TOTALTRADINGAMOUNT
+                                        , SECURITIESTRANSACTIONTAXAMOUNT
+                                        , SHARE
+                                        , HOLDINGSHARES
+                                       );
+
+
+                    SHARE_COUT++;
+
+                }
+            }
+            else if (SHARESIRREGULARLOTS_COUNT == 1)
+            {
+                sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESIRREGULARLOTS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                         , IDFORM
+                                         , IDTO
+                                         , DATEOFCHANGE
+                                         , REASOFORCHANGE
+                                         , STOCKACCOUNTNUMBERFORM
+                                         , STOCKNAMEFORM
+                                         , STOCKACCOUNTNUMBERTO
+                                         , STOCKNAMETO
+                                         , TRANSFERREDSHARES
+                                         , PARVALUEPERSHARE
+                                         , TRADINGPRICEPERSHARE
+                                         , TOTALTRADINGAMOUNT
+                                         , SECURITIESTRANSACTIONTAXAMOUNT
+                                         , TRANSFERREDSHARESIRREGULARLOTS_ST
+                                         , HOLDINGSHARES
+                                        );
+            }
 
             try
             {
