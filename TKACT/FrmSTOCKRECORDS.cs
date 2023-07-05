@@ -3538,7 +3538,7 @@ namespace TKACT
             }
             else
             {
-                decimal result = Convert.ToDecimal(textBox83.Text) / 1000;
+                decimal result = Convert.ToDecimal(textBox83.Text)*3 / 1000;
                 Int64 roundedResult = (Int64)Math.Round(result);
                 string roundedResultString = roundedResult.ToString();
                 textBox84.Text = roundedResultString;
