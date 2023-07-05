@@ -2170,15 +2170,107 @@ namespace TKACT
             , string TRADINGPRICEPERSHARE
             , string TOTALTRADINGAMOUNT
             , string SECURITIESTRANSACTIONTAXAMOUNT
-            , string TRANSFERREDSHARESHUNDREDTHOUSANDS
-            , string TRANSFERREDSHARESTENSOFTHOUSANDS
-            , string TRANSFERREDSHARESTHOUSANDS
-            , string TRANSFERREDSHARESIRREGULARLOTS
+            , string TRANSFERREDSHARESHUNDREDTHOUSANDS_ST
+            , string TRANSFERREDSHARESTENSOFTHOUSANDS_ST
+            , string TRANSFERREDSHARESTHOUSANDS_ST
+            , string TRANSFERREDSHARESIRREGULARLOTS_ST
             , string HOLDINGSHARES
+            , string TRANSFERREDSHARESHUNDREDTHOUSANDS_END
+            , string TRANSFERREDSHARESTENSOFTHOUSANDS_END
+            , string TRANSFERREDSHARESTHOUSANDS_END
+            , string TRANSFERREDSHARESIRREGULARLOTS_END
             )
         {
             SqlConnection sqlConn = new SqlConnection();
             SqlCommand sqlComm = new SqlCommand();
+            sbSql.Clear();
+
+            int SHARESHUNDREDTHOUSANDS_COUNT = 0;
+            int SHARESTENSOFTHOUSANDS_COUNT = 0;
+            int SHARESTHOUSANDS_COUNT = 0;
+            int SHARESIRREGULARLOTS_COUNT = 0;
+
+            //INCREASEDSHARESHUNDREDTHOUSANDS_COUNT
+            if (TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.Length >= 7 && TRANSFERREDSHARESHUNDREDTHOUSANDS_END.Length >= 7 && !string.IsNullOrEmpty(TRANSFERREDSHARESHUNDREDTHOUSANDS_ST) && !string.IsNullOrEmpty(TRANSFERREDSHARESHUNDREDTHOUSANDS_END))
+            {
+                int START = 0;
+                int END = 0;
+
+                START = Convert.ToInt32(TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.ToString().Substring(TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.Length - 7, 7));
+                END = Convert.ToInt32(TRANSFERREDSHARESHUNDREDTHOUSANDS_END.ToString().Substring(TRANSFERREDSHARESHUNDREDTHOUSANDS_END.Length - 7, 7));
+
+                SHARESHUNDREDTHOUSANDS_COUNT = END - START + 1;
+
+            }
+            else if (!string.IsNullOrEmpty(TRANSFERREDSHARESHUNDREDTHOUSANDS_ST))
+            {
+                SHARESHUNDREDTHOUSANDS_COUNT = 1;
+            }
+            else
+            {
+                SHARESHUNDREDTHOUSANDS_COUNT = 0;
+            }
+            //INCREASEDSHARESTENSOFTHOUSANDS_COUNT
+            if (TRANSFERREDSHARESTENSOFTHOUSANDS_ST.Length >= 7 && TRANSFERREDSHARESTENSOFTHOUSANDS_END.Length >= 7 && !string.IsNullOrEmpty(TRANSFERREDSHARESTENSOFTHOUSANDS_ST) && !string.IsNullOrEmpty(TRANSFERREDSHARESTENSOFTHOUSANDS_END))
+            {
+                int START = 0;
+                int END = 0;
+
+                START = Convert.ToInt32(TRANSFERREDSHARESTENSOFTHOUSANDS_ST.ToString().Substring(TRANSFERREDSHARESTENSOFTHOUSANDS_ST.Length - 7, 7));
+                END = Convert.ToInt32(TRANSFERREDSHARESTENSOFTHOUSANDS_END.ToString().Substring(TRANSFERREDSHARESTENSOFTHOUSANDS_END.Length - 7, 7));
+
+                SHARESTENSOFTHOUSANDS_COUNT = END - START + 1;
+
+            }
+            else if (!string.IsNullOrEmpty(TRANSFERREDSHARESTENSOFTHOUSANDS_ST))
+            {
+                SHARESTENSOFTHOUSANDS_COUNT = 1;
+            }
+            else
+            {
+                SHARESTENSOFTHOUSANDS_COUNT = 0;
+            }
+            //INCREASEDSHARESTHOUSANDS_COUNT
+            if (TRANSFERREDSHARESTHOUSANDS_ST.Length >= 7 && TRANSFERREDSHARESTHOUSANDS_END.Length >= 7 && !string.IsNullOrEmpty(TRANSFERREDSHARESTHOUSANDS_ST) && !string.IsNullOrEmpty(TRANSFERREDSHARESTHOUSANDS_END))
+            {
+                int START = 0;
+                int END = 0;
+
+                START = Convert.ToInt32(TRANSFERREDSHARESTHOUSANDS_ST.ToString().Substring(TRANSFERREDSHARESTHOUSANDS_ST.Length - 7, 7));
+                END = Convert.ToInt32(TRANSFERREDSHARESTHOUSANDS_END.ToString().Substring(TRANSFERREDSHARESTHOUSANDS_END.Length - 7, 7));
+
+                SHARESTHOUSANDS_COUNT = END - START + 1;
+
+            }
+            else if (!string.IsNullOrEmpty(TRANSFERREDSHARESTHOUSANDS_ST))
+            {
+                SHARESTHOUSANDS_COUNT = 1;
+            }
+            else
+            {
+                SHARESTHOUSANDS_COUNT = 0;
+            }
+            //INCREASEDSHARESIRREGULARLOTS_COUNT
+            if (TRANSFERREDSHARESIRREGULARLOTS_ST.Length >= 7 && TRANSFERREDSHARESIRREGULARLOTS_END.Length >= 7 && !string.IsNullOrEmpty(TRANSFERREDSHARESIRREGULARLOTS_ST) && !string.IsNullOrEmpty(TRANSFERREDSHARESIRREGULARLOTS_END))
+            {
+                int START = 0;
+                int END = 0;
+
+                START = Convert.ToInt32(TRANSFERREDSHARESIRREGULARLOTS_ST.ToString().Substring(TRANSFERREDSHARESIRREGULARLOTS_ST.Length - 7, 7));
+                END = Convert.ToInt32(TRANSFERREDSHARESIRREGULARLOTS_END.ToString().Substring(TRANSFERREDSHARESIRREGULARLOTS_END.Length - 7, 7));
+
+                SHARESIRREGULARLOTS_COUNT = END - START + 1;
+
+            }
+            else if (!string.IsNullOrEmpty(TRANSFERREDSHARESIRREGULARLOTS_ST))
+            {
+                SHARESIRREGULARLOTS_COUNT = 1;
+            }
+            else
+            {
+                SHARESIRREGULARLOTS_COUNT = 0;
+            }
+
 
             try
             {
@@ -2200,73 +2292,73 @@ namespace TKACT
 
                 sbSql.Clear();
 
-                sbSql.AppendFormat(@"                                
+                //sbSql.AppendFormat(@"                                
                                    
-                                    INSERT INTO  [TKACT].[dbo].[TKSTOCKSTRANS]
-                                    (
-                                    [IDFORM]
-                                    ,[IDTO]
-                                    ,[DATEOFCHANGE]
-                                    ,[REASOFORCHANGE]
-                                    ,[STOCKACCOUNTNUMBERFORM]
-                                    ,[STOCKNAMEFORM]
-                                    ,[STOCKACCOUNTNUMBERTO]
-                                    ,[STOCKNAMETO]
-                                    ,[TRANSFERREDSHARES]
-                                    ,[PARVALUEPERSHARE]
-                                    ,[TRADINGPRICEPERSHARE]
-                                    ,[TOTALTRADINGAMOUNT]
-                                    ,[SECURITIESTRANSACTIONTAXAMOUNT]
-                                    ,[TRANSFERREDSHARESHUNDREDTHOUSANDS]
-                                    ,[TRANSFERREDSHARESTENSOFTHOUSANDS]
-                                    ,[TRANSFERREDSHARESTHOUSANDS]
-                                    ,[TRANSFERREDSHARESIRREGULARLOTS]
-                                    ,[HOLDINGSHARES]
-                                    )
-                                    VALUES
-                                    (
-                                    '{0}'
-                                    ,'{1}'
-                                    ,'{2}'
-                                    ,'{3}'
-                                    ,'{4}'
-                                    ,'{5}'
-                                    ,'{6}'
-                                    ,'{7}'
-                                    ,'{8}'
-                                    ,'{9}'
-                                    ,'{10}'
-                                    ,'{11}'
-                                    ,'{12}'
-                                    ,'{13}'
-                                    ,'{14}'
-                                    ,'{15}'
-                                    ,'{16}'
-                                    ,'{17}'
+                //                    INSERT INTO  [TKACT].[dbo].[TKSTOCKSTRANS]
+                //                    (
+                //                    [IDFORM]
+                //                    ,[IDTO]
+                //                    ,[DATEOFCHANGE]
+                //                    ,[REASOFORCHANGE]
+                //                    ,[STOCKACCOUNTNUMBERFORM]
+                //                    ,[STOCKNAMEFORM]
+                //                    ,[STOCKACCOUNTNUMBERTO]
+                //                    ,[STOCKNAMETO]
+                //                    ,[TRANSFERREDSHARES]
+                //                    ,[PARVALUEPERSHARE]
+                //                    ,[TRADINGPRICEPERSHARE]
+                //                    ,[TOTALTRADINGAMOUNT]
+                //                    ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                //                    ,[TRANSFERREDSHARESHUNDREDTHOUSANDS]
+                //                    ,[TRANSFERREDSHARESTENSOFTHOUSANDS]
+                //                    ,[TRANSFERREDSHARESTHOUSANDS]
+                //                    ,[TRANSFERREDSHARESIRREGULARLOTS]
+                //                    ,[HOLDINGSHARES]
+                //                    )
+                //                    VALUES
+                //                    (
+                //                    '{0}'
+                //                    ,'{1}'
+                //                    ,'{2}'
+                //                    ,'{3}'
+                //                    ,'{4}'
+                //                    ,'{5}'
+                //                    ,'{6}'
+                //                    ,'{7}'
+                //                    ,'{8}'
+                //                    ,'{9}'
+                //                    ,'{10}'
+                //                    ,'{11}'
+                //                    ,'{12}'
+                //                    ,'{13}'
+                //                    ,'{14}'
+                //                    ,'{15}'
+                //                    ,'{16}'
+                //                    ,'{17}'
 
-                                    )
+                //                    )
                                    
                                         
-                                        ",IDFORM
-                                    ,IDTO
-                                    ,DATEOFCHANGE
-                                    ,REASOFORCHANGE
-                                    ,STOCKACCOUNTNUMBERFORM
-                                    ,STOCKNAMEFORM
-                                    ,STOCKACCOUNTNUMBERTO
-                                    ,STOCKNAMETO
-                                    ,TRANSFERREDSHARES
-                                    ,PARVALUEPERSHARE
-                                    ,TRADINGPRICEPERSHARE
-                                    ,TOTALTRADINGAMOUNT
-                                    ,SECURITIESTRANSACTIONTAXAMOUNT
-                                    ,TRANSFERREDSHARESHUNDREDTHOUSANDS
-                                    ,TRANSFERREDSHARESTENSOFTHOUSANDS
-                                    ,TRANSFERREDSHARESTHOUSANDS
-                                    ,TRANSFERREDSHARESIRREGULARLOTS
-                                    ,HOLDINGSHARES
+                //                        ",IDFORM
+                //                    ,IDTO
+                //                    ,DATEOFCHANGE
+                //                    ,REASOFORCHANGE
+                //                    ,STOCKACCOUNTNUMBERFORM
+                //                    ,STOCKNAMEFORM
+                //                    ,STOCKACCOUNTNUMBERTO
+                //                    ,STOCKNAMETO
+                //                    ,TRANSFERREDSHARES
+                //                    ,PARVALUEPERSHARE
+                //                    ,TRADINGPRICEPERSHARE
+                //                    ,TOTALTRADINGAMOUNT
+                //                    ,SECURITIESTRANSACTIONTAXAMOUNT
+                //                    ,TRANSFERREDSHARESHUNDREDTHOUSANDS
+                //                    ,TRANSFERREDSHARESTENSOFTHOUSANDS
+                //                    ,TRANSFERREDSHARESTHOUSANDS
+                //                    ,TRANSFERREDSHARESIRREGULARLOTS
+                //                    ,HOLDINGSHARES
 
-                                        );
+                //                        );
 
 
                 cmd.Connection = sqlConn;
@@ -4018,6 +4110,11 @@ namespace TKACT
              , textBox87.Text
              , textBox88.Text
              , textBox89.Text
+             , textBox59.Text
+             , textBox60.Text
+             , textBox61.Text
+             , textBox62.Text
+            
              );
 
             Search_DG5(textBox72.Text, textBox73.Text);
