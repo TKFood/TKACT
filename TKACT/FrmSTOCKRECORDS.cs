@@ -4704,29 +4704,30 @@ namespace TKACT
 
         private void button11_Click(object sender, EventArgs e)
         {
-            //TKSTOCKSTRANS_UPDATE
-            //    (
-            //     textBox106.Text.Trim()
-            //    , textBox104.Text.Trim()
-            //    , textBox105.Text.Trim()
-            //    , dateTimePicker6.Value.ToString("yyyy/MM/dd")
-            //    , comboBox4.SelectedValue.ToString()
-            //    , textBox90.Text.Trim()
-            //    , textBox91.Text.Trim()
-            //    , textBox92.Text.Trim()
-            //    , textBox93.Text.Trim()
-            //    , textBox94.Text.Trim()
-            //    , textBox95.Text.Trim()
-            //    , textBox96.Text.Trim()
-            //    , textBox97.Text.Trim()
-            //    , textBox98.Text.Trim()
-            //    , textBox99.Text.Trim()
-            //    , textBox100.Text.Trim()
-            //    , textBox101.Text.Trim()
-            //    , textBox102.Text.Trim()
-            //    , textBox103.Text.Trim()
+            TKSTOCKSTRANS_UPDATE
+                (
+                 textBox106.Text.Trim()
+                , textBox74.Text.Trim()
+                , textBox75.Text.Trim()
+                , dateTimePicker5.Value.ToString("yyyy/MM/dd")
+                , comboBox3.SelectedValue.ToString()
+                , textBox76.Text.Trim()
+                , textBox77.Text.Trim()
+                , textBox78.Text.Trim()
+                , textBox79.Text.Trim()
+                , textBox80.Text.Trim()
+                , textBox81.Text.Trim()
+                , textBox82.Text.Trim()
+                , textBox83.Text.Trim()
+                , textBox84.Text.Trim()
+                , textBox85.Text.Trim()
+                , textBox86.Text.Trim()
+                , textBox87.Text.Trim()
+                , textBox88.Text.Trim()
+                , textBox89.Text.Trim()
 
-            //    );
+                );
+        
 
             Search_DG5(textBox72.Text, textBox73.Text);
         }
