@@ -3646,32 +3646,32 @@ namespace TKACT
 
         private void textBox53_TextChanged(object sender, EventArgs e)
         {
-
+            SET_NUM(textBox53.Text, textBox132.Text, textBox137);
         }
 
         private void textBox132_TextChanged(object sender, EventArgs e)
         {
-
+            SET_NUM(textBox53.Text, textBox132.Text, textBox137);
         }
 
         private void textBox54_TextChanged(object sender, EventArgs e)
         {
-
+            SET_NUM(textBox54.Text, textBox133.Text, textBox138);
         }
 
         private void textBox133_TextChanged(object sender, EventArgs e)
         {
-
+            SET_NUM(textBox54.Text, textBox133.Text, textBox138);
         }
 
         private void textBox55_TextChanged(object sender, EventArgs e)
         {
-
+            SET_NUM(textBox55.Text, textBox134.Text, textBox139);
         }
 
         private void textBox134_TextChanged(object sender, EventArgs e)
         {
-
+            SET_NUM(textBox55.Text, textBox134.Text, textBox139);
         }
 
         public void SET_NUM(string START,string END,TextBox TEXTBOXNUM)
