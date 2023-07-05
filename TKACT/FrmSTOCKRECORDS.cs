@@ -36,6 +36,9 @@ namespace TKACT
         string SortedColumn = string.Empty;
         string SortedModel = string.Empty;
 
+        private bool isTextBox76Changing = false;
+        private bool isTextBox77Changing = false;
+
 
         public FrmSTOCKRECORDS()
         {
@@ -2271,6 +2274,136 @@ namespace TKACT
                 SHARESIRREGULARLOTS_COUNT = 0;
             }
 
+            //股票號碼(十萬股) 
+            //INCREASEDSHARESHUNDREDTHOUSANDS_COUNT
+            //SQL
+            if (SHARESHUNDREDTHOUSANDS_COUNT >= 2)
+            {
+                //sbSql.Clear();
+
+                string SHARE = "";
+                string SHARE_PRE = TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.Substring(0, TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.Length - 7);
+                int SHARE_COUT = Convert.ToInt32(TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.Substring(TRANSFERREDSHARESHUNDREDTHOUSANDS_ST.Length - 7, 7));
+                for (int i = 1; i <= SHARESHUNDREDTHOUSANDS_COUNT; i++)
+                {
+                    SHARE = SHARE_PRE + PadNumberWithZero7(SHARE_COUT);
+
+                    sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESHUNDREDTHOUSANDS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                        ,IDFORM
+                                        ,IDTO
+                                        ,DATEOFCHANGE
+                                        ,REASOFORCHANGE
+                                        ,STOCKACCOUNTNUMBERFORM
+                                        ,STOCKNAMEFORM
+                                        ,STOCKACCOUNTNUMBERTO
+                                        ,STOCKNAMETO
+                                        ,TRANSFERREDSHARES
+                                        ,PARVALUEPERSHARE
+                                        ,TRADINGPRICEPERSHARE
+                                        ,TOTALTRADINGAMOUNT
+                                        ,SECURITIESTRANSACTIONTAXAMOUNT
+                                        ,SHARE
+                                        ,HOLDINGSHARES
+                                       );
+
+
+                    SHARE_COUT++;
+
+                }
+            }
+            else if (SHARESHUNDREDTHOUSANDS_COUNT == 1)
+            {
+                sbSql.AppendFormat(@"
+                                        INSERT INTO[TKACT].[dbo].[TKSTOCKSTRANS]
+                                        (
+                                        [IDFORM]
+                                        ,[IDTO]
+                                        ,[DATEOFCHANGE]
+                                        ,[REASOFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBERFORM]
+                                        ,[STOCKNAMEFORM]
+                                        ,[STOCKACCOUNTNUMBERTO]
+                                        ,[STOCKNAMETO]
+                                        ,[TRANSFERREDSHARES]
+                                        ,[PARVALUEPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[SECURITIESTRANSACTIONTAXAMOUNT]
+                                        ,[TRANSFERREDSHARESHUNDREDTHOUSANDS]
+                                        ,[HOLDINGSHARES]
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'
+                                        ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
+                                        ,'{13}'
+                                        ,'{14}'
+                                        )"
+                                         , IDFORM
+                                         , IDTO
+                                         , DATEOFCHANGE
+                                         , REASOFORCHANGE
+                                         , STOCKACCOUNTNUMBERFORM
+                                         , STOCKNAMEFORM
+                                         , STOCKACCOUNTNUMBERTO
+                                         , STOCKNAMETO
+                                         , TRANSFERREDSHARES
+                                         , PARVALUEPERSHARE
+                                         , TRADINGPRICEPERSHARE
+                                         , TOTALTRADINGAMOUNT
+                                         , SECURITIESTRANSACTIONTAXAMOUNT
+                                         , TRANSFERREDSHARESHUNDREDTHOUSANDS_ST
+                                         , HOLDINGSHARES
+                                        );
+            }
+
 
             try
             {
@@ -2290,7 +2423,7 @@ namespace TKACT
                 sqlConn.Open();
                 tran = sqlConn.BeginTransaction();
 
-                sbSql.Clear();
+                //sbSql.Clear();
 
                 //sbSql.AppendFormat(@"                                
                                    
@@ -3624,17 +3757,21 @@ namespace TKACT
 
         private void textBox83_TextChanged(object sender, EventArgs e)
         {
-            if(comboBox3.SelectedValue.ToString().Equals("贈與"))
+            if(!string.IsNullOrEmpty(textBox83.Text))
             {
-                textBox84.Text = "0";
+                if (comboBox3.SelectedValue.ToString().Equals("贈與"))
+                {
+                    textBox84.Text = "0";
+                }
+                else
+                {
+                    decimal result = Convert.ToDecimal(textBox83.Text) * 3 / 1000;
+                    Int64 roundedResult = (Int64)Math.Round(result);
+                    string roundedResultString = roundedResult.ToString();
+                    textBox84.Text = roundedResultString;
+                }
             }
-            else
-            {
-                decimal result = Convert.ToDecimal(textBox83.Text)*3 / 1000;
-                Int64 roundedResult = (Int64)Math.Round(result);
-                string roundedResultString = roundedResult.ToString();
-                textBox84.Text = roundedResultString;
-            }
+           
         }
 
         private void textBox46_TextChanged(object sender, EventArgs e)
@@ -3697,10 +3834,12 @@ namespace TKACT
                 if (DT != null)
                 {
                     textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox74.Text = DT.Rows[0]["ID"].ToString();
                 }
                 else
                 {
                     textBox77.Text = "";
+                    textBox74.Text = "";
                 }
             }
         }
@@ -3714,10 +3853,12 @@ namespace TKACT
                 if (DT != null)
                 {
                     textBox76.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
+                    textBox75.Text = DT.Rows[0]["ID"].ToString();
                 }
                 else
                 {
                     textBox76.Text = "";
+                    textBox75.Text = "";
                 }
             }
         }
@@ -3731,10 +3872,12 @@ namespace TKACT
                 if (DT != null)
                 {
                     textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox75.Text = DT.Rows[0]["ID"].ToString();
                 }
                 else
                 {
                     textBox79.Text = "";
+                    textBox75.Text = "";
                 }
             }
         }
@@ -3748,10 +3891,12 @@ namespace TKACT
                 if (DT != null)
                 {
                     textBox78.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
+                    textBox75.Text = DT.Rows[0]["ID"].ToString();
                 }
                 else
                 {
                     textBox78.Text = "";
+                    textBox75.Text = "";
                 }
             }
         }
@@ -4014,6 +4159,22 @@ namespace TKACT
 
         private void button6_Click(object sender, EventArgs e)
         {
+            //ID
+            if (!string.IsNullOrEmpty(textBox46.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox46.Text);
+                if (DT != null)
+                {
+                    textBox47.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox57.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox47.Text = "";
+                    textBox57.Text = "";
+                }
+            }
+
             TKSTOCKSTRANSADD_ADD(
              dateTimePicker3.Value.ToString("yyyy/MM/dd")
             , comboBox1.SelectedValue.ToString()
@@ -4091,6 +4252,37 @@ namespace TKACT
 
         private void button10_Click(object sender, EventArgs e)
         {
+            //[IDFORM]
+            if (!string.IsNullOrEmpty(textBox76.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox76.Text);
+                if (DT != null)
+                {
+                    textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox74.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox77.Text = "";
+                    textBox74.Text = "";
+                }
+            }
+            //[IDTO]
+            if (!string.IsNullOrEmpty(textBox78.Text))
+            {
+                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox78.Text);
+                if (DT != null)
+                {
+                    textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox75.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox79.Text = "";
+                    textBox75.Text = "";
+                }
+            }
+
             TKSTOCKSTRANS_ADD(
              textBox74.Text
              , textBox75.Text
@@ -4260,8 +4452,9 @@ namespace TKACT
 
 
 
+
         #endregion
 
-      
+    
     }
 }
