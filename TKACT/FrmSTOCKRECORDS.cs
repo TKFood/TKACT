@@ -3743,23 +3743,10 @@ namespace TKACT
 
         private void button5_Click(object sender, EventArgs e)
         {
-            // 顯示確認對話框
-            DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
-
-            // 檢查使用者是否按下了確定按鈕
-            if (result == DialogResult.OK)
-            {
-                // 確認後執行的動作
-                // TODO: 在這裡執行您的程式碼
-                // 例如：
-                
-            }
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
             Search_DG4(textBox44.Text, textBox45.Text);
         }
+
+     
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -3791,7 +3778,7 @@ namespace TKACT
         private void button7_Click(object sender, EventArgs e)
         {
             TKSTOCKSTRANSADD_UPDATE(
-            textBox57.Text
+            textBox58.Text
          , dateTimePicker3.Value.ToString("yyyy/MM/dd")
          , comboBox1.SelectedValue.ToString()
          , textBox46.Text
@@ -3824,7 +3811,7 @@ namespace TKACT
                 // 確認後執行的動作
                 // TODO: 在這裡執行您的程式碼
                 // 例如：
-                TKSTOCKSTRANSADD_DELETE(textBox57.Text);
+                TKSTOCKSTRANSADD_DELETE(textBox58.Text);
                 Search_DG4(textBox44.Text, textBox45.Text);
             }
         }
