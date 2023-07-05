@@ -1441,6 +1441,7 @@ namespace TKACT
                     INCREASEDSHARESIRREGULARLOTS_COUNT = 0;
                 }
 
+                //增資股票號碼(十萬股) 
                 //INCREASEDSHARESHUNDREDTHOUSANDS_COUNT
                 //SQL
                 if (INCREASEDSHARESHUNDREDTHOUSANDS_COUNT>=2)
@@ -1467,7 +1468,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESHUNDREDTHOUSANDS]                                      
                                         ,[HOLDINGSHARES]        
-                                        ,[ID]                               
+                                        ,[ID]            
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                                 
                                         )
                                         VALUES
                                         (
@@ -1482,6 +1485,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}' 
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1496,6 +1501,8 @@ namespace TKACT
                                            , INCREASEDSHARE
                                            , HOLDINGSHARES
                                            , ID
+                                           ,"10"
+                                           ,"100000"
                                            );
                     
 
@@ -1518,7 +1525,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESHUNDREDTHOUSANDS]                                      
                                         ,[HOLDINGSHARES]   
-                                        ,[ID]                                    
+                                        ,[ID]     
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                                             
                                         )
                                         VALUES
                                         (
@@ -1533,6 +1542,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'  
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1547,9 +1558,12 @@ namespace TKACT
                                             , INCREASEDSHARESHUNDREDTHOUSANDS_ST
                                             , HOLDINGSHARES
                                             , ID
+                                            , "10"
+                                            , "100000"
                                             );
                 }
 
+                //增資股票號碼(萬股) 
                 //INCREASEDSHARESTENSOFTHOUSANDS_COUNT
                 //SQL
                 if (INCREASEDSHARESTENSOFTHOUSANDS_COUNT >= 2)
@@ -1576,7 +1590,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESTENSOFTHOUSANDS]                                      
                                         ,[HOLDINGSHARES]        
-                                        ,[ID]                               
+                                        ,[ID]       
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                           
                                         )
                                         VALUES
                                         (
@@ -1591,6 +1607,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'  
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1605,6 +1623,8 @@ namespace TKACT
                                            , INCREASEDSHARE
                                            , HOLDINGSHARES
                                            , ID
+                                           , "10"
+                                           , "10000"
                                            );
 
 
@@ -1627,7 +1647,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESTENSOFTHOUSANDS]                                      
                                         ,[HOLDINGSHARES]   
-                                        ,[ID]                                    
+                                        ,[ID]      
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                                 
                                         )
                                         VALUES
                                         (
@@ -1642,6 +1664,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'  
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1656,8 +1680,12 @@ namespace TKACT
                                             , INCREASEDSHARESTENSOFTHOUSANDS_ST
                                             , HOLDINGSHARES
                                             , ID
+                                            , "10"
+                                           , "10000"
                                             );
                 }
+
+                //增資股票號碼(千股) 
                 //INCREASEDSHARESTHOUSANDS_COUNT
                 //SQL
                 if (INCREASEDSHARESTHOUSANDS_COUNT >= 2)
@@ -1684,7 +1712,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESTHOUSANDS]                                      
                                         ,[HOLDINGSHARES]        
-                                        ,[ID]                               
+                                        ,[ID]       
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                          
                                         )
                                         VALUES
                                         (
@@ -1699,6 +1729,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'  
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1713,6 +1745,8 @@ namespace TKACT
                                            , INCREASEDSHARE
                                            , HOLDINGSHARES
                                            , ID
+                                           , "10"
+                                           , "1000"
                                            );
 
 
@@ -1735,7 +1769,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESTHOUSANDS]                                      
                                         ,[HOLDINGSHARES]   
-                                        ,[ID]                                    
+                                        ,[ID]   
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                                  
                                         )
                                         VALUES
                                         (
@@ -1750,6 +1786,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'  
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1764,8 +1802,12 @@ namespace TKACT
                                             , INCREASEDSHARESTHOUSANDS_ST
                                             , HOLDINGSHARES
                                             , ID
+                                            , "10"
+                                             , "1000"
                                             );
                 }
+
+                //增資股票號碼(不定額股)
                 //INCREASEDSHARESIRREGULARLOTS_COUNT
                 //SQL
                 if (INCREASEDSHARESIRREGULARLOTS_COUNT >= 2)
@@ -1792,7 +1834,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESIRREGULARLOTS]                                      
                                         ,[HOLDINGSHARES]        
-                                        ,[ID]                               
+                                        ,[ID]   
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                            
                                         )
                                         VALUES
                                         (
@@ -1807,6 +1851,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1821,6 +1867,8 @@ namespace TKACT
                                            , INCREASEDSHARE
                                            , HOLDINGSHARES
                                            , ID
+                                           ,"10"
+                                           ,"1"
                                            );
 
 
@@ -1843,7 +1891,9 @@ namespace TKACT
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESIRREGULARLOTS]                                      
                                         ,[HOLDINGSHARES]   
-                                        ,[ID]                                    
+                                        ,[ID]    
+                                        ,[PARVALUPER]
+                                        ,[STOCKSHARES]                                  
                                         )
                                         VALUES
                                         (
@@ -1858,6 +1908,8 @@ namespace TKACT
                                         ,'{8}'
                                         ,'{9}'  
                                         ,'{10}'
+                                        ,'{11}'
+                                        ,'{12}'
                                         )
 
                                             ",
@@ -1872,6 +1924,8 @@ namespace TKACT
                                             , INCREASEDSHARESIRREGULARLOTS_ST
                                             , HOLDINGSHARES
                                             , ID
+                                            , "10"
+                                            , "1"
                                             );
                 }
 
