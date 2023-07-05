@@ -1361,7 +1361,7 @@ namespace TKACT
                 int INCREASEDSHARESIRREGULARLOTS_COUNT = 0;
 
                 //INCREASEDSHARESHUNDREDTHOUSANDS_COUNT
-                if (!string.IsNullOrEmpty(INCREASEDSHARESHUNDREDTHOUSANDS_ST)&&!string.IsNullOrEmpty(INCREASEDSHARESHUNDREDTHOUSANDS_END))
+                if (INCREASEDSHARESHUNDREDTHOUSANDS_ST .Length>=7&& INCREASEDSHARESHUNDREDTHOUSANDS_END .Length>=7&& !string.IsNullOrEmpty(INCREASEDSHARESHUNDREDTHOUSANDS_ST)&&!string.IsNullOrEmpty(INCREASEDSHARESHUNDREDTHOUSANDS_END))
                 {
                     int START = 0;
                     int END = 0;
@@ -1381,7 +1381,7 @@ namespace TKACT
                     INCREASEDSHARESHUNDREDTHOUSANDS_COUNT = 0;
                 }
                 //INCREASEDSHARESTENSOFTHOUSANDS_COUNT
-                if (!string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_END))
+                if (INCREASEDSHARESTENSOFTHOUSANDS_ST.Length >= 7 && INCREASEDSHARESTENSOFTHOUSANDS_END.Length >= 7 && !string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_END))
                 {
                     int START = 0;
                     int END = 0;
@@ -1401,7 +1401,7 @@ namespace TKACT
                     INCREASEDSHARESTENSOFTHOUSANDS_COUNT = 0;
                 }
                 //INCREASEDSHARESTHOUSANDS_COUNT
-                if (!string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_END))
+                if (INCREASEDSHARESTHOUSANDS_ST.Length >= 7 && INCREASEDSHARESTHOUSANDS_END.Length >= 7 && !string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_END))
                 {
                     int START = 0;
                     int END = 0;
@@ -1421,7 +1421,7 @@ namespace TKACT
                     INCREASEDSHARESTHOUSANDS_COUNT = 0;
                 }
                 //INCREASEDSHARESIRREGULARLOTS_COUNT
-                if (!string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_END))
+                if (INCREASEDSHARESIRREGULARLOTS_ST.Length >= 7 && INCREASEDSHARESIRREGULARLOTS_END.Length >= 7 && !string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_END))
                 {
                     int START = 0;
                     int END = 0;
@@ -3634,7 +3634,68 @@ namespace TKACT
             }
         }
 
-          
+        private void textBox52_TextChanged(object sender, EventArgs e)
+        {
+            SET_NUM(textBox52.Text,textBox131.Text, textBox136);
+        }
+
+        private void textBox131_TextChanged(object sender, EventArgs e)
+        {
+            SET_NUM(textBox52.Text, textBox131.Text, textBox136);
+        }
+
+        private void textBox53_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox132_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox54_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox133_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox55_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox134_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void SET_NUM(string START,string END,TextBox TEXTBOXNUM)
+        {
+            try
+            {
+                if (START.Length >= 7 && END.Length >= 7 && !string.IsNullOrEmpty(START) && !string.IsNullOrEmpty(END))
+                {
+                    int STARTNUM = 0;
+                    int ENDNUM = 0;
+
+                    STARTNUM = Convert.ToInt32(START.ToString().Substring(START.Length - 7, 7));
+                    ENDNUM = Convert.ToInt32(END.ToString().Substring(END.Length - 7, 7));
+
+                    TEXTBOXNUM.Text = (ENDNUM - STARTNUM + 1).ToString();
+                }
+            }
+            catch
+            { }
+            finally
+            { }
+            
+        }
+
         #endregion
 
 
@@ -3985,8 +4046,9 @@ namespace TKACT
 
 
 
+
         #endregion
 
-
+      
     }
 }

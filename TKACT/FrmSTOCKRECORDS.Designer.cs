@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -200,7 +200,6 @@
             this.label139 = new System.Windows.Forms.Label();
             this.label140 = new System.Windows.Forms.Label();
             this.label141 = new System.Windows.Forms.Label();
-            this.label142 = new System.Windows.Forms.Label();
             this.textBox56 = new System.Windows.Forms.TextBox();
             this.textBox131 = new System.Windows.Forms.TextBox();
             this.textBox132 = new System.Windows.Forms.TextBox();
@@ -598,8 +597,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle68;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -1296,8 +1295,8 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle69.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle69;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
@@ -1324,8 +1323,8 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle70;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
@@ -1982,8 +1981,8 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle67;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
@@ -2060,7 +2059,6 @@
             this.tableLayoutPanel6.Controls.Add(this.label139, 5, 2);
             this.tableLayoutPanel6.Controls.Add(this.label140, 5, 3);
             this.tableLayoutPanel6.Controls.Add(this.label141, 5, 4);
-            this.tableLayoutPanel6.Controls.Add(this.label142, 5, 5);
             this.tableLayoutPanel6.Controls.Add(this.textBox56, 4, 5);
             this.tableLayoutPanel6.Controls.Add(this.textBox131, 6, 1);
             this.tableLayoutPanel6.Controls.Add(this.textBox132, 6, 2);
@@ -2325,6 +2323,7 @@
             this.textBox52.Name = "textBox52";
             this.textBox52.Size = new System.Drawing.Size(132, 27);
             this.textBox52.TabIndex = 77;
+            this.textBox52.TextChanged += new System.EventHandler(this.textBox52_TextChanged);
             // 
             // textBox53
             // 
@@ -2333,6 +2332,7 @@
             this.textBox53.Name = "textBox53";
             this.textBox53.Size = new System.Drawing.Size(132, 27);
             this.textBox53.TabIndex = 78;
+            this.textBox53.TextChanged += new System.EventHandler(this.textBox53_TextChanged);
             // 
             // textBox54
             // 
@@ -2341,6 +2341,7 @@
             this.textBox54.Name = "textBox54";
             this.textBox54.Size = new System.Drawing.Size(132, 27);
             this.textBox54.TabIndex = 79;
+            this.textBox54.TextChanged += new System.EventHandler(this.textBox54_TextChanged);
             // 
             // textBox55
             // 
@@ -2349,6 +2350,7 @@
             this.textBox55.Name = "textBox55";
             this.textBox55.Size = new System.Drawing.Size(132, 27);
             this.textBox55.TabIndex = 80;
+            this.textBox55.TextChanged += new System.EventHandler(this.textBox55_TextChanged);
             // 
             // label138
             // 
@@ -2390,16 +2392,6 @@
             this.label141.TabIndex = 86;
             this.label141.Text = "~ 迄";
             // 
-            // label142
-            // 
-            this.label142.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label142.AutoSize = true;
-            this.label142.Location = new System.Drawing.Point(706, 212);
-            this.label142.Name = "label142";
-            this.label142.Size = new System.Drawing.Size(39, 16);
-            this.label142.TabIndex = 87;
-            this.label142.Text = "~ 迄";
-            // 
             // textBox56
             // 
             this.textBox56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -2415,6 +2407,7 @@
             this.textBox131.Name = "textBox131";
             this.textBox131.Size = new System.Drawing.Size(135, 27);
             this.textBox131.TabIndex = 88;
+            this.textBox131.TextChanged += new System.EventHandler(this.textBox131_TextChanged);
             // 
             // textBox132
             // 
@@ -2423,6 +2416,7 @@
             this.textBox132.Name = "textBox132";
             this.textBox132.Size = new System.Drawing.Size(135, 27);
             this.textBox132.TabIndex = 89;
+            this.textBox132.TextChanged += new System.EventHandler(this.textBox132_TextChanged);
             // 
             // textBox133
             // 
@@ -2431,6 +2425,7 @@
             this.textBox133.Name = "textBox133";
             this.textBox133.Size = new System.Drawing.Size(135, 27);
             this.textBox133.TabIndex = 90;
+            this.textBox133.TextChanged += new System.EventHandler(this.textBox133_TextChanged);
             // 
             // label143
             // 
@@ -2561,6 +2556,7 @@
             this.textBox134.Name = "textBox134";
             this.textBox134.Size = new System.Drawing.Size(135, 27);
             this.textBox134.TabIndex = 91;
+            this.textBox134.TextChanged += new System.EventHandler(this.textBox134_TextChanged);
             // 
             // tabPage4
             // 
@@ -2689,8 +2685,8 @@
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle71;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView5.Location = new System.Drawing.Point(0, 0);
@@ -3670,8 +3666,8 @@
             // 
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle72.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle72;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
@@ -4747,7 +4743,6 @@
         private System.Windows.Forms.Label label139;
         private System.Windows.Forms.Label label140;
         private System.Windows.Forms.Label label141;
-        private System.Windows.Forms.Label label142;
         private System.Windows.Forms.TextBox textBox131;
         private System.Windows.Forms.TextBox textBox132;
         private System.Windows.Forms.TextBox textBox133;
