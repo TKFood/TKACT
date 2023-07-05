@@ -1227,56 +1227,57 @@ namespace TKACT
 
         private void dataGridView5_SelectionChanged(object sender, EventArgs e)
         {
-            //string SERNO = "";
-            //textBox90.Text = "";
-            //textBox91.Text = "";
-            //textBox92.Text = "";
-            //textBox93.Text = "";
-            //textBox94.Text = "";
-            //textBox95.Text = "";
-            //textBox96.Text = "";
-            //textBox97.Text = "";
-            //textBox98.Text = "";
-            //textBox99.Text = "";
-            //textBox100.Text = "";
-            //textBox101.Text = "";
-            //textBox102.Text = "";
-            //textBox103.Text = "";
-            //textBox104.Text = "";
-            //textBox105.Text = "";
-            //textBox106.Text = "";
+            string SERNO = "";
+            textBox76.Text = "";
+            textBox77.Text = "";
+            textBox78.Text = "";
+            textBox79.Text = "";
+            textBox80.Text = "";
+            textBox81.Text = "";
+            textBox82.Text = "";
+            textBox83.Text = "";
+            textBox84.Text = "";
+            textBox85.Text = "";
+            textBox86.Text = "";
+            textBox87.Text = "";
+            textBox88.Text = "";
+            textBox89.Text = "";
+       
+            textBox74.Text = "";
+            textBox75.Text = "";
+            textBox106.Text = "";
 
-            //if (dataGridView5.CurrentRow != null)
-            //{
-            //    int rowindex = dataGridView5.CurrentRow.Index;
-            //    if (rowindex >= 0)
-            //    {
-            //        DataGridViewRow row = dataGridView5.Rows[rowindex];
-            //        SERNO = row.Cells["流水號"].Value.ToString();
-            //        textBox106.Text = row.Cells["流水號"].Value.ToString();
-            //        textBox90.Text = row.Cells["轉讓人戶號"].Value.ToString();
-            //        textBox91.Text = row.Cells["轉讓人姓名"].Value.ToString();
-            //        textBox92.Text = row.Cells["受讓人戶號"].Value.ToString();
-            //        textBox93.Text = row.Cells["受讓人姓名"].Value.ToString();
-            //        textBox94.Text = row.Cells["轉讓股數"].Value.ToString();
-            //        textBox95.Text = row.Cells["每股面額"].Value.ToString();
-            //        textBox96.Text = row.Cells["每股成交價格"].Value.ToString();
-            //        textBox97.Text = row.Cells["成交總額"].Value.ToString();
-            //        textBox98.Text = row.Cells["證券交易稅額"].Value.ToString();
-            //        textBox99.Text = row.Cells["轉讓股票號碼(十萬股)"].Value.ToString();
-            //        textBox100.Text = row.Cells["轉讓股票號碼(萬股)"].Value.ToString();
-            //        textBox101.Text = row.Cells["轉讓股票號碼(千股)"].Value.ToString();
-            //        textBox102.Text = row.Cells["轉讓股票號碼(不定額股)"].Value.ToString();
-            //        textBox103.Text = row.Cells["持有股數"].Value.ToString();
-            //        textBox104.Text = row.Cells["IDFORM"].Value.ToString();
-            //        textBox105.Text = row.Cells["IDTO"].Value.ToString();
+            if (dataGridView5.CurrentRow != null)
+            {
+                int rowindex = dataGridView5.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView5.Rows[rowindex];
+                    SERNO = row.Cells["流水號"].Value.ToString();
+                    textBox106.Text = row.Cells["流水號"].Value.ToString();
+                    textBox76.Text = row.Cells["轉讓人戶號"].Value.ToString();
+                    textBox77.Text = row.Cells["轉讓人姓名"].Value.ToString();
+                    textBox78.Text = row.Cells["受讓人戶號"].Value.ToString();
+                    textBox79.Text = row.Cells["受讓人姓名"].Value.ToString();
+                    textBox80.Text = row.Cells["轉讓股數"].Value.ToString();
+                    textBox81.Text = row.Cells["每股面額"].Value.ToString();
+                    textBox82.Text = row.Cells["每股成交價格"].Value.ToString();
+                    textBox83.Text = row.Cells["成交總額"].Value.ToString();
+                    textBox84.Text = row.Cells["證券交易稅額"].Value.ToString();
+                    textBox85.Text = row.Cells["轉讓股票號碼(十萬股)"].Value.ToString();
+                    textBox86.Text = row.Cells["轉讓股票號碼(萬股)"].Value.ToString();
+                    textBox87.Text = row.Cells["轉讓股票號碼(千股)"].Value.ToString();
+                    textBox88.Text = row.Cells["轉讓股票號碼(不定額股)"].Value.ToString();
+                    textBox89.Text = row.Cells["持有股數"].Value.ToString();
+                    textBox74.Text = row.Cells["IDFORM"].Value.ToString();
+                    textBox75.Text = row.Cells["IDTO"].Value.ToString();
 
-            //        dateTimePicker6.Value = Convert.ToDateTime(row.Cells["DATEOFCHANGE"].Value.ToString());
+                    dateTimePicker5.Value = Convert.ToDateTime(row.Cells["DATEOFCHANGE"].Value.ToString());
 
-            //        comboBox4.SelectedValue = row.Cells["異動原因"].Value.ToString();
+                    comboBox3.SelectedValue = row.Cells["異動原因"].Value.ToString();
 
-            //    }
-            //}
+                }
+            }
         }
 
         private void dataGridView6_SelectionChanged(object sender, EventArgs e)
