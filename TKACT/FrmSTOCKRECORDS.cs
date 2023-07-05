@@ -3750,6 +3750,87 @@ namespace TKACT
             
         }
 
+        public void TKSTOCKSREORDS_ADD()
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"
+
+                                    DELETE  [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    WHERE [STOCKID] NOT  IN  (SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] )
+
+
+                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    (
+                                    [STOCKID]
+                                    ,[PARVALUPER]
+                                    ,[STOCKSHARES]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    )
+                                    SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') 
+                                    ,[PARVALUPER]
+                                    ,[STOCKSHARES]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    FROM  [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    WHERE (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') )<>''
+                                    AND (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') ) NOT IN (SELECT [STOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDS])
+
+                                     "
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易                     
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
         #endregion
 
 
@@ -3886,6 +3967,8 @@ namespace TKACT
             , textBox57.Text
             );
 
+            TKSTOCKSREORDS_ADD();
+
             Search_DG4(textBox44.Text, textBox45.Text);
         }
 
@@ -3910,7 +3993,8 @@ namespace TKACT
         
          );
 
-         
+
+            TKSTOCKSREORDS_ADD();
 
             Search_DG4(textBox44.Text, textBox45.Text);
         }
@@ -3927,6 +4011,8 @@ namespace TKACT
                 // TODO: 在這裡執行您的程式碼
                 // 例如：
                 TKSTOCKSTRANSADD_DELETE(textBox58.Text);
+
+                TKSTOCKSREORDS_ADD();
                 Search_DG4(textBox44.Text, textBox45.Text);
             }
         }
