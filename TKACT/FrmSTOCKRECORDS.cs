@@ -1353,6 +1353,8 @@ namespace TKACT
 
             try
             {
+                sbSql.Clear();
+
                 int INCREASEDSHARESHUNDREDTHOUSANDS_COUNT = 0;
                 int INCREASEDSHARESTENSOFTHOUSANDS_COUNT = 0;
                 int INCREASEDSHARESTHOUSANDS_COUNT = 0;
@@ -1370,9 +1372,13 @@ namespace TKACT
                     INCREASEDSHARESHUNDREDTHOUSANDS_COUNT =  END- START+1;
 
                 }
-                else
+                else if (!string.IsNullOrEmpty(INCREASEDSHARESHUNDREDTHOUSANDS_ST))
                 {
                     INCREASEDSHARESHUNDREDTHOUSANDS_COUNT = 1;
+                }
+                else
+                {
+                    INCREASEDSHARESHUNDREDTHOUSANDS_COUNT = 0;
                 }
                 //INCREASEDSHARESTENSOFTHOUSANDS_COUNT
                 if (!string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_END))
@@ -1386,9 +1392,13 @@ namespace TKACT
                     INCREASEDSHARESTENSOFTHOUSANDS_COUNT = END - START+1;
 
                 }
-                else
+                else if (!string.IsNullOrEmpty(INCREASEDSHARESTENSOFTHOUSANDS_ST))
                 {
                     INCREASEDSHARESTENSOFTHOUSANDS_COUNT = 1;
+                }
+                else
+                {
+                    INCREASEDSHARESTENSOFTHOUSANDS_COUNT = 0;
                 }
                 //INCREASEDSHARESTHOUSANDS_COUNT
                 if (!string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_END))
@@ -1402,9 +1412,13 @@ namespace TKACT
                     INCREASEDSHARESTHOUSANDS_COUNT = END - START+1;
 
                 }
-                else
+                else if (!string.IsNullOrEmpty(INCREASEDSHARESTHOUSANDS_ST))
                 {
                     INCREASEDSHARESTHOUSANDS_COUNT = 1;
+                }
+                else
+                {
+                    INCREASEDSHARESTHOUSANDS_COUNT = 0;
                 }
                 //INCREASEDSHARESIRREGULARLOTS_COUNT
                 if (!string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_ST) && !string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_END))
@@ -1418,16 +1432,20 @@ namespace TKACT
                     INCREASEDSHARESIRREGULARLOTS_COUNT = END - START+1;
 
                 }
-                else
+                else if (!string.IsNullOrEmpty(INCREASEDSHARESIRREGULARLOTS_ST))
                 {
                     INCREASEDSHARESIRREGULARLOTS_COUNT = 1;
+                }
+                else
+                {
+                    INCREASEDSHARESIRREGULARLOTS_COUNT = 0;
                 }
 
                 //INCREASEDSHARESHUNDREDTHOUSANDS_COUNT
                 //SQL
                 if (INCREASEDSHARESHUNDREDTHOUSANDS_COUNT>=2)
                 {
-                    sbSql.Clear();
+                    //sbSql.Clear();
 
                     string INCREASEDSHARE = "";
                     string INCREASEDSHARE_PRE = INCREASEDSHARESHUNDREDTHOUSANDS_ST.Substring(0, INCREASEDSHARESHUNDREDTHOUSANDS_ST.Length-7);
@@ -1532,6 +1550,331 @@ namespace TKACT
                                             );
                 }
 
+                //INCREASEDSHARESTENSOFTHOUSANDS_COUNT
+                //SQL
+                if (INCREASEDSHARESTENSOFTHOUSANDS_COUNT >= 2)
+                {
+                    //sbSql.Clear();
+
+                    string INCREASEDSHARE = "";
+                    string INCREASEDSHARE_PRE = INCREASEDSHARESTENSOFTHOUSANDS_ST.Substring(0, INCREASEDSHARESTENSOFTHOUSANDS_ST.Length - 7);
+                    int INCREASEDSHARE_COUT = Convert.ToInt32(INCREASEDSHARESTENSOFTHOUSANDS_ST.Substring(INCREASEDSHARESTENSOFTHOUSANDS_ST.Length - 7, 7));
+                    for (int i = 1; i <= INCREASEDSHARESTENSOFTHOUSANDS_COUNT; i++)
+                    {
+                        INCREASEDSHARE = INCREASEDSHARE_PRE + PadNumberWithZero7(INCREASEDSHARE_COUT);
+
+                        sbSql.AppendFormat(@"     
+                                        INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                        (
+                                       [CAPITALINCREASERECORDDATE]
+                                        ,[REASONFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBER]
+                                        ,[STOCKNAME]
+                                        ,[INCREASEDSHARES]
+                                        ,[PARVALUPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[INCREASEDSHARESTENSOFTHOUSANDS]                                      
+                                        ,[HOLDINGSHARES]        
+                                        ,[ID]                               
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'  
+                                        ,'{10}'
+                                        )
+
+                                            ",
+                                            CAPITALINCREASERECORDDATE
+                                           , REASONFORCHANGE
+                                           , STOCKACCOUNTNUMBER
+                                           , STOCKNAME
+                                           , INCREASEDSHARES
+                                           , PARVALUPERSHARE
+                                           , TRADINGPRICEPERSHARE
+                                           , TOTALTRADINGAMOUNT
+                                           , INCREASEDSHARE
+                                           , HOLDINGSHARES
+                                           , ID
+                                           );
+
+
+                        INCREASEDSHARE_COUT++;
+
+                    }
+                }
+                else if (INCREASEDSHARESTENSOFTHOUSANDS_COUNT == 1)
+                {
+                    sbSql.AppendFormat(@"     
+                                        INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                        (
+                                       [CAPITALINCREASERECORDDATE]
+                                        ,[REASONFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBER]
+                                        ,[STOCKNAME]
+                                        ,[INCREASEDSHARES]
+                                        ,[PARVALUPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[INCREASEDSHARESTENSOFTHOUSANDS]                                      
+                                        ,[HOLDINGSHARES]   
+                                        ,[ID]                                    
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'  
+                                        ,'{10}'
+                                        )
+
+                                            ",
+                                             CAPITALINCREASERECORDDATE
+                                            , REASONFORCHANGE
+                                            , STOCKACCOUNTNUMBER
+                                            , STOCKNAME
+                                            , INCREASEDSHARES
+                                            , PARVALUPERSHARE
+                                            , TRADINGPRICEPERSHARE
+                                            , TOTALTRADINGAMOUNT
+                                            , INCREASEDSHARESTENSOFTHOUSANDS_ST
+                                            , HOLDINGSHARES
+                                            , ID
+                                            );
+                }
+                //INCREASEDSHARESTHOUSANDS_COUNT
+                //SQL
+                if (INCREASEDSHARESTHOUSANDS_COUNT >= 2)
+                {
+                    //sbSql.Clear();
+
+                    string INCREASEDSHARE = "";
+                    string INCREASEDSHARE_PRE = INCREASEDSHARESTHOUSANDS_ST.Substring(0, INCREASEDSHARESTHOUSANDS_ST.Length - 7);
+                    int INCREASEDSHARE_COUT = Convert.ToInt32(INCREASEDSHARESTHOUSANDS_ST.Substring(INCREASEDSHARESTHOUSANDS_ST.Length - 7, 7));
+                    for (int i = 1; i <= INCREASEDSHARESTHOUSANDS_COUNT; i++)
+                    {
+                        INCREASEDSHARE = INCREASEDSHARE_PRE + PadNumberWithZero7(INCREASEDSHARE_COUT);
+
+                        sbSql.AppendFormat(@"     
+                                        INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                        (
+                                       [CAPITALINCREASERECORDDATE]
+                                        ,[REASONFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBER]
+                                        ,[STOCKNAME]
+                                        ,[INCREASEDSHARES]
+                                        ,[PARVALUPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[INCREASEDSHARESTHOUSANDS]                                      
+                                        ,[HOLDINGSHARES]        
+                                        ,[ID]                               
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'  
+                                        ,'{10}'
+                                        )
+
+                                            ",
+                                            CAPITALINCREASERECORDDATE
+                                           , REASONFORCHANGE
+                                           , STOCKACCOUNTNUMBER
+                                           , STOCKNAME
+                                           , INCREASEDSHARES
+                                           , PARVALUPERSHARE
+                                           , TRADINGPRICEPERSHARE
+                                           , TOTALTRADINGAMOUNT
+                                           , INCREASEDSHARE
+                                           , HOLDINGSHARES
+                                           , ID
+                                           );
+
+
+                        INCREASEDSHARE_COUT++;
+
+                    }
+                }
+                else if (INCREASEDSHARESTHOUSANDS_COUNT == 1)
+                {
+                    sbSql.AppendFormat(@"     
+                                        INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                        (
+                                       [CAPITALINCREASERECORDDATE]
+                                        ,[REASONFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBER]
+                                        ,[STOCKNAME]
+                                        ,[INCREASEDSHARES]
+                                        ,[PARVALUPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[INCREASEDSHARESTHOUSANDS]                                      
+                                        ,[HOLDINGSHARES]   
+                                        ,[ID]                                    
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'  
+                                        ,'{10}'
+                                        )
+
+                                            ",
+                                             CAPITALINCREASERECORDDATE
+                                            , REASONFORCHANGE
+                                            , STOCKACCOUNTNUMBER
+                                            , STOCKNAME
+                                            , INCREASEDSHARES
+                                            , PARVALUPERSHARE
+                                            , TRADINGPRICEPERSHARE
+                                            , TOTALTRADINGAMOUNT
+                                            , INCREASEDSHARESTHOUSANDS_ST
+                                            , HOLDINGSHARES
+                                            , ID
+                                            );
+                }
+                //INCREASEDSHARESIRREGULARLOTS_COUNT
+                //SQL
+                if (INCREASEDSHARESIRREGULARLOTS_COUNT >= 2)
+                {
+                    //sbSql.Clear();
+
+                    string INCREASEDSHARE = "";
+                    string INCREASEDSHARE_PRE = INCREASEDSHARESIRREGULARLOTS_ST.Substring(0, INCREASEDSHARESIRREGULARLOTS_ST.Length - 7);
+                    int INCREASEDSHARE_COUT = Convert.ToInt32(INCREASEDSHARESIRREGULARLOTS_ST.Substring(INCREASEDSHARESIRREGULARLOTS_ST.Length - 7, 7));
+                    for (int i = 1; i <= INCREASEDSHARESIRREGULARLOTS_COUNT; i++)
+                    {
+                        INCREASEDSHARE = INCREASEDSHARE_PRE + PadNumberWithZero7(INCREASEDSHARE_COUT);
+
+                        sbSql.AppendFormat(@"     
+                                        INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                        (
+                                       [CAPITALINCREASERECORDDATE]
+                                        ,[REASONFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBER]
+                                        ,[STOCKNAME]
+                                        ,[INCREASEDSHARES]
+                                        ,[PARVALUPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[INCREASEDSHARESIRREGULARLOTS]                                      
+                                        ,[HOLDINGSHARES]        
+                                        ,[ID]                               
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'  
+                                        ,'{10}'
+                                        )
+
+                                            ",
+                                            CAPITALINCREASERECORDDATE
+                                           , REASONFORCHANGE
+                                           , STOCKACCOUNTNUMBER
+                                           , STOCKNAME
+                                           , INCREASEDSHARES
+                                           , PARVALUPERSHARE
+                                           , TRADINGPRICEPERSHARE
+                                           , TOTALTRADINGAMOUNT
+                                           , INCREASEDSHARE
+                                           , HOLDINGSHARES
+                                           , ID
+                                           );
+
+
+                        INCREASEDSHARE_COUT++;
+
+                    }
+                }
+                else if (INCREASEDSHARESIRREGULARLOTS_COUNT == 1)
+                {
+                    sbSql.AppendFormat(@"     
+                                        INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                        (
+                                       [CAPITALINCREASERECORDDATE]
+                                        ,[REASONFORCHANGE]
+                                        ,[STOCKACCOUNTNUMBER]
+                                        ,[STOCKNAME]
+                                        ,[INCREASEDSHARES]
+                                        ,[PARVALUPERSHARE]
+                                        ,[TRADINGPRICEPERSHARE]
+                                        ,[TOTALTRADINGAMOUNT]
+                                        ,[INCREASEDSHARESIRREGULARLOTS]                                      
+                                        ,[HOLDINGSHARES]   
+                                        ,[ID]                                    
+                                        )
+                                        VALUES
+                                        (
+                                        '{0}'
+                                        ,'{1}'
+                                        ,'{2}'
+                                        ,'{3}'
+                                        ,'{4}'
+                                        ,'{5}'
+                                        ,'{6}'
+                                        ,'{7}'
+                                        ,'{8}'
+                                        ,'{9}'  
+                                        ,'{10}'
+                                        )
+
+                                            ",
+                                             CAPITALINCREASERECORDDATE
+                                            , REASONFORCHANGE
+                                            , STOCKACCOUNTNUMBER
+                                            , STOCKNAME
+                                            , INCREASEDSHARES
+                                            , PARVALUPERSHARE
+                                            , TRADINGPRICEPERSHARE
+                                            , TOTALTRADINGAMOUNT
+                                            , INCREASEDSHARESIRREGULARLOTS_ST
+                                            , HOLDINGSHARES
+                                            , ID
+                                            );
+                }
+
                 //20210902密
                 Class1 TKID = new Class1();//用new 建立類別實體
                 SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
@@ -1550,60 +1893,8 @@ namespace TKACT
 
                 //sbSql.Clear();
 
-                //sbSql.AppendFormat(@"                                  
-                                   
-                //                    INSERT INTO [TKACT].[dbo].[TKSTOCKSTRANSADD]
-                //                    (
-                //                   [CAPITALINCREASERECORDDATE]
-                //                    ,[REASONFORCHANGE]
-                //                    ,[STOCKACCOUNTNUMBER]
-                //                    ,[STOCKNAME]
-                //                    ,[INCREASEDSHARES]
-                //                    ,[PARVALUPERSHARE]
-                //                    ,[TRADINGPRICEPERSHARE]
-                //                    ,[TOTALTRADINGAMOUNT]
-                //                    ,[INCREASEDSHARESHUNDREDTHOUSANDS]
-                //                    ,[INCREASEDSHARESTENSOFTHOUSANDS]
-                //                    ,[INCREASEDSHARESTHOUSANDS]
-                //                    ,[INCREASEDSHARESIRREGULARLOTS]
-                //                    ,[HOLDINGSHARES]
-                //                    ,[ID]
-                //                    )
-                //                    VALUES
-                //                    (
-                //                    '{0}'
-                //                    ,'{1}'
-                //                    ,'{2}'
-                //                    ,'{3}'
-                //                    ,'{4}'
-                //                    ,'{5}'
-                //                    ,'{6}'
-                //                    ,'{7}'
-                //                    ,'{8}'
-                //                    ,'{9}'
-                //                    ,'{10}'
-                //                    ,'{11}'
-                //                    ,'{12}'
-                //                    ,'{13}'
-                                
-                //                    )
-                                        
-                //                        ",
-                //                         CAPITALINCREASERECORDDATE
-                //                        , REASONFORCHANGE
-                //                        , STOCKACCOUNTNUMBER
-                //                        , STOCKNAME
-                //                        , INCREASEDSHARES
-                //                        , PARVALUPERSHARE
-                //                        , TRADINGPRICEPERSHARE
-                //                        , TOTALTRADINGAMOUNT
-                //                        , INCREASEDSHARESHUNDREDTHOUSANDS
-                //                        , INCREASEDSHARESTENSOFTHOUSANDS
-                //                        , INCREASEDSHARESTHOUSANDS
-                //                        , INCREASEDSHARESIRREGULARLOTS
-                //                        , HOLDINGSHARES
-                //                        , ID
-                //                        );
+                //sbSql.AppendFormat(@"  ");                                  
+               
 
 
                 cmd.Connection = sqlConn;
