@@ -336,6 +336,7 @@ namespace TKACT
                                 ,[HOLDINGSHARES] AS '持有股數'
                                 ,[SERNO]
                                 ,[CAPITALINCREASERECORDDATE]
+                                ,[ID]
 
                                 FROM [TKACT].[dbo].[TKSTOCKSTRANSADD]
                                 WHERE 1=1
@@ -1196,6 +1197,7 @@ namespace TKACT
             textBox55.Text = "";
             textBox56.Text = "";
             textBox57.Text = "";
+            textBox58.Text = "";
 
             if (dataGridView4.CurrentRow != null)
             {
@@ -1204,7 +1206,8 @@ namespace TKACT
                 {
                     DataGridViewRow row = dataGridView4.Rows[rowindex];
                     SERNO = row.Cells["SERNO"].Value.ToString();
-                    textBox57.Text = row.Cells["SERNO"].Value.ToString();
+                    textBox58.Text = row.Cells["SERNO"].Value.ToString();
+                    textBox57.Text = row.Cells["ID"].Value.ToString();
                     textBox46.Text = row.Cells["戶號"].Value.ToString();
                     textBox47.Text = row.Cells["股東姓名"].Value.ToString();
                     textBox48.Text = row.Cells["增資股數"].Value.ToString();
@@ -1342,7 +1345,7 @@ namespace TKACT
             , string INCREASEDSHARESTENSOFTHOUSANDS_END
             , string INCREASEDSHARESTHOUSANDS_END
             , string INCREASEDSHARESIRREGULARLOTS_END
-
+            , string ID
             )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -1445,7 +1448,8 @@ namespace TKACT
                                         ,[TRADINGPRICEPERSHARE]
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESHUNDREDTHOUSANDS]                                      
-                                        ,[HOLDINGSHARES]                                       
+                                        ,[HOLDINGSHARES]        
+                                        ,[ID]                               
                                         )
                                         VALUES
                                         (
@@ -1459,6 +1463,7 @@ namespace TKACT
                                         ,'{7}'
                                         ,'{8}'
                                         ,'{9}'  
+                                        ,'{10}'
                                         )
 
                                             ",
@@ -1472,6 +1477,7 @@ namespace TKACT
                                            , TOTALTRADINGAMOUNT
                                            , INCREASEDSHARE
                                            , HOLDINGSHARES
+                                           , ID
                                            );
                     
 
@@ -1493,7 +1499,8 @@ namespace TKACT
                                         ,[TRADINGPRICEPERSHARE]
                                         ,[TOTALTRADINGAMOUNT]
                                         ,[INCREASEDSHARESHUNDREDTHOUSANDS]                                      
-                                        ,[HOLDINGSHARES]                                       
+                                        ,[HOLDINGSHARES]   
+                                        ,[ID]                                    
                                         )
                                         VALUES
                                         (
@@ -1507,6 +1514,7 @@ namespace TKACT
                                         ,'{7}'
                                         ,'{8}'
                                         ,'{9}'  
+                                        ,'{10}'
                                         )
 
                                             ",
@@ -1520,6 +1528,7 @@ namespace TKACT
                                             , TOTALTRADINGAMOUNT
                                             , INCREASEDSHARESHUNDREDTHOUSANDS_ST
                                             , HOLDINGSHARES
+                                            , ID
                                             );
                 }
 
@@ -2448,7 +2457,8 @@ namespace TKACT
                 
                 sbSql.AppendFormat(@"  
                                     SELECT 
-                                    [STOCKACCOUNTNUMBER]
+                                    [ID]
+                                    ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
                                     FROM [TKACT].[dbo].[TKSTOCKS]
                                     WHERE [STOCKNAME] LIKE '%{0}%'
@@ -2517,7 +2527,8 @@ namespace TKACT
 
                 sbSql.AppendFormat(@"  
                                     SELECT 
-                                    [STOCKACCOUNTNUMBER]
+                                    [ID]
+                                    ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
                                     FROM [TKACT].[dbo].[TKSTOCKS]
                                     WHERE [STOCKACCOUNTNUMBER] LIKE '{0}%'
@@ -3228,10 +3239,12 @@ namespace TKACT
                 if (DT != null)
                 {
                     textBox47.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox57.Text = DT.Rows[0]["ID"].ToString();
                 }
                 else
                 {
                     textBox47.Text = "";
+                    textBox57.Text = "";
                 }
             }
            
@@ -3252,10 +3265,12 @@ namespace TKACT
                 if (DT != null)
                 {
                     textBox46.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
+                    textBox57.Text = DT.Rows[0]["ID"].ToString();
                 }
                 else
                 {
                     textBox46.Text = "";
+                    textBox57.Text = "";
                 }
             }
         }
@@ -3475,7 +3490,7 @@ namespace TKACT
             , textBox132.Text
             , textBox133.Text
             , textBox134.Text
-         
+            , textBox57.Text
             );
 
             Search_DG4(textBox44.Text, textBox45.Text);
