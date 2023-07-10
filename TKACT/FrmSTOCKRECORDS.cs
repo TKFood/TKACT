@@ -4383,22 +4383,29 @@ namespace TKACT
                                     WHERE [STOCKID] NOT  IN  (SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] )
 
 
-                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSREORDS]
+                                   INSERT INTO [TKACT].[dbo].[TKSTOCKSREORDS]
                                     (
                                     [STOCKID]
                                     ,[PARVALUPER]
                                     ,[STOCKSHARES]
+                                    ,[STOCKIDKEY]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
                                     )
                                     SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') 
                                     ,[PARVALUPER]
                                     ,[STOCKSHARES]
+                                    ,[ID]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
                                     FROM  [TKACT].[dbo].[TKSTOCKSTRANSADD]
                                     WHERE (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') )<>''
                                     AND (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') ) NOT IN (SELECT [STOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDS])
+
+
+
+
+
 
                                      "
 
