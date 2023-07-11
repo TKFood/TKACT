@@ -3113,6 +3113,7 @@ namespace TKACT
             , string ACTUALCASHDIVIDENDPAID
             , string CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
             , string CAPITALIZATIONOFCAPITALSURPLUSSHARES
+            , string ID
             )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -3153,6 +3154,7 @@ namespace TKACT
                                     ,[ACTUALCASHDIVIDENDPAID]
                                     ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]
                                     ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]
+                                    ,[ID]
                                     )
                                     VALUES
                                     (
@@ -3168,9 +3170,10 @@ namespace TKACT
                                     ,'{9}'
                                     ,'{10}'
                                     ,'{11}'
+                                    ,'{12}'
                                     )
 
-                                        ",STOCKACCOUNTNUMBER
+                                        ", STOCKACCOUNTNUMBER
                                     , STOCKNAME
                                     , EXDIVIDENDINTERESTRECORDDATE
                                     , CASHDIVIDENDPAYMENTDATE
@@ -3182,7 +3185,7 @@ namespace TKACT
                                     , ACTUALCASHDIVIDENDPAID
                                     , CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
                                     , CAPITALIZATIONOFCAPITALSURPLUSSHARES
-
+                                    , ID
                                         );
 
 
@@ -4604,7 +4607,24 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
-
+        private void textBox109_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBox110.Text = "";
+            if (!string.IsNullOrEmpty(textBox109.Text))
+            {
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox109.Text);
+                if (DT != null)
+                {
+                    textBox110.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox63.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox110.Text = "";
+                    textBox63.Text = "";
+                }
+            }
+        }
         #endregion
 
 
@@ -4877,32 +4897,32 @@ namespace TKACT
 
         private void button11_Click(object sender, EventArgs e)
         {
-            TKSTOCKSTRANS_UPDATE
-                (
-                 textBox106.Text.Trim()
-                , textBox74.Text.Trim()
-                , textBox75.Text.Trim()
-                , dateTimePicker5.Value.ToString("yyyy/MM/dd")
-                , comboBox3.SelectedValue.ToString()
-                , textBox76.Text.Trim()
-                , textBox77.Text.Trim()
-                , textBox78.Text.Trim()
-                , textBox79.Text.Trim()
-                , textBox80.Text.Trim()
-                , textBox81.Text.Trim()
-                , textBox82.Text.Trim()
-                , textBox83.Text.Trim()
-                , textBox84.Text.Trim()
-                , textBox85.Text.Trim()
-                , textBox86.Text.Trim()
-                , textBox87.Text.Trim()
-                , textBox88.Text.Trim()
-                , textBox89.Text.Trim()
+            //TKSTOCKSTRANS_UPDATE
+            //    (
+            //     textBox106.Text.Trim()
+            //    , textBox74.Text.Trim()
+            //    , textBox75.Text.Trim()
+            //    , dateTimePicker5.Value.ToString("yyyy/MM/dd")
+            //    , comboBox3.SelectedValue.ToString()
+            //    , textBox76.Text.Trim()
+            //    , textBox77.Text.Trim()
+            //    , textBox78.Text.Trim()
+            //    , textBox79.Text.Trim()
+            //    , textBox80.Text.Trim()
+            //    , textBox81.Text.Trim()
+            //    , textBox82.Text.Trim()
+            //    , textBox83.Text.Trim()
+            //    , textBox84.Text.Trim()
+            //    , textBox85.Text.Trim()
+            //    , textBox86.Text.Trim()
+            //    , textBox87.Text.Trim()
+            //    , textBox88.Text.Trim()
+            //    , textBox89.Text.Trim()
 
-                );
+            //    );
 
-            TKSTOCKSREORDS_UPDATE();
-            Search_DG5(textBox72.Text, textBox73.Text);
+            //TKSTOCKSREORDS_UPDATE();
+            //Search_DG5(textBox72.Text, textBox73.Text);
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -4943,6 +4963,7 @@ namespace TKACT
             , textBox116.Text
             , textBox117.Text
             , textBox118.Text
+            , textBox63.Text
             );
             Search_DG6(textBox107.Text, textBox108.Text);
         }
@@ -5018,8 +5039,10 @@ namespace TKACT
 
 
 
+
+
         #endregion
 
-    
+      
     }
 }
