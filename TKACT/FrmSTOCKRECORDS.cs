@@ -141,7 +141,7 @@ namespace TKACT
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[DATEOFBIRTH] 
                                 ,[ID]
-                                FROM [TKACT].[dbo].[TKSTOCKS]
+                                FROM [TKACT].[dbo].[TKSTOCKSNAMES]
                                 WHERE 1=1
                                 {0}
                                 {1}
@@ -206,7 +206,7 @@ namespace TKACT
                                 ,CONVERT(nvarchar,[CREATEDATES],112) AS '建立時間'
                                 ,[DATEOFBIRTH] 
                                 ,[ID]
-                                FROM [TKACT].[dbo].[TKSTOCKS]
+                                FROM [TKACT].[dbo].[TKSTOCKSNAMES]
                                 WHERE 1=1
                                 {0}
                                 {1}
@@ -543,7 +543,7 @@ namespace TKACT
         }
      
 
-        public void TKSTOCKS_ADD(
+        public void TKSTOCKSNAMES_ADD(
                                 string CREATEDATES
                                 , string STOCKACCOUNTNUMBER
                                 , string STOCKNAME
@@ -592,7 +592,7 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@" 
-                                    INSERT INTO [TKACT].[dbo].[TKSTOCKS]
+                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSNAMES]
                                     (
                                     [CREATEDATES]
                                     ,[STOCKACCOUNTNUMBER]
@@ -698,7 +698,7 @@ namespace TKACT
             }
         }
 
-        public void TKSTOCKS_DELETE(string ID)
+        public void TKSTOCKSNAMES_DELETE(string ID)
         {
             SqlConnection sqlConn = new SqlConnection();
             SqlCommand sqlComm = new SqlCommand();
@@ -725,7 +725,7 @@ namespace TKACT
 
                 sbSql.AppendFormat(@"                              
                                    
-                                    DELETE  [TKACT].[dbo].[TKSTOCKS]                                   
+                                    DELETE  [TKACT].[dbo].[TKSTOCKSNAMES]                                   
                                     WHERE [ID]='{0}'
                                     ", ID
 
@@ -924,7 +924,7 @@ namespace TKACT
             }
         }
 
-        public void UPDATE_TO_TKSTOCKS(
+        public void TKSTOCKSNAMES_UPDATE(
             string ID
             , string STOCKACCOUNTNUMBER
             , string STOCKNAME
@@ -973,7 +973,7 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@"                                    
-                                    UPDATE [TKACT].[dbo].[TKSTOCKS]
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSNAMES]
                                     SET 
                                     [STOCKACCOUNTNUMBER]='{1}'
                                     ,[STOCKNAME]='{2}'
@@ -3384,7 +3384,7 @@ namespace TKACT
             }
         }
 
-        public DataTable FINE_TKSTOCKS_STOCKACCOUNTNUMBER(string STOCKNAME)
+        public DataTable FINE_TKSTOCKSNAMES_STOCKACCOUNTNUMBER(string STOCKNAME)
         {
             DataTable DT = new DataTable();
             SqlConnection sqlConn = new SqlConnection();
@@ -3416,7 +3416,7 @@ namespace TKACT
                                     [ID]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
-                                    FROM [TKACT].[dbo].[TKSTOCKS]
+                                    FROM [TKACT].[dbo].[TKSTOCKSNAMES]
                                     WHERE [STOCKNAME] LIKE '%{0}%'
 
                                     ", STOCKNAME);
@@ -3454,7 +3454,7 @@ namespace TKACT
             }
         }
 
-        public DataTable FINE_TKSTOCKS_STOCKNAME(string STOCKACCOUNTNUMBER)
+        public DataTable FINE_TKSTOCKSNAMES_STOCKNAME(string STOCKACCOUNTNUMBER)
         {
             DataTable DT = new DataTable();
             SqlConnection sqlConn = new SqlConnection();
@@ -3486,7 +3486,7 @@ namespace TKACT
                                     [ID]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
-                                    FROM [TKACT].[dbo].[TKSTOCKS]
+                                    FROM [TKACT].[dbo].[TKSTOCKSNAMES]
                                     WHERE [STOCKACCOUNTNUMBER] LIKE '{0}%'
 
                                     ", STOCKACCOUNTNUMBER);
@@ -4174,7 +4174,7 @@ namespace TKACT
             textBox47.Text = "";
             if (!string.IsNullOrEmpty(textBox46.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox46.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox46.Text);
                 if (DT != null)
                 {
                     textBox47.Text = DT.Rows[0]["STOCKNAME"].ToString();
@@ -4200,7 +4200,7 @@ namespace TKACT
             textBox46.Text = "";
             if (!string.IsNullOrEmpty(textBox47.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKACCOUNTNUMBER(textBox47.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKACCOUNTNUMBER(textBox47.Text);
                 if (DT != null)
                 {
                     textBox46.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
@@ -4219,7 +4219,7 @@ namespace TKACT
             textBox77.Text = "";
             if (!string.IsNullOrEmpty(textBox76.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox76.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox76.Text);
                 if (DT != null)
                 {
                     textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
@@ -4238,7 +4238,7 @@ namespace TKACT
             textBox76.Text = "";
             if (!string.IsNullOrEmpty(textBox77.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKACCOUNTNUMBER(textBox77.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKACCOUNTNUMBER(textBox77.Text);
                 if (DT != null)
                 {
                     textBox76.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
@@ -4257,7 +4257,7 @@ namespace TKACT
             textBox79.Text = "";
             if (!string.IsNullOrEmpty(textBox78.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox78.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox78.Text);
                 if (DT != null)
                 {
                     textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
@@ -4276,7 +4276,7 @@ namespace TKACT
             textBox78.Text = "";
             if (!string.IsNullOrEmpty(textBox79.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKACCOUNTNUMBER(textBox79.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKACCOUNTNUMBER(textBox79.Text);
                 if (DT != null)
                 {
                     textBox78.Text = DT.Rows[0]["STOCKACCOUNTNUMBER"].ToString();
@@ -4482,7 +4482,7 @@ namespace TKACT
                                     ,(SELECT TOP 1 [IDTO] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) ORDER BY [SERNO] DESC ) AS 'IDTO'
                                     FROM [TKACT].[dbo].[TKSTOCKSREORDS]
                                     ) AS TEMP
-                                    LEFT JOIN [TKACT].[dbo].[TKSTOCKS] ON [TKSTOCKS].ID=IDTO
+                                    LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDTO
                                     WHERE ISNULL(TEMP.IDTO,'')<>''
                                     ) AS TEMP2
                                     WHERE [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDTO
@@ -4567,7 +4567,7 @@ namespace TKACT
                                     ,(SELECT TOP 1 [IDFORM] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) AND SERNO='{0}' ORDER BY [SERNO] DESC ) AS 'IDFORM'
                                     FROM [TKACT].[dbo].[TKSTOCKSREORDS]
                                     ) AS TEMP
-                                    LEFT JOIN  [TKACT].[dbo].[TKSTOCKS] ON [TKSTOCKS].ID=IDFORM
+                                    LEFT JOIN  [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDFORM
                                     WHERE ISNULL(TEMP.IDFORM,'')<>''
                                     ) AS TEMP
                                     ) AS TEMP2
@@ -4617,9 +4617,9 @@ namespace TKACT
         }
         private void button2_Click(object sender, EventArgs e)
         {
-          
 
-            TKSTOCKS_ADD(DateTime.Now.ToString("yyyy/MM/dd")
+
+            TKSTOCKSNAMES_ADD(DateTime.Now.ToString("yyyy/MM/dd")
                 , textBox3.Text
                 , textBox4.Text
                 , textBox5.Text
@@ -4684,7 +4684,7 @@ namespace TKACT
                 , textBox71.Text
                 );
 
-            UPDATE_TO_TKSTOCKS(
+            TKSTOCKSNAMES_UPDATE(
                                textBox43.Text
                                , textBox26.Text
                                , textBox27.Text
@@ -4724,7 +4724,7 @@ namespace TKACT
             //ID
             if (!string.IsNullOrEmpty(textBox46.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox46.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox46.Text);
                 if (DT != null)
                 {
                     textBox47.Text = DT.Rows[0]["STOCKNAME"].ToString();
@@ -4817,7 +4817,7 @@ namespace TKACT
             //[IDFORM]
             if (!string.IsNullOrEmpty(textBox76.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox76.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox76.Text);
                 if (DT != null)
                 {
                     textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
@@ -4832,7 +4832,7 @@ namespace TKACT
             //[IDTO]
             if (!string.IsNullOrEmpty(textBox78.Text))
             {
-                DataTable DT = FINE_TKSTOCKS_STOCKNAME(textBox78.Text);
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox78.Text);
                 if (DT != null)
                 {
                     textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
@@ -5004,7 +5004,7 @@ namespace TKACT
                 // 例如：
                 if(!string.IsNullOrEmpty(textBox130.Text))
                 {
-                    TKSTOCKS_DELETE(textBox130.Text);
+                    TKSTOCKSNAMES_DELETE(textBox130.Text);
 
                     Search(textBox1.Text, textBox2.Text);
                 }
