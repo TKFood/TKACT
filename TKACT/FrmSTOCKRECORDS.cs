@@ -2537,7 +2537,7 @@ namespace TKACT
             //轉讓股票號碼(千股)
             //SHARESTHOUSANDS_COUNT
             //SQL
-            if (SHARESHUNDREDTHOUSANDS_COUNT >= 2)
+            if (SHARESTHOUSANDS_COUNT >= 2)
             {
                 //sbSql.Clear();
 
@@ -2667,7 +2667,7 @@ namespace TKACT
             //轉讓股票號碼(不定額股)
             //SHARESIRREGULARLOTS_COUNT
             //SQL
-            if (SHARESHUNDREDTHOUSANDS_COUNT >= 2)
+            if (SHARESIRREGULARLOTS_COUNT >= 2)
             {
                 //sbSql.Clear();
 
@@ -4466,26 +4466,27 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@"                                  
-                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                  UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
                                     SET [STOCKIDKEY]=TEMP2.IDTO
                                     ,[STOCKACCOUNTNUMBER]=TEMP2.[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]=TEMP2.[STOCKNAME]
                                     FROM (
-                                    SELECT *
-                                    FROM 
-                                    (
-                                    SELECT
-                                    [STOCKID]
-                                    ,[PARVALUPER]
-                                    ,[STOCKSHARES]
-                                    ,[STOCKIDKEY]
-                                    ,(SELECT TOP 1 [IDTO] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) ORDER BY [SERNO] DESC ) AS 'IDTO'
-                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
-                                    ) AS TEMP
-                                    LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDTO
-                                    WHERE ISNULL(TEMP.IDTO,'')<>''
+	                                    SELECT *
+	                                    FROM 
+	                                    (
+		                                    SELECT
+		                                    [STOCKID]
+		                                    ,[PARVALUPER]
+		                                    ,[STOCKSHARES]
+		                                    ,[STOCKIDKEY]
+		                                    ,(SELECT TOP 1 [IDTO] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) ORDER BY [SERNO] DESC ) AS 'IDTO'
+		                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+	                                    ) AS TEMP
+	                                    LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDTO
+	                                    WHERE ISNULL(TEMP.IDTO,'')<>''
                                     ) AS TEMP2
-                                    WHERE [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDTO
+                                    WHERE TEMP2.STOCKID=[TKSTOCKSREORDS].STOCKID
+                                    AND [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDTO
 
 
                                      "
@@ -4548,30 +4549,28 @@ namespace TKACT
 
                 sbSql.AppendFormat(@"                                
                                     
-                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
-                                    SET [STOCKIDKEY]=TEMP2.IDFORM
-                                    ,[STOCKACCOUNTNUMBER]=TEMP2.[STOCKACCOUNTNUMBER]
-                                    ,[STOCKNAME]=TEMP2.[STOCKNAME]
-                                    FROM (
-                                    SELECT *
+                                   UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET [STOCKIDKEY]=TEMP.IDFORM
+                                    ,[STOCKACCOUNTNUMBER]=TEMP.[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]=TEMP.[STOCKNAME]
                                     FROM 
                                     (
-                                    SELECT *
-                                    FROM 
-                                    (
-                                    SELECT
-                                    [STOCKID]
-                                    ,[PARVALUPER]
-                                    ,[STOCKSHARES]
-                                    ,[STOCKIDKEY]
-                                    ,(SELECT TOP 1 [IDFORM] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) AND SERNO='{0}' ORDER BY [SERNO] DESC ) AS 'IDFORM'
-                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+	                                    SELECT *
+	                                    FROM 
+	                                    (
+		                                    SELECT
+		                                    [STOCKID]
+		                                    ,[PARVALUPER]
+		                                    ,[STOCKSHARES]
+		                                    ,[STOCKIDKEY]
+		                                    ,(SELECT TOP 1 [IDFORM] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) AND SERNO='{0}' ORDER BY [SERNO] DESC ) AS 'IDFORM'
+		                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+	                                    ) AS TEMP
+	                                    LEFT JOIN  [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDFORM
+	                                    WHERE ISNULL(TEMP.IDFORM,'')<>''
                                     ) AS TEMP
-                                    LEFT JOIN  [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDFORM
-                                    WHERE ISNULL(TEMP.IDFORM,'')<>''
-                                    ) AS TEMP
-                                    ) AS TEMP2
-                                    WHERE [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDFORM
+                                    WHERE TEMP.STOCKID=[TKSTOCKSREORDS].STOCKID
+                                    AND [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP.IDFORM
 
 
 
