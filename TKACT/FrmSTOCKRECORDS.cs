@@ -1287,16 +1287,16 @@ namespace TKACT
         {
             string SERNO = "";
 
-            textBox119.Text = "";
-            textBox120.Text = "";
-            textBox121.Text = "";
-            textBox122.Text = "";
-            textBox123.Text = "";
-            textBox124.Text = "";
-            textBox125.Text = "";
-            textBox126.Text = "";
-            textBox127.Text = "";
-            textBox128.Text = "";
+            textBox109.Text = "";
+            textBox110.Text = "";
+            textBox111.Text = "";
+            textBox112.Text = "";
+            textBox113.Text = "";
+            textBox114.Text = "";
+            textBox115.Text = "";
+            textBox116.Text = "";
+            textBox117.Text = "";
+            textBox118.Text = "";
             textBox129.Text = "";
 
             if (dataGridView6.CurrentRow != null)
@@ -1306,20 +1306,20 @@ namespace TKACT
                 {
                     DataGridViewRow row = dataGridView6.Rows[rowindex];
                     SERNO = row.Cells["流水號"].Value.ToString();
-                    textBox119.Text = row.Cells["戶號"].Value.ToString();
-                    textBox120.Text = row.Cells["股東姓名"].Value.ToString();
-                    textBox121.Text = row.Cells["每股配發現金股利"].Value.ToString();
-                    textBox122.Text = row.Cells["每股配發股票股利"].Value.ToString();
-                    textBox123.Text = row.Cells["應發股利現金股利"].Value.ToString();
-                    textBox124.Text = row.Cells["應發股利股票股利"].Value.ToString();
-                    textBox125.Text = row.Cells["應扣補充保費"].Value.ToString();
-                    textBox126.Text = row.Cells["實發現金股利"].Value.ToString();
-                    textBox127.Text = row.Cells["盈餘增資配股數"].Value.ToString();
-                    textBox128.Text = row.Cells["資本公積增資配股數"].Value.ToString();
+                    textBox109.Text = row.Cells["戶號"].Value.ToString();
+                    textBox110.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox111.Text = row.Cells["每股配發現金股利"].Value.ToString();
+                    textBox112.Text = row.Cells["每股配發股票股利"].Value.ToString();
+                    textBox113.Text = row.Cells["應發股利現金股利"].Value.ToString();
+                    textBox114.Text = row.Cells["應發股利股票股利"].Value.ToString();
+                    textBox115.Text = row.Cells["應扣補充保費"].Value.ToString();
+                    textBox116.Text = row.Cells["實發現金股利"].Value.ToString();
+                    textBox117.Text = row.Cells["盈餘增資配股數"].Value.ToString();
+                    textBox118.Text = row.Cells["資本公積增資配股數"].Value.ToString();
                     textBox129.Text = row.Cells["流水號"].Value.ToString();
 
-                    dateTimePicker9.Value = Convert.ToDateTime(row.Cells["EXDIVIDENDINTERESTRECORDDATE"].Value.ToString());
-                    dateTimePicker10.Value = Convert.ToDateTime(row.Cells["CASHDIVIDENDPAYMENTDATE"].Value.ToString());
+                    dateTimePicker7.Value = Convert.ToDateTime(row.Cells["EXDIVIDENDINTERESTRECORDDATE"].Value.ToString());
+                    dateTimePicker8.Value = Convert.ToDateTime(row.Cells["CASHDIVIDENDPAYMENTDATE"].Value.ToString());
 
 
 
@@ -4972,18 +4972,18 @@ namespace TKACT
         {
             TKSTOCKSDIV_UPDATE(
            textBox129.Text
-           , textBox119.Text
-           , textBox120.Text
-           , dateTimePicker9.Value.ToString("yyyy/MM/dd")
-           , dateTimePicker10.Value.ToString("yyyy/MM/dd")
-           , textBox121.Text
-           , textBox122.Text
-           , textBox123.Text
-           , textBox124.Text
-           , textBox125.Text
-           , textBox126.Text
-           , textBox127.Text
-           , textBox128.Text
+           , textBox109.Text
+           , textBox110.Text
+           , dateTimePicker7.Value.ToString("yyyy/MM/dd")
+           , dateTimePicker8.Value.ToString("yyyy/MM/dd")
+           , textBox111.Text
+           , textBox112.Text
+           , textBox113.Text
+           , textBox114.Text
+           , textBox115.Text
+           , textBox116.Text
+           , textBox117.Text
+           , textBox118.Text
 
            );
             Search_DG6(textBox107.Text, textBox108.Text);
