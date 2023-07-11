@@ -4440,6 +4440,172 @@ namespace TKACT
             }
         }
 
+        public void TKSTOCKSREORDS_UPDATE()
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                                  
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET [STOCKIDKEY]=TEMP2.IDTO
+                                    ,[STOCKACCOUNTNUMBER]=TEMP2.[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]=TEMP2.[STOCKNAME]
+                                    FROM (
+                                    SELECT *
+                                    FROM 
+                                    (
+                                    SELECT
+                                    [STOCKID]
+                                    ,[PARVALUPER]
+                                    ,[STOCKSHARES]
+                                    ,[STOCKIDKEY]
+                                    ,(SELECT TOP 1 [IDTO] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) ORDER BY [SERNO] DESC ) AS 'IDTO'
+                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    ) AS TEMP
+                                    LEFT JOIN [TKACT].[dbo].[TKSTOCKS] ON [TKSTOCKS].ID=IDTO
+                                    WHERE ISNULL(TEMP.IDTO,'')<>''
+                                    ) AS TEMP2
+                                    WHERE [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDTO
+
+
+                                     "
+
+                                        );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易                     
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public void TKSTOCKSREORDS_UPDATE_BEFROEDELETE(string SERNO)
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"                                
+                                    
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET [STOCKIDKEY]=TEMP2.IDFORM
+                                    ,[STOCKACCOUNTNUMBER]=TEMP2.[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]=TEMP2.[STOCKNAME]
+                                    FROM (
+                                    SELECT *
+                                    FROM 
+                                    (
+                                    SELECT *
+                                    FROM 
+                                    (
+                                    SELECT
+                                    [STOCKID]
+                                    ,[PARVALUPER]
+                                    ,[STOCKSHARES]
+                                    ,[STOCKIDKEY]
+                                    ,(SELECT TOP 1 [IDFORM] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) AND SERNO='{0}' ORDER BY [SERNO] DESC ) AS 'IDFORM'
+                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    ) AS TEMP
+                                    LEFT JOIN  [TKACT].[dbo].[TKSTOCKS] ON [TKSTOCKS].ID=IDFORM
+                                    WHERE ISNULL(TEMP.IDFORM,'')<>''
+                                    ) AS TEMP
+                                    ) AS TEMP2
+                                    WHERE [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDFORM
+
+
+
+                                     ", SERNO );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易                     
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
         #endregion
 
 
@@ -4705,6 +4871,7 @@ namespace TKACT
             
              );
 
+            TKSTOCKSREORDS_UPDATE();
             Search_DG5(textBox72.Text, textBox73.Text);
         }
 
@@ -4734,8 +4901,8 @@ namespace TKACT
                 , textBox89.Text.Trim()
 
                 );
-        
 
+            TKSTOCKSREORDS_UPDATE();
             Search_DG5(textBox72.Text, textBox73.Text);
         }
 
@@ -4750,7 +4917,9 @@ namespace TKACT
                 // 確認後執行的動作
                 // TODO: 在這裡執行您的程式碼
                 // 例如：
+                TKSTOCKSREORDS_UPDATE_BEFROEDELETE(textBox106.Text.Trim());
                 TKSTOCKSTRANS_DELETE(textBox106.Text.Trim());
+           
                 Search_DG5(textBox72.Text, textBox73.Text);
 
             }
