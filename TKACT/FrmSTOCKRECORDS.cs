@@ -22,7 +22,7 @@ namespace TKACT
     public partial class FrmSTOCKRECORDS : Form
     {
         StringBuilder sbSql = new StringBuilder();
-       
+        SqlConnection sqlConn = new SqlConnection();
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlCommandBuilder sqlCmdBuilder = new SqlCommandBuilder();
         SqlTransaction tran;
@@ -46,7 +46,9 @@ namespace TKACT
 
             comboBox1load();
             comboBox2load();
-            comboBox3load();          
+            comboBox3load();
+
+            comboBox5load();
 
         }
 
@@ -63,7 +65,12 @@ namespace TKACT
         {
             LoadComboBoxData(comboBox3, "SELECT [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE [KINDS]='異動原因轉讓' ORDER BY [ID]", "KEYS", "KEYS");
         }
-       
+
+        public void comboBox5load()
+        {
+            LoadComboBoxData(comboBox5, "SELECT [ID],[KINDS],[NAMES],[KEYS] FROM [TKACT].[dbo].[TBPARAS] WHERE [KINDS]='REPORTS' ORDER BY [ID]", "KEYS", "KEYS");
+        }
+
         public void LoadComboBoxData(ComboBox comboBox, string query, string valueMember, string displayMember)
         {
             //20210902密
@@ -4624,6 +4631,87 @@ namespace TKACT
                 }
             }
         }
+
+        public void SETFASTREPORT(string REPORTS)
+        {          
+            StringBuilder SQL = new StringBuilder();
+
+            Report report1 = new Report();
+
+            if (REPORTS.Equals("股權明細"))
+            {
+                report1.Load(@"REPORT\股權明細.frx");
+
+                SQL = SETSQL();
+            } 
+          
+
+            //20210902密
+            Class1 TKID = new Class1();//用new 建立類別實體
+            SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+            //資料庫使用者密碼解密
+            sqlsb.Password = TKID.Decryption(sqlsb.Password);
+            sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+            String connectionString;
+            sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+            report1.Dictionary.Connections[0].ConnectionString = sqlsb.ConnectionString;
+            TableDataSource table = report1.GetDataSource("Table") as TableDataSource;
+            table.SelectCommand = SQL.ToString();        
+
+            report1.Preview = previewControl1;
+            report1.Show();
+        }
+
+        public StringBuilder SETSQL()
+        {
+            StringBuilder SB = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder();
+
+            SB.AppendFormat(@" 
+                            
+                            SELECT 
+                            [TKSTOCKSREORDS].[STOCKID] AS '股票號碼'
+                            ,[TKSTOCKSREORDS].[PARVALUPER] 
+                            ,CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] )AS '股數'
+                            ,[TKSTOCKSREORDS].[STOCKIDKEY] 
+                            ,[TKSTOCKSREORDS].[STOCKACCOUNTNUMBER] 
+                            ,[TKSTOCKSREORDS].[STOCKNAME] 
+                            ,[CREATEDATES]
+                            ,[TKSTOCKSNAMES].[ID]
+                            ,[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] AS '戶號'
+                            ,[TKSTOCKSNAMES].[STOCKNAME] AS '股東姓名'
+                            ,[TKSTOCKSNAMES].[IDNUMBER] AS '身份證字號或統一編號'
+                            ,[TKSTOCKSNAMES].[POSTALCODE] AS '通訊地郵遞區號'
+                            ,[TKSTOCKSNAMES].[MAILINGADDRESS] AS '通訊地址'
+                            ,[TKSTOCKSNAMES].[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
+                            ,[TKSTOCKSNAMES].[REGISTEREDADDRESS] AS '戶籍/設立地址'
+                            ,[TKSTOCKSNAMES].[DATEOFBIRTH] AS '出生/設立日期'
+                            ,[TKSTOCKSNAMES].[BANKNAME] AS '銀行名稱'
+                            ,[TKSTOCKSNAMES].[BRANCHNAME] AS '分行名稱'
+                            ,[TKSTOCKSNAMES].[BANKCODE] AS '銀行代碼'
+                            ,[TKSTOCKSNAMES].[ACCOUNTNUMBER] AS '帳號'
+                            ,[TKSTOCKSNAMES].[HOMEPHONENUMBER] AS '住家電話'
+                            ,[TKSTOCKSNAMES].[MOBILEPHONENUMBER] AS '手機號碼'
+                            ,[TKSTOCKSNAMES].[EMAIL] AS 'e-mail'
+                            ,[TKSTOCKSNAMES].[PASSPORTNUMBER] AS '護照號碼'
+                            ,[TKSTOCKSNAMES].[ENGLISHNAME] AS '英文名'
+                            ,[TKSTOCKSNAMES].[FATHER] AS '父'
+                            ,[TKSTOCKSNAMES].[MOTHER] AS '母'
+                            ,[TKSTOCKSNAMES].[SPOUSE] AS '配偶'
+                            ,[TKSTOCKSNAMES].[COMMENTS] AS '備註'
+                            FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+                            LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=[TKSTOCKSREORDS].STOCKIDKEY
+                            ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] ) DESC
+                            ");
+
+            return SB;
+
+        }
+
+
         #endregion
 
 
@@ -5033,16 +5121,17 @@ namespace TKACT
             }
         }
 
-
-
-
-
+        
+        private void button18_Click(object sender, EventArgs e)
+        {
+            SETFASTREPORT(comboBox5.Text.ToString());
+        }
 
 
 
 
         #endregion
 
-      
+
     }
 }
