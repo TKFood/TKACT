@@ -4468,8 +4468,9 @@ namespace TKACT
 
                 sbSql.Clear();
 
-                sbSql.AppendFormat(@"                                  
-                                  UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                sbSql.AppendFormat(@"                                 
+                                 
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
                                     SET [STOCKIDKEY]=TEMP2.IDTO
                                     ,[STOCKACCOUNTNUMBER]=TEMP2.[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]=TEMP2.[STOCKNAME]
@@ -4490,9 +4491,7 @@ namespace TKACT
                                     ) AS TEMP2
                                     WHERE TEMP2.STOCKID=[TKSTOCKSREORDS].STOCKID
                                     AND [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDTO
-
-
-                                     "
+                                    "
 
                                         );
 
@@ -4897,32 +4896,32 @@ namespace TKACT
 
         private void button11_Click(object sender, EventArgs e)
         {
-            //TKSTOCKSTRANS_UPDATE
-            //    (
-            //     textBox106.Text.Trim()
-            //    , textBox74.Text.Trim()
-            //    , textBox75.Text.Trim()
-            //    , dateTimePicker5.Value.ToString("yyyy/MM/dd")
-            //    , comboBox3.SelectedValue.ToString()
-            //    , textBox76.Text.Trim()
-            //    , textBox77.Text.Trim()
-            //    , textBox78.Text.Trim()
-            //    , textBox79.Text.Trim()
-            //    , textBox80.Text.Trim()
-            //    , textBox81.Text.Trim()
-            //    , textBox82.Text.Trim()
-            //    , textBox83.Text.Trim()
-            //    , textBox84.Text.Trim()
-            //    , textBox85.Text.Trim()
-            //    , textBox86.Text.Trim()
-            //    , textBox87.Text.Trim()
-            //    , textBox88.Text.Trim()
-            //    , textBox89.Text.Trim()
+            TKSTOCKSTRANS_UPDATE
+                (
+                 textBox106.Text.Trim()
+                , textBox74.Text.Trim()
+                , textBox75.Text.Trim()
+                , dateTimePicker5.Value.ToString("yyyy/MM/dd")
+                , comboBox3.SelectedValue.ToString()
+                , textBox76.Text.Trim()
+                , textBox77.Text.Trim()
+                , textBox78.Text.Trim()
+                , textBox79.Text.Trim()
+                , textBox80.Text.Trim()
+                , textBox81.Text.Trim()
+                , textBox82.Text.Trim()
+                , textBox83.Text.Trim()
+                , textBox84.Text.Trim()
+                , textBox85.Text.Trim()
+                , textBox86.Text.Trim()
+                , textBox87.Text.Trim()
+                , textBox88.Text.Trim()
+                , textBox89.Text.Trim()
 
-            //    );
+                );
 
-            //TKSTOCKSREORDS_UPDATE();
-            //Search_DG5(textBox72.Text, textBox73.Text);
+            TKSTOCKSREORDS_UPDATE();
+            Search_DG5(textBox72.Text, textBox73.Text);
         }
 
         private void button12_Click(object sender, EventArgs e)
@@ -4936,9 +4935,10 @@ namespace TKACT
                 // 確認後執行的動作
                 // TODO: 在這裡執行您的程式碼
                 // 例如：
-                TKSTOCKSREORDS_UPDATE_BEFROEDELETE(textBox106.Text.Trim());
+                //TKSTOCKSREORDS_UPDATE_BEFROEDELETE(textBox106.Text.Trim());
                 TKSTOCKSTRANS_DELETE(textBox106.Text.Trim());
-           
+
+                TKSTOCKSREORDS_UPDATE();
                 Search_DG5(textBox72.Text, textBox73.Text);
 
             }
