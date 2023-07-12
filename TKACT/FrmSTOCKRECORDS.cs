@@ -4711,6 +4711,76 @@ namespace TKACT
 
         }
 
+        public void SETFASTREPORT_TKSTOCKSNAMES()
+        {
+            StringBuilder SQL = new StringBuilder();
+
+            Report report1 = new Report();
+
+            report1.Load(@"REPORT\股東明細表.frx");
+
+            SQL = SETSQL_TKSTOCKSNAMES();
+
+
+            //20210902密
+            Class1 TKID = new Class1();//用new 建立類別實體
+            SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+            //資料庫使用者密碼解密
+            sqlsb.Password = TKID.Decryption(sqlsb.Password);
+            sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+            String connectionString;
+            sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+            report1.Dictionary.Connections[0].ConnectionString = sqlsb.ConnectionString;
+            TableDataSource table = report1.GetDataSource("Table") as TableDataSource;
+            table.SelectCommand = SQL.ToString();
+
+            report1.Preview = previewControl2;
+            report1.Show();
+        }
+
+        public StringBuilder SETSQL_TKSTOCKSNAMES()
+        {
+            StringBuilder SB = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder();
+
+            SB.AppendFormat(@"
+                            
+                            SELECT 
+                            [CREATEDATES]
+                            ,[TKSTOCKSNAMES].[ID]
+                            ,[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] AS '戶號'
+                            ,[TKSTOCKSNAMES].[STOCKNAME] AS '股東姓名'
+                            ,[TKSTOCKSNAMES].[IDNUMBER] AS '身份證字號或統一編號'
+                            ,[TKSTOCKSNAMES].[POSTALCODE] AS '通訊地郵遞區號'
+                            ,[TKSTOCKSNAMES].[MAILINGADDRESS] AS '通訊地址'
+                            ,[TKSTOCKSNAMES].[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
+                            ,[TKSTOCKSNAMES].[REGISTEREDADDRESS] AS '戶籍/設立地址'
+                            ,[TKSTOCKSNAMES].[DATEOFBIRTH] AS '出生/設立日期'
+                            ,[TKSTOCKSNAMES].[BANKNAME] AS '銀行名稱'
+                            ,[TKSTOCKSNAMES].[BRANCHNAME] AS '分行名稱'
+                            ,[TKSTOCKSNAMES].[BANKCODE] AS '銀行代碼'
+                            ,[TKSTOCKSNAMES].[ACCOUNTNUMBER] AS '帳號'
+                            ,[TKSTOCKSNAMES].[HOMEPHONENUMBER] AS '住家電話'
+                            ,[TKSTOCKSNAMES].[MOBILEPHONENUMBER] AS '手機號碼'
+                            ,[TKSTOCKSNAMES].[EMAIL] AS 'e-mail'
+                            ,[TKSTOCKSNAMES].[PASSPORTNUMBER] AS '護照號碼'
+                            ,[TKSTOCKSNAMES].[ENGLISHNAME] AS '英文名'
+                            ,[TKSTOCKSNAMES].[FATHER] AS '父'
+                            ,[TKSTOCKSNAMES].[MOTHER] AS '母'
+                            ,[TKSTOCKSNAMES].[SPOUSE] AS '配偶'
+                            ,[TKSTOCKSNAMES].[COMMENTS] AS '備註'
+                            FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                            ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]
+                            
+                            ");
+
+            return SB;
+
+        }
+
 
         #endregion
 
@@ -5128,6 +5198,10 @@ namespace TKACT
         }
 
 
+        private void button19_Click(object sender, EventArgs e)
+        {
+            SETFASTREPORT_TKSTOCKSNAMES();
+        }
 
 
         #endregion

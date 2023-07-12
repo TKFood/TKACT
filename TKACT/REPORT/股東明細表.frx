@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 08:19:26" ReportInfo.Modified="07/12/2023 10:45:57" ReportInfo.CreatorVersion="2016.4.4.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUE+vfQaGmmTPdxDXACRuRCV">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="/****** SSMS 中 SelectTopNRows 命令的指令碼  ******/&#13;&#10;SELECT &#13;&#10;[CREATEDATES]&#13;&#10;,[TKSTOCKSNAMES].[ID]&#13;&#10;,[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[TKSTOCKSNAMES].[STOCKNAME] AS '股東姓名'&#13;&#10;,[TKSTOCKSNAMES].[IDNUMBER] AS '身份證字號或統一編號'&#13;&#10;,[TKSTOCKSNAMES].[POSTALCODE] AS '通訊地郵遞區號'&#13;&#10;,[TKSTOCKSNAMES].[MAILINGADDRESS] AS '通訊地址'&#13;&#10;,[TKSTOCKSNAMES].[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'&#13;&#10;,[TKSTOCKSNAMES].[REGISTEREDADDRESS] AS '戶籍/設立地址'&#13;&#10;,[TKSTOCKSNAMES].[DATEOFBIRTH] AS '出生/設立日期'&#13;&#10;,[TKSTOCKSNAMES].[BANKNAME] AS '銀行名稱'&#13;&#10;,[TKSTOCKSNAMES].[BRANCHNAME] AS '分行名稱'&#13;&#10;,[TKSTOCKSNAMES].[BANKCODE] AS '銀行代碼'&#13;&#10;,[TKSTOCKSNAMES].[ACCOUNTNUMBER] AS '帳號'&#13;&#10;,[TKSTOCKSNAMES].[HOMEPHONENUMBER] AS '住家電話'&#13;&#10;,[TKSTOCKSNAMES].[MOBILEPHONENUMBER] AS '手機號碼'&#13;&#10;,[TKSTOCKSNAMES].[EMAIL] AS 'e-mail'&#13;&#10;,[TKSTOCKSNAMES].[PASSPORTNUMBER] AS '護照號碼'&#13;&#10;,[TKSTOCKSNAMES].[ENGLISHNAME] AS '英文名'&#13;&#10;,[TKSTOCKSNAMES].[FATHER] AS '父'&#13;&#10;,[TKSTOCKSNAMES].[MOTHER] AS '母'&#13;&#10;,[TKSTOCKSNAMES].[SPOUSE] AS '配偶'&#13;&#10;,[TKSTOCKSNAMES].[COMMENTS] AS '備註'&#13;&#10;FROM  [TKACT].[dbo].[TKSTOCKSNAMES]&#13;&#10;ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]">
+        <Column Name="CREATEDATES" DataType="System.DateTime"/>
+        <Column Name="ID" DataType="System.Decimal"/>
+        <Column Name="戶號" DataType="System.String"/>
+        <Column Name="股東姓名" DataType="System.String"/>
+        <Column Name="身份證字號或統一編號" DataType="System.String"/>
+        <Column Name="通訊地郵遞區號" DataType="System.String"/>
+        <Column Name="通訊地址" DataType="System.String"/>
+        <Column Name="戶籍地郵遞區號" DataType="System.String"/>
+        <Column Name="戶籍/設立地址" DataType="System.String"/>
+        <Column Name="出生/設立日期" DataType="System.String"/>
+        <Column Name="銀行名稱" DataType="System.String"/>
+        <Column Name="分行名稱" DataType="System.String"/>
+        <Column Name="銀行代碼" DataType="System.String"/>
+        <Column Name="帳號" DataType="System.String"/>
+        <Column Name="住家電話" DataType="System.String"/>
+        <Column Name="手機號碼" DataType="System.String"/>
+        <Column Name="e-mail" DataType="System.String"/>
+        <Column Name="護照號碼" DataType="System.String"/>
+        <Column Name="英文名" DataType="System.String"/>
+        <Column Name="父" DataType="System.String"/>
+        <Column Name="母" DataType="System.String"/>
+        <Column Name="配偶" DataType="System.String"/>
+        <Column Name="備註" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="900" PaperHeight="210">
+    <ReportTitleBand Name="ReportTitle1" Width="3326.4" Height="18.9">
+      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="股東明細表"/>
+    </ReportTitleBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="23.5" Width="3326.4" Height="18.9">
+      <TextObject Name="Text43" Left="3014.55" Width="311.85" Height="18.9" Border.Lines="All" Text="備註" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text5" Left="94.5" Width="274.05" Height="18.9" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text7" Left="368.55" Width="132.3" Height="18.9" Border.Lines="All" Text="身份證字號或統一編號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text9" Left="500.85" Width="94.5" Height="18.9" Border.Lines="All" Text="通訊地郵遞區號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text11" Left="595.35" Width="330.75" Height="18.9" Border.Lines="All" Text="通訊地址" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text13" Left="926.1" Width="94.5" Height="18.9" Border.Lines="All" Text="戶籍地郵遞區號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="1020.6" Width="387.45" Height="18.9" Border.Lines="All" Text="戶籍/設立地址" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="1408.05" Width="94.5" Height="18.9" Border.Lines="All" Text="出生/設立日期" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text19" Left="1502.55" Width="236.25" Height="18.9" Border.Lines="All" Text="銀行名稱" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text21" Left="1738.8" Width="160.65" Height="18.9" Border.Lines="All" Text="分行名稱" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text23" Left="1899.45" Width="94.5" Height="18.9" Border.Lines="All" Text="銀行代碼" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text25" Left="1993.95" Width="141.75" Height="18.9" Border.Lines="All" Text="帳號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text27" Left="2135.7" Width="94.5" Height="18.9" Border.Lines="All" Text="住家電話" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text29" Left="2230.2" Width="94.5" Height="18.9" Border.Lines="All" Text="手機號碼" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text31" Left="2324.7" Width="217.35" Height="18.9" Border.Lines="All" Text="e-mail" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text33" Left="2542.05" Width="94.5" Height="18.9" Border.Lines="All" Text="護照號碼" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text35" Left="2636.55" Width="94.5" Height="18.9" Border.Lines="All" Text="英文名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text37" Left="2731.05" Width="94.5" Height="18.9" Border.Lines="All" Text="父" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text39" Left="2825.55" Width="94.5" Height="18.9" Border.Lines="All" Text="母" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text41" Left="2920.05" Width="94.5" Height="18.9" Border.Lines="All" Text="配偶" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text3" Width="94.5" Height="18.9" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="47" Width="3326.4" Height="18.9" CanGrow="true" DataSource="Table">
+      <TextObject Name="Text4" Left="94.5" Width="274.05" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.股東姓名]" VertAlign="Center"/>
+      <TextObject Name="Text6" Left="368.55" Width="132.3" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.身份證字號或統一編號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text8" Left="500.85" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.通訊地郵遞區號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text10" Left="595.35" Width="330.75" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.通訊地址]" VertAlign="Center"/>
+      <TextObject Name="Text12" Left="926.1" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.戶籍地郵遞區號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text14" Left="1020.6" Width="387.45" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.戶籍/設立地址]" VertAlign="Center"/>
+      <TextObject Name="Text16" Left="1408.05" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.出生/設立日期]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text18" Left="1502.55" Width="236.25" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.銀行名稱]" VertAlign="Center"/>
+      <TextObject Name="Text20" Left="1738.8" Width="160.65" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.分行名稱]" VertAlign="Center"/>
+      <TextObject Name="Text22" Left="1899.45" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.銀行代碼]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text24" Left="1993.95" Width="141.75" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.帳號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text26" Left="2135.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.住家電話]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text28" Left="2230.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.手機號碼]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text30" Left="2324.7" Width="217.35" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.e-mail]" VertAlign="Center"/>
+      <TextObject Name="Text32" Left="2542.05" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.護照號碼]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text34" Left="2636.55" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.英文名]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text36" Left="2731.05" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.父]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text38" Left="2825.55" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.母]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text40" Left="2920.05" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.配偶]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text42" Left="3014.55" Width="311.85" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.備註]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.戶號]" HorzAlign="Center" VertAlign="Center"/>
+    </DataBand>
+  </ReportPage>
+</Report>
