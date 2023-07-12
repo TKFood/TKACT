@@ -4883,6 +4883,109 @@ namespace TKACT
 
         }
 
+        public void SETFASTREPORT_TKSTOCKSTRANS(string SDATE, string EDATE, string STOCKACCOUNTNUMBERFORM, string STOCKNAMEFORM)
+        {
+            StringBuilder SQL = new StringBuilder();
+
+            Report report1 = new Report();
+
+            report1.Load(@"REPORT\股權轉讓.frx");
+
+            SQL = SETSQL_TKSTOCKSTRANS(SDATE, EDATE, STOCKACCOUNTNUMBERFORM, STOCKNAMEFORM);
+
+
+            //20210902密
+            Class1 TKID = new Class1();//用new 建立類別實體
+            SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+            //資料庫使用者密碼解密
+            sqlsb.Password = TKID.Decryption(sqlsb.Password);
+            sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+            String connectionString;
+            sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+            report1.Dictionary.Connections[0].ConnectionString = sqlsb.ConnectionString;
+            TableDataSource table = report1.GetDataSource("Table") as TableDataSource;
+            table.SelectCommand = SQL.ToString();
+
+            report1.Preview = previewControl4;
+            report1.Show();
+        }
+
+        public StringBuilder SETSQL_TKSTOCKSTRANS(string SDATE, string EDATE, string STOCKACCOUNTNUMBERFORM, string STOCKNAMEFORM)
+        {
+            StringBuilder SB = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder();
+            StringBuilder SBQUERY2 = new StringBuilder();
+            StringBuilder SBQUERY3 = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(SDATE) && !string.IsNullOrEmpty(EDATE))
+            {
+                SBQUERY1.AppendFormat(@"
+                                       AND [DATEOFCHANGE]>='{0}' AND [DATEOFCHANGE]<='{1}'
+                                        ", SDATE, EDATE);
+            }
+            else
+            {
+                SBQUERY1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBERFORM))
+            {
+                SBQUERY2.AppendFormat(@" 
+                                        AND STOCKACCOUNTNUMBERFORM LIKE '%{0}%'
+                                        ", STOCKACCOUNTNUMBERFORM);
+            }
+            else
+            {
+                SBQUERY2.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAMEFORM))
+            {
+                SBQUERY3.AppendFormat(@" 
+                                        AND STOCKNAMEFORM LIKE '%{0}%'
+                                        ", STOCKNAMEFORM);
+            }
+            else
+            {
+                SBQUERY3.AppendFormat(@" ");
+            }
+
+
+            SB.AppendFormat(@"                      
+                          
+                            SELECT
+                            [SERNO]
+                            ,[IDFORM]
+                            ,[IDTO]
+                            ,[DATEOFCHANGE] AS '異動日期'
+                            ,[REASOFORCHANGE] AS '異動原因'
+                            ,[STOCKACCOUNTNUMBERFORM] AS '轉讓人戶號'
+                            ,[STOCKNAMEFORM] AS '轉讓人股東姓名'
+                            ,[STOCKACCOUNTNUMBERTO] AS '受讓人戶號'
+                            ,[STOCKNAMETO] AS '受讓人股東姓名'
+                            ,CONVERT(INT,[TRANSFERREDSHARES]) AS '轉讓股數'
+                            ,[PARVALUEPERSHARE] AS '每股面額'
+                            ,CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]) AS '每股成交價格'
+                            ,CONVERT(DECIMAL(16,2),[TOTALTRADINGAMOUNT]) AS '成交總額'
+                            ,CONVERT(DECIMAL(16,2),[SECURITIESTRANSACTIONTAXAMOUNT]) AS '證券交易稅額'
+                            ,[TRANSFERREDSHARESHUNDREDTHOUSANDS] AS '轉讓股票號碼(十萬股)'
+                            ,[TRANSFERREDSHARESTENSOFTHOUSANDS] AS '轉讓股票號碼(萬股)'
+                            ,[TRANSFERREDSHARESTHOUSANDS] AS '轉讓股票號碼(千股)'
+                            ,[TRANSFERREDSHARESIRREGULARLOTS] AS '轉讓股票號碼(不定額股'
+                            ,[HOLDINGSHARES] AS '持有股數'
+                            FROM [TKACT].[dbo].[TKSTOCKSTRANS]
+                            WHERE 1=1
+                            {0}
+                            {1}
+                            {2}
+                            
+                            ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString());
+
+            return SB;
+
+        }
+
 
         #endregion
 
@@ -5308,6 +5411,10 @@ namespace TKACT
         private void button20_Click(object sender, EventArgs e)
         {
             SETFASTREPORT_TKSTOCKSTRANSADD(dateTimePicker4.Value.ToString("yyyy/MM/dd"), dateTimePicker6.Value.ToString("yyyy/MM/dd"),textBox64.Text, textBox65.Text);
+        }
+        private void button21_Click(object sender, EventArgs e)
+        {
+            SETFASTREPORT_TKSTOCKSTRANS(dateTimePicker9.Value.ToString("yyyy/MM/dd"), dateTimePicker10.Value.ToString("yyyy/MM/dd"), textBox66.Text, textBox67.Text);
         }
 
         #endregion

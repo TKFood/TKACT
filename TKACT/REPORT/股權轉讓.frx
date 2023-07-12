@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 11:21:18" ReportInfo.Modified="07/12/2023 11:41:57" ReportInfo.CreatorVersion="2016.4.4.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUFLAvekXnXaJ20bMFjB2Nbv">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="/****** SSMS 中 SelectTopNRows 命令的指令碼  ******/&#13;&#10;SELECT&#13;&#10;[SERNO]&#13;&#10;,[IDFORM]&#13;&#10;,[IDTO]&#13;&#10;,[DATEOFCHANGE] AS '異動日期'&#13;&#10;,[REASOFORCHANGE] AS '異動原因'&#13;&#10;,[STOCKACCOUNTNUMBERFORM] AS '轉讓人戶號'&#13;&#10;,[STOCKNAMEFORM] AS '轉讓人股東姓名'&#13;&#10;,[STOCKACCOUNTNUMBERTO] AS '受讓人戶號'&#13;&#10;,[STOCKNAMETO] AS '受讓人股東姓名'&#13;&#10;,CONVERT(INT,[TRANSFERREDSHARES]) AS '轉讓股數'&#13;&#10;,[PARVALUEPERSHARE] AS '每股面額'&#13;&#10;,CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]) AS '每股成交價格'&#13;&#10;,CONVERT(DECIMAL(16,2),[TOTALTRADINGAMOUNT]) AS '成交總額'&#13;&#10;,CONVERT(DECIMAL(16,2),[SECURITIESTRANSACTIONTAXAMOUNT]) AS '證券交易稅額'&#13;&#10;,[TRANSFERREDSHARESHUNDREDTHOUSANDS] AS '轉讓股票號碼(十萬股)'&#13;&#10;,[TRANSFERREDSHARESTENSOFTHOUSANDS] AS '轉讓股票號碼(萬股)'&#13;&#10;,[TRANSFERREDSHARESTHOUSANDS] AS '轉讓股票號碼(千股)'&#13;&#10;,[TRANSFERREDSHARESIRREGULARLOTS] AS '轉讓股票號碼(不定額股'&#13;&#10;,[HOLDINGSHARES] AS '持有股數'&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSTRANS]">
+        <Column Name="SERNO" DataType="System.Decimal"/>
+        <Column Name="IDFORM" DataType="System.String"/>
+        <Column Name="IDTO" DataType="System.String"/>
+        <Column Name="異動日期" DataType="System.String"/>
+        <Column Name="異動原因" DataType="System.String"/>
+        <Column Name="轉讓人戶號" DataType="System.String"/>
+        <Column Name="轉讓人股東姓名" DataType="System.String"/>
+        <Column Name="受讓人戶號" DataType="System.String"/>
+        <Column Name="受讓人股東姓名" DataType="System.String"/>
+        <Column Name="轉讓股數" DataType="System.Int32"/>
+        <Column Name="每股面額" DataType="System.String"/>
+        <Column Name="每股成交價格" DataType="System.Decimal"/>
+        <Column Name="成交總額" DataType="System.Decimal"/>
+        <Column Name="證券交易稅額" DataType="System.Decimal"/>
+        <Column Name="轉讓股票號碼(十萬股)" DataType="System.String"/>
+        <Column Name="轉讓股票號碼(萬股)" DataType="System.String"/>
+        <Column Name="轉讓股票號碼(千股)" DataType="System.String"/>
+        <Column Name="轉讓股票號碼(不定額股" DataType="System.String"/>
+        <Column Name="持有股數" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="460" PaperHeight="210">
+    <ReportTitleBand Name="ReportTitle1" Width="1663.2" Height="18.9">
+      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="股權轉讓" VertAlign="Center"/>
+    </ReportTitleBand>
+    <ColumnHeaderBand Name="ColumnHeader1" Top="23.5" Width="1663.2" Height="37.8">
+      <TextObject Name="Text9" Left="283.5" Width="170.1" Height="37.8" Border.Lines="All" Text="轉讓人股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text11" Left="453.6" Width="94.5" Height="37.8" Border.Lines="All" Text="受讓人戶號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text13" Left="548.1" Width="170.1" Height="37.8" Border.Lines="All" Text="受讓人股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="718.2" Width="94.5" Height="37.8" Border.Lines="All" Text="轉讓股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="812.7" Width="94.5" Height="37.8" Border.Lines="All" Text="每股面額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text19" Left="907.2" Width="94.5" Height="37.8" Border.Lines="All" Text="每股成交價格" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text21" Left="1001.7" Width="94.5" Height="37.8" Border.Lines="All" Text="成交總額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text23" Left="1096.2" Width="94.5" Height="37.8" Border.Lines="All" Text="證券交易稅額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text25" Left="1190.7" Width="94.5" Height="37.8" Border.Lines="All" Text="轉讓股票號碼(十萬股)" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text27" Left="1285.2" Width="94.5" Height="37.8" Border.Lines="All" Text="轉讓股票號碼(萬股)" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text29" Left="1379.7" Width="94.5" Height="37.8" Border.Lines="All" Text="轉讓股票號碼(千股)" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text31" Left="1474.2" Width="94.5" Height="37.8" Border.Lines="All" Text="轉讓股票號碼(不定額股" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text33" Left="1568.7" Width="94.5" Height="37.8" Border.Lines="All" Text="持有股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text3" Width="94.5" Height="37.8" Border.Lines="All" Text="異動日期" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text5" Left="94.5" Width="94.5" Height="37.8" Border.Lines="All" Text="異動原因" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text7" Left="189" Width="94.5" Height="37.8" Border.Lines="All" Text="轉讓人戶號" HorzAlign="Center" VertAlign="Center"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" Top="65.9" Width="1663.2" Height="18.9" CanGrow="true" DataSource="Table">
+      <TextObject Name="Text8" Left="283.5" Width="170.1" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓人股東姓名]" VertAlign="Center"/>
+      <TextObject Name="Text10" Left="453.6" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.受讓人戶號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text12" Left="548.1" Width="170.1" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.受讓人股東姓名]" VertAlign="Center"/>
+      <TextObject Name="Text14" Left="718.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓股數]" Format="Number" Format.UseLocale="true" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text16" Left="812.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.每股面額]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text18" Left="907.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.每股成交價格]" Format="Number" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text20" Left="1001.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.成交總額]" Format="Number" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text22" Left="1096.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.證券交易稅額]" Format="Number" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text24" Left="1190.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓股票號碼(十萬股)]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text26" Left="1285.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓股票號碼(萬股)]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text28" Left="1379.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓股票號碼(千股)]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text30" Left="1474.2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓股票號碼(不定額股]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text32" Left="1568.7" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.持有股數]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text4" Left="94.5" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.異動原因]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text2" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.異動日期]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text6" Left="189" Width="94.5" Height="18.9" Border.Lines="All" CanGrow="true" GrowToBottom="true" Text="[Table.轉讓人戶號]" HorzAlign="Center" VertAlign="Center"/>
+    </DataBand>
+  </ReportPage>
+</Report>

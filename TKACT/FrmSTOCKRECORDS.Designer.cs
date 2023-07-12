@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -94,6 +94,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.splitContainer12 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.button19 = new System.Windows.Forms.Button();
+            this.previewControl2 = new FastReport.Preview.PreviewControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -216,6 +220,19 @@
             this.button8 = new System.Windows.Forms.Button();
             this.textBox134 = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.splitContainer13 = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox65 = new System.Windows.Forms.TextBox();
+            this.label65 = new System.Windows.Forms.Label();
+            this.textBox64 = new System.Windows.Forms.TextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.label67 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
+            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
+            this.label68 = new System.Windows.Forms.Label();
+            this.previewControl3 = new FastReport.Preview.PreviewControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -231,7 +248,6 @@
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label80 = new System.Windows.Forms.Label();
             this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
-            this.label81 = new System.Windows.Forms.Label();
             this.label78 = new System.Windows.Forms.Label();
             this.label79 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
@@ -258,7 +274,6 @@
             this.label88 = new System.Windows.Forms.Label();
             this.textBox86 = new System.Windows.Forms.TextBox();
             this.textBox87 = new System.Windows.Forms.TextBox();
-            this.button10 = new System.Windows.Forms.Button();
             this.textBox88 = new System.Windows.Forms.TextBox();
             this.textBox89 = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
@@ -274,7 +289,9 @@
             this.textBox84 = new System.Windows.Forms.TextBox();
             this.textBox83 = new System.Windows.Forms.TextBox();
             this.button12 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
+            this.label81 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
@@ -320,28 +337,24 @@
             this.textBox129 = new System.Windows.Forms.TextBox();
             this.tabPage13 = new System.Windows.Forms.TabPage();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
-            this.previewControl1 = new FastReport.Preview.PreviewControl();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.button18 = new System.Windows.Forms.Button();
             this.label66 = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.splitContainer12 = new System.Windows.Forms.SplitContainer();
-            this.previewControl2 = new FastReport.Preview.PreviewControl();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.button19 = new System.Windows.Forms.Button();
-            this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.splitContainer13 = new System.Windows.Forms.SplitContainer();
-            this.previewControl3 = new FastReport.Preview.PreviewControl();
-            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox64 = new System.Windows.Forms.TextBox();
-            this.button20 = new System.Windows.Forms.Button();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.textBox65 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
-            this.label67 = new System.Windows.Forms.Label();
-            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
-            this.label68 = new System.Windows.Forms.Label();
+            this.previewControl1 = new FastReport.Preview.PreviewControl();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.splitContainer14 = new System.Windows.Forms.SplitContainer();
+            this.previewControl4 = new FastReport.Preview.PreviewControl();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBox66 = new System.Windows.Forms.TextBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.textBox67 = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.dateTimePicker9 = new System.Windows.Forms.DateTimePicker();
+            this.label71 = new System.Windows.Forms.Label();
+            this.button21 = new System.Windows.Forms.Button();
+            this.dateTimePicker10 = new System.Windows.Forms.DateTimePicker();
+            this.label72 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -358,6 +371,11 @@
             this.tabPage6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).BeginInit();
+            this.splitContainer12.Panel1.SuspendLayout();
+            this.splitContainer12.Panel2.SuspendLayout();
+            this.splitContainer12.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -390,6 +408,12 @@
             this.tabControl5.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.tabPage15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).BeginInit();
+            this.splitContainer13.Panel1.SuspendLayout();
+            this.splitContainer13.Panel2.SuspendLayout();
+            this.splitContainer13.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
             this.splitContainer7.Panel1.SuspendLayout();
@@ -424,17 +448,12 @@
             this.splitContainer11.Panel2.SuspendLayout();
             this.splitContainer11.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).BeginInit();
-            this.splitContainer12.Panel1.SuspendLayout();
-            this.splitContainer12.Panel2.SuspendLayout();
-            this.splitContainer12.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
-            this.tabPage15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).BeginInit();
-            this.splitContainer13.Panel1.SuspendLayout();
-            this.splitContainer13.Panel2.SuspendLayout();
-            this.splitContainer13.SuspendLayout();
-            this.tableLayoutPanel13.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer14)).BeginInit();
+            this.splitContainer14.Panel1.SuspendLayout();
+            this.splitContainer14.Panel2.SuspendLayout();
+            this.splitContainer14.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -581,8 +600,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -1122,13 +1141,83 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.splitContainer12);
-            this.tabPage7.Location = new System.Drawing.Point(4, 26);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(958, 409);
+            this.tabPage7.Size = new System.Drawing.Size(958, 413);
             this.tabPage7.TabIndex = 1;
             this.tabPage7.Text = "報表";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer12
+            // 
+            this.splitContainer12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer12.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer12.Name = "splitContainer12";
+            // 
+            // splitContainer12.Panel1
+            // 
+            this.splitContainer12.Panel1.Controls.Add(this.tableLayoutPanel10);
+            // 
+            // splitContainer12.Panel2
+            // 
+            this.splitContainer12.Panel2.Controls.Add(this.previewControl2);
+            this.splitContainer12.Size = new System.Drawing.Size(952, 407);
+            this.splitContainer12.SplitterDistance = 192;
+            this.splitContainer12.TabIndex = 0;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.BackColor = System.Drawing.Color.LightGreen;
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel10.Controls.Add(this.button19, 0, 1);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 8;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(188, 403);
+            this.tableLayoutPanel10.TabIndex = 20;
+            // 
+            // button19
+            // 
+            this.button19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button19.Location = new System.Drawing.Point(4, 44);
+            this.button19.Margin = new System.Windows.Forms.Padding(4);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(112, 32);
+            this.button19.TabIndex = 16;
+            this.button19.Text = "查詢";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // previewControl2
+            // 
+            this.previewControl2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.previewControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewControl2.Font = new System.Drawing.Font("宋体", 9F);
+            this.previewControl2.Location = new System.Drawing.Point(0, 0);
+            this.previewControl2.Name = "previewControl2";
+            this.previewControl2.PageOffset = new System.Drawing.Point(10, 10);
+            this.previewControl2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.previewControl2.Size = new System.Drawing.Size(752, 403);
+            this.previewControl2.TabIndex = 2;
             // 
             // tabPage2
             // 
@@ -1280,8 +1369,8 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
@@ -1308,8 +1397,8 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle22;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
@@ -1955,8 +2044,8 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
@@ -2533,6 +2622,165 @@
             this.label56.TabIndex = 59;
             this.label56.Text = "增資股票號碼(萬股) 起";
             // 
+            // tabPage15
+            // 
+            this.tabPage15.Controls.Add(this.splitContainer13);
+            this.tabPage15.Location = new System.Drawing.Point(4, 26);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Size = new System.Drawing.Size(964, 347);
+            this.tabPage15.TabIndex = 1;
+            this.tabPage15.Text = "報表";
+            this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer13
+            // 
+            this.splitContainer13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer13.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer13.Name = "splitContainer13";
+            this.splitContainer13.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer13.Panel1
+            // 
+            this.splitContainer13.Panel1.Controls.Add(this.tableLayoutPanel13);
+            // 
+            // splitContainer13.Panel2
+            // 
+            this.splitContainer13.Panel2.Controls.Add(this.previewControl3);
+            this.splitContainer13.Size = new System.Drawing.Size(964, 347);
+            this.splitContainer13.SplitterDistance = 130;
+            this.splitContainer13.TabIndex = 0;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.BackColor = System.Drawing.Color.LightGreen;
+            this.tableLayoutPanel13.ColumnCount = 7;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 189F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 252F));
+            this.tableLayoutPanel13.Controls.Add(this.textBox65, 1, 2);
+            this.tableLayoutPanel13.Controls.Add(this.label65, 0, 2);
+            this.tableLayoutPanel13.Controls.Add(this.textBox64, 1, 1);
+            this.tableLayoutPanel13.Controls.Add(this.label64, 0, 1);
+            this.tableLayoutPanel13.Controls.Add(this.dateTimePicker4, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.label67, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.button20, 4, 1);
+            this.tableLayoutPanel13.Controls.Add(this.dateTimePicker6, 3, 0);
+            this.tableLayoutPanel13.Controls.Add(this.label68, 2, 0);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 4;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(960, 126);
+            this.tableLayoutPanel13.TabIndex = 22;
+            // 
+            // textBox65
+            // 
+            this.textBox65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox65.Location = new System.Drawing.Point(123, 86);
+            this.textBox65.Name = "textBox65";
+            this.textBox65.Size = new System.Drawing.Size(114, 27);
+            this.textBox65.TabIndex = 51;
+            // 
+            // label65
+            // 
+            this.label65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(3, 92);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(114, 16);
+            this.label65.TabIndex = 49;
+            this.label65.Text = "股東姓名";
+            // 
+            // textBox64
+            // 
+            this.textBox64.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox64.Location = new System.Drawing.Point(123, 46);
+            this.textBox64.Name = "textBox64";
+            this.textBox64.Size = new System.Drawing.Size(114, 27);
+            this.textBox64.TabIndex = 50;
+            // 
+            // label64
+            // 
+            this.label64.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(3, 52);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(114, 16);
+            this.label64.TabIndex = 47;
+            this.label64.Text = "戶號";
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker4.Location = new System.Drawing.Point(123, 3);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.Size = new System.Drawing.Size(114, 27);
+            this.dateTimePicker4.TabIndex = 72;
+            // 
+            // label67
+            // 
+            this.label67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(3, 12);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(114, 16);
+            this.label67.TabIndex = 73;
+            this.label67.Text = "增資基準日";
+            // 
+            // button20
+            // 
+            this.button20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button20.Location = new System.Drawing.Point(406, 44);
+            this.button20.Margin = new System.Windows.Forms.Padding(4);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(121, 32);
+            this.button20.TabIndex = 16;
+            this.button20.Text = "查詢";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // dateTimePicker6
+            // 
+            this.dateTimePicker6.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker6.Location = new System.Drawing.Point(285, 3);
+            this.dateTimePicker6.Name = "dateTimePicker6";
+            this.dateTimePicker6.Size = new System.Drawing.Size(114, 27);
+            this.dateTimePicker6.TabIndex = 74;
+            // 
+            // label68
+            // 
+            this.label68.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(243, 12);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(36, 16);
+            this.label68.TabIndex = 75;
+            this.label68.Text = "~";
+            // 
+            // previewControl3
+            // 
+            this.previewControl3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.previewControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewControl3.Font = new System.Drawing.Font("宋体", 9F);
+            this.previewControl3.Location = new System.Drawing.Point(0, 0);
+            this.previewControl3.Name = "previewControl3";
+            this.previewControl3.PageOffset = new System.Drawing.Point(10, 10);
+            this.previewControl3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.previewControl3.Size = new System.Drawing.Size(960, 209);
+            this.previewControl3.TabIndex = 3;
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.splitContainer7);
@@ -2660,8 +2908,8 @@
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView5.Location = new System.Drawing.Point(0, 0);
@@ -2676,6 +2924,7 @@
             // tabControl6
             // 
             this.tabControl6.Controls.Add(this.tabPage14);
+            this.tabControl6.Controls.Add(this.tabPage9);
             this.tabControl6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl6.Location = new System.Drawing.Point(0, 0);
             this.tabControl6.Name = "tabControl6";
@@ -2708,7 +2957,6 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.tableLayoutPanel9.Controls.Add(this.label80, 0, 0);
             this.tableLayoutPanel9.Controls.Add(this.dateTimePicker5, 1, 0);
-            this.tableLayoutPanel9.Controls.Add(this.label81, 0, 1);
             this.tableLayoutPanel9.Controls.Add(this.label78, 0, 2);
             this.tableLayoutPanel9.Controls.Add(this.label79, 0, 3);
             this.tableLayoutPanel9.Controls.Add(this.label107, 0, 4);
@@ -2752,6 +3000,7 @@
             this.tableLayoutPanel9.Controls.Add(this.button12, 3, 8);
             this.tableLayoutPanel9.Controls.Add(this.button10, 5, 7);
             this.tableLayoutPanel9.Controls.Add(this.button11, 3, 7);
+            this.tableLayoutPanel9.Controls.Add(this.label81, 0, 1);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(4);
@@ -2791,16 +3040,6 @@
             this.dateTimePicker5.Size = new System.Drawing.Size(109, 27);
             this.dateTimePicker5.TabIndex = 71;
             // 
-            // label81
-            // 
-            this.label81.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(3, 52);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(128, 16);
-            this.label81.TabIndex = 53;
-            this.label81.Text = "異動原因";
-            // 
             // label78
             // 
             this.label78.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -2839,7 +3078,7 @@
             this.label106.Name = "label106";
             this.label106.Size = new System.Drawing.Size(128, 32);
             this.label106.TabIndex = 84;
-            this.label106.Text = "受讓人 股東姓名(ENTER查詢)";
+            this.label106.Text = "受讓人股東姓名(ENTER查詢)";
             // 
             // textBox76
             // 
@@ -3042,18 +3281,6 @@
             this.textBox87.Size = new System.Drawing.Size(167, 27);
             this.textBox87.TabIndex = 91;
             // 
-            // button10
-            // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.Location = new System.Drawing.Point(669, 284);
-            this.button10.Margin = new System.Windows.Forms.Padding(4);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(194, 32);
-            this.button10.TabIndex = 16;
-            this.button10.Text = "新增";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
             // textBox88
             // 
             this.textBox88.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -3191,6 +3418,18 @@
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
+            // button10
+            // 
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.Location = new System.Drawing.Point(669, 284);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(194, 32);
+            this.button10.TabIndex = 16;
+            this.button10.Text = "新增";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button11
             // 
             this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -3202,6 +3441,16 @@
             this.button11.Text = "修改";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // label81
+            // 
+            this.label81.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(3, 52);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(128, 16);
+            this.label81.TabIndex = 53;
+            this.label81.Text = "異動原因";
             // 
             // tabPage5
             // 
@@ -3330,8 +3579,8 @@
             // 
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
@@ -3736,18 +3985,6 @@
             this.splitContainer11.SplitterDistance = 197;
             this.splitContainer11.TabIndex = 0;
             // 
-            // previewControl1
-            // 
-            this.previewControl1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.previewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.previewControl1.Font = new System.Drawing.Font("宋体", 9F);
-            this.previewControl1.Location = new System.Drawing.Point(0, 0);
-            this.previewControl1.Name = "previewControl1";
-            this.previewControl1.PageOffset = new System.Drawing.Point(10, 10);
-            this.previewControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl1.Size = new System.Drawing.Size(972, 526);
-            this.previewControl1.TabIndex = 1;
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.BackColor = System.Drawing.Color.LightGreen;
@@ -3807,240 +4044,182 @@
             this.comboBox5.Items.AddRange(new object[] {
             "遊覽車對帳明細表",
             "多年期月份團務比較表"});
-            this.comboBox5.Location = new System.Drawing.Point(123, 50);
+            this.comboBox5.Location = new System.Drawing.Point(123, 48);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(234, 24);
             this.comboBox5.TabIndex = 613;
             this.comboBox5.Text = "股票明細";
             // 
-            // splitContainer12
+            // previewControl1
             // 
-            this.splitContainer12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer12.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer12.Name = "splitContainer12";
+            this.previewControl1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.previewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewControl1.Font = new System.Drawing.Font("宋体", 9F);
+            this.previewControl1.Location = new System.Drawing.Point(0, 0);
+            this.previewControl1.Name = "previewControl1";
+            this.previewControl1.PageOffset = new System.Drawing.Point(10, 10);
+            this.previewControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.previewControl1.Size = new System.Drawing.Size(972, 526);
+            this.previewControl1.TabIndex = 1;
             // 
-            // splitContainer12.Panel1
+            // tabPage9
             // 
-            this.splitContainer12.Panel1.Controls.Add(this.tableLayoutPanel10);
+            this.tabPage9.Controls.Add(this.splitContainer14);
+            this.tabPage9.Location = new System.Drawing.Point(4, 26);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(964, 458);
+            this.tabPage9.TabIndex = 1;
+            this.tabPage9.Text = "報表";
+            this.tabPage9.UseVisualStyleBackColor = true;
             // 
-            // splitContainer12.Panel2
+            // splitContainer14
             // 
-            this.splitContainer12.Panel2.Controls.Add(this.previewControl2);
-            this.splitContainer12.Size = new System.Drawing.Size(952, 403);
-            this.splitContainer12.SplitterDistance = 192;
-            this.splitContainer12.TabIndex = 0;
+            this.splitContainer14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer14.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer14.Name = "splitContainer14";
+            this.splitContainer14.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // previewControl2
+            // splitContainer14.Panel1
             // 
-            this.previewControl2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.previewControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.previewControl2.Font = new System.Drawing.Font("宋体", 9F);
-            this.previewControl2.Location = new System.Drawing.Point(0, 0);
-            this.previewControl2.Name = "previewControl2";
-            this.previewControl2.PageOffset = new System.Drawing.Point(10, 10);
-            this.previewControl2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl2.Size = new System.Drawing.Size(752, 399);
-            this.previewControl2.TabIndex = 2;
+            this.splitContainer14.Panel1.Controls.Add(this.tableLayoutPanel14);
             // 
-            // tableLayoutPanel10
+            // splitContainer14.Panel2
             // 
-            this.tableLayoutPanel10.BackColor = System.Drawing.Color.LightGreen;
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel10.Controls.Add(this.button19, 0, 1);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 8;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(188, 399);
-            this.tableLayoutPanel10.TabIndex = 20;
+            this.splitContainer14.Panel2.Controls.Add(this.previewControl4);
+            this.splitContainer14.Size = new System.Drawing.Size(964, 458);
+            this.splitContainer14.SplitterDistance = 144;
+            this.splitContainer14.TabIndex = 0;
             // 
-            // button19
+            // previewControl4
             // 
-            this.button19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button19.Location = new System.Drawing.Point(4, 44);
-            this.button19.Margin = new System.Windows.Forms.Padding(4);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(112, 32);
-            this.button19.TabIndex = 16;
-            this.button19.Text = "查詢";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
+            this.previewControl4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.previewControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.previewControl4.Font = new System.Drawing.Font("宋体", 9F);
+            this.previewControl4.Location = new System.Drawing.Point(0, 0);
+            this.previewControl4.Name = "previewControl4";
+            this.previewControl4.PageOffset = new System.Drawing.Point(10, 10);
+            this.previewControl4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.previewControl4.Size = new System.Drawing.Size(960, 306);
+            this.previewControl4.TabIndex = 4;
             // 
-            // tabPage15
+            // tableLayoutPanel14
             // 
-            this.tabPage15.Controls.Add(this.splitContainer13);
-            this.tabPage15.Location = new System.Drawing.Point(4, 26);
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(964, 347);
-            this.tabPage15.TabIndex = 1;
-            this.tabPage15.Text = "報表";
-            this.tabPage15.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel14.BackColor = System.Drawing.Color.LightGreen;
+            this.tableLayoutPanel14.ColumnCount = 7;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 189F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 252F));
+            this.tableLayoutPanel14.Controls.Add(this.label69, 0, 2);
+            this.tableLayoutPanel14.Controls.Add(this.label70, 0, 1);
+            this.tableLayoutPanel14.Controls.Add(this.dateTimePicker9, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.label71, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.button21, 4, 1);
+            this.tableLayoutPanel14.Controls.Add(this.dateTimePicker10, 3, 0);
+            this.tableLayoutPanel14.Controls.Add(this.label72, 2, 0);
+            this.tableLayoutPanel14.Controls.Add(this.textBox67, 1, 2);
+            this.tableLayoutPanel14.Controls.Add(this.textBox66, 1, 1);
+            this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 4;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(960, 140);
+            this.tableLayoutPanel14.TabIndex = 23;
             // 
-            // splitContainer13
+            // textBox66
             // 
-            this.splitContainer13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer13.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer13.Name = "splitContainer13";
-            this.splitContainer13.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.textBox66.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox66.Location = new System.Drawing.Point(123, 46);
+            this.textBox66.Name = "textBox66";
+            this.textBox66.Size = new System.Drawing.Size(114, 27);
+            this.textBox66.TabIndex = 51;
             // 
-            // splitContainer13.Panel1
+            // label69
             // 
-            this.splitContainer13.Panel1.Controls.Add(this.tableLayoutPanel13);
+            this.label69.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(3, 92);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(114, 16);
+            this.label69.TabIndex = 49;
+            this.label69.Text = "股東姓名";
             // 
-            // splitContainer13.Panel2
+            // textBox67
             // 
-            this.splitContainer13.Panel2.Controls.Add(this.previewControl3);
-            this.splitContainer13.Size = new System.Drawing.Size(964, 347);
-            this.splitContainer13.SplitterDistance = 130;
-            this.splitContainer13.TabIndex = 0;
+            this.textBox67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox67.Location = new System.Drawing.Point(123, 86);
+            this.textBox67.Name = "textBox67";
+            this.textBox67.Size = new System.Drawing.Size(114, 27);
+            this.textBox67.TabIndex = 50;
             // 
-            // previewControl3
+            // label70
             // 
-            this.previewControl3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.previewControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.previewControl3.Font = new System.Drawing.Font("宋体", 9F);
-            this.previewControl3.Location = new System.Drawing.Point(0, 0);
-            this.previewControl3.Name = "previewControl3";
-            this.previewControl3.PageOffset = new System.Drawing.Point(10, 10);
-            this.previewControl3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl3.Size = new System.Drawing.Size(960, 209);
-            this.previewControl3.TabIndex = 3;
+            this.label70.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(3, 52);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(114, 16);
+            this.label70.TabIndex = 47;
+            this.label70.Text = "戶號";
             // 
-            // tableLayoutPanel13
+            // dateTimePicker9
             // 
-            this.tableLayoutPanel13.BackColor = System.Drawing.Color.LightGreen;
-            this.tableLayoutPanel13.ColumnCount = 7;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 189F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 252F));
-            this.tableLayoutPanel13.Controls.Add(this.textBox65, 1, 2);
-            this.tableLayoutPanel13.Controls.Add(this.label65, 0, 2);
-            this.tableLayoutPanel13.Controls.Add(this.textBox64, 1, 1);
-            this.tableLayoutPanel13.Controls.Add(this.label64, 0, 1);
-            this.tableLayoutPanel13.Controls.Add(this.dateTimePicker4, 1, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label67, 0, 0);
-            this.tableLayoutPanel13.Controls.Add(this.button20, 4, 1);
-            this.tableLayoutPanel13.Controls.Add(this.dateTimePicker6, 3, 0);
-            this.tableLayoutPanel13.Controls.Add(this.label68, 2, 0);
-            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
-            this.tableLayoutPanel13.RowCount = 4;
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(960, 126);
-            this.tableLayoutPanel13.TabIndex = 22;
+            this.dateTimePicker9.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker9.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker9.Location = new System.Drawing.Point(123, 3);
+            this.dateTimePicker9.Name = "dateTimePicker9";
+            this.dateTimePicker9.Size = new System.Drawing.Size(114, 27);
+            this.dateTimePicker9.TabIndex = 72;
             // 
-            // textBox64
+            // label71
             // 
-            this.textBox64.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox64.Location = new System.Drawing.Point(123, 46);
-            this.textBox64.Name = "textBox64";
-            this.textBox64.Size = new System.Drawing.Size(114, 27);
-            this.textBox64.TabIndex = 50;
+            this.label71.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(3, 12);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(114, 16);
+            this.label71.TabIndex = 73;
+            this.label71.Text = "增資基準日";
             // 
-            // button20
+            // button21
             // 
-            this.button20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.button20.Location = new System.Drawing.Point(406, 44);
-            this.button20.Margin = new System.Windows.Forms.Padding(4);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(121, 32);
-            this.button20.TabIndex = 16;
-            this.button20.Text = "查詢";
-            this.button20.UseVisualStyleBackColor = true;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
+            this.button21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.button21.Location = new System.Drawing.Point(406, 44);
+            this.button21.Margin = new System.Windows.Forms.Padding(4);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(121, 32);
+            this.button21.TabIndex = 16;
+            this.button21.Text = "查詢";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
-            // label64
+            // dateTimePicker10
             // 
-            this.label64.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(3, 52);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(114, 16);
-            this.label64.TabIndex = 47;
-            this.label64.Text = "戶號";
+            this.dateTimePicker10.CustomFormat = "yyyy/MM/dd";
+            this.dateTimePicker10.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker10.Location = new System.Drawing.Point(285, 3);
+            this.dateTimePicker10.Name = "dateTimePicker10";
+            this.dateTimePicker10.Size = new System.Drawing.Size(114, 27);
+            this.dateTimePicker10.TabIndex = 74;
             // 
-            // label65
+            // label72
             // 
-            this.label65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(3, 92);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(114, 16);
-            this.label65.TabIndex = 49;
-            this.label65.Text = "股東姓名";
-            // 
-            // textBox65
-            // 
-            this.textBox65.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox65.Location = new System.Drawing.Point(123, 86);
-            this.textBox65.Name = "textBox65";
-            this.textBox65.Size = new System.Drawing.Size(114, 27);
-            this.textBox65.TabIndex = 51;
-            // 
-            // dateTimePicker4
-            // 
-            this.dateTimePicker4.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker4.Location = new System.Drawing.Point(123, 3);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(114, 27);
-            this.dateTimePicker4.TabIndex = 72;
-            // 
-            // label67
-            // 
-            this.label67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(3, 12);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(114, 16);
-            this.label67.TabIndex = 73;
-            this.label67.Text = "增資基準日";
-            // 
-            // dateTimePicker6
-            // 
-            this.dateTimePicker6.CustomFormat = "yyyy/MM/dd";
-            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker6.Location = new System.Drawing.Point(285, 3);
-            this.dateTimePicker6.Name = "dateTimePicker6";
-            this.dateTimePicker6.Size = new System.Drawing.Size(114, 27);
-            this.dateTimePicker6.TabIndex = 74;
-            // 
-            // label68
-            // 
-            this.label68.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(243, 12);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(36, 16);
-            this.label68.TabIndex = 75;
-            this.label68.Text = "~";
+            this.label72.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(243, 12);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(36, 16);
+            this.label72.TabIndex = 75;
+            this.label72.Text = "~";
             // 
             // FrmSTOCKRECORDS
             // 
@@ -4070,6 +4249,11 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.tabPage7.ResumeLayout(false);
+            this.splitContainer12.Panel1.ResumeLayout(false);
+            this.splitContainer12.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).EndInit();
+            this.splitContainer12.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -4106,6 +4290,13 @@
             this.tabPage12.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.tabPage15.ResumeLayout(false);
+            this.splitContainer13.Panel1.ResumeLayout(false);
+            this.splitContainer13.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).EndInit();
+            this.splitContainer13.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel13.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.splitContainer7.Panel1.ResumeLayout(false);
             this.splitContainer7.Panel2.ResumeLayout(false);
@@ -4145,18 +4336,13 @@
             this.splitContainer11.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            this.splitContainer12.Panel1.ResumeLayout(false);
-            this.splitContainer12.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).EndInit();
-            this.splitContainer12.ResumeLayout(false);
-            this.tableLayoutPanel10.ResumeLayout(false);
-            this.tabPage15.ResumeLayout(false);
-            this.splitContainer13.Panel1.ResumeLayout(false);
-            this.splitContainer13.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).EndInit();
-            this.splitContainer13.ResumeLayout(false);
-            this.tableLayoutPanel13.ResumeLayout(false);
-            this.tableLayoutPanel13.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.splitContainer14.Panel1.ResumeLayout(false);
+            this.splitContainer14.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer14)).EndInit();
+            this.splitContainer14.ResumeLayout(false);
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4471,5 +4657,18 @@
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.DateTimePicker dateTimePicker6;
         private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.SplitContainer splitContainer14;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private System.Windows.Forms.TextBox textBox66;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.TextBox textBox67;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.DateTimePicker dateTimePicker9;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.DateTimePicker dateTimePicker10;
+        private System.Windows.Forms.Label label72;
+        private FastReport.Preview.PreviewControl previewControl4;
     }
 }
