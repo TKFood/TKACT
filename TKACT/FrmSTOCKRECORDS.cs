@@ -5008,6 +5008,106 @@ namespace TKACT
 
         }
 
+        public void SETFASTREPORT_TKSTOCKSDIV(string SDATE, string EDATE, string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder SQL = new StringBuilder();
+
+            Report report1 = new Report();
+
+            report1.Load(@"REPORT\除權息.frx");
+
+            SQL = SETSQL_TKSTOCKSDIV(SDATE, EDATE, STOCKACCOUNTNUMBER, STOCKNAME);
+
+
+            //20210902密
+            Class1 TKID = new Class1();//用new 建立類別實體
+            SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+            //資料庫使用者密碼解密
+            sqlsb.Password = TKID.Decryption(sqlsb.Password);
+            sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+            String connectionString;
+            sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+            report1.Dictionary.Connections[0].ConnectionString = sqlsb.ConnectionString;
+            TableDataSource table = report1.GetDataSource("Table") as TableDataSource;
+            table.SelectCommand = SQL.ToString();
+
+            report1.Preview = previewControl5;
+            report1.Show();
+        }
+
+        public StringBuilder SETSQL_TKSTOCKSDIV(string SDATE, string EDATE, string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder SB = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder();
+            StringBuilder SBQUERY2 = new StringBuilder();
+            StringBuilder SBQUERY3 = new StringBuilder();
+            StringBuilder SBQUERY4 = new StringBuilder();
+            StringBuilder SBQUERY5 = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(SDATE) && !string.IsNullOrEmpty(EDATE))
+            {
+                SBQUERY1.AppendFormat(@"
+                                       AND [EXDIVIDENDINTERESTRECORDDATE]>='{0}' AND [EXDIVIDENDINTERESTRECORDDATE]<='{1}'
+                                        ", SDATE, EDATE);
+            }
+            else
+            {
+                SBQUERY1.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                SBQUERY2.AppendFormat(@" 
+                                        AND STOCKACCOUNTNUMBER LIKE '%{0}%'
+                                        ", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                SBQUERY2.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                SBQUERY3.AppendFormat(@" 
+                                        AND STOCKNAME LIKE '%{0}%'
+                                        ", STOCKNAME);
+            }
+            else
+            {
+                SBQUERY3.AppendFormat(@" ");
+            }
+
+            SB.AppendFormat(@"                      
+                          
+                          
+                            SELECT 
+                            [SERNO]
+                            ,[ID]
+                            ,[STOCKACCOUNTNUMBER] AS '戶號'
+                            ,[STOCKNAME] AS '股東姓名'
+                            ,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'
+                            ,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'
+                            ,CONVERT(DECIMAL(16,4),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'
+                            ,CONVERT(DECIMAL(16,4),[STOCKDIVIDEND]) AS '每股配發股票股利'
+                            ,CONVERT(DECIMAL(16,4),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'
+                            ,CONVERT(DECIMAL(16,4),[DECLAREDSTOCKDIVIDEND]) AS '應發股利股票股利'
+                            ,CONVERT(INT,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]) AS '應扣補充保費'
+                            ,CONVERT(INT,[ACTUALCASHDIVIDENDPAID]) AS '實發現金股利'
+                            ,CONVERT(INT,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]) AS '盈餘增資配股數'
+                            ,CONVERT(INT,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]) AS '資本公積增資配股數'
+                            FROM [TKACT].[dbo].[TKSTOCKSDIV]
+                            WHERE 1=1  
+                            {0}
+                            {1}
+                            {2}
+
+                            ORDER BY [SERNO]
+                            ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString());
+
+            return SB;
+
+        }
 
         #endregion
 
@@ -5437,6 +5537,10 @@ namespace TKACT
         private void button21_Click(object sender, EventArgs e)
         {
             SETFASTREPORT_TKSTOCKSTRANS(dateTimePicker9.Value.ToString("yyyy/MM/dd"), dateTimePicker10.Value.ToString("yyyy/MM/dd"), textBox66.Text, textBox67.Text, textBox68.Text, textBox69.Text);
+        }
+        private void button22_Click(object sender, EventArgs e)
+        {
+            SETFASTREPORT_TKSTOCKSDIV(dateTimePicker11.Value.ToString("yyyy/MM/dd"), dateTimePicker12.Value.ToString("yyyy/MM/dd"), textBox90.Text, textBox91.Text);
         }
 
         #endregion
