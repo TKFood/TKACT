@@ -4782,6 +4782,108 @@ namespace TKACT
         }
 
 
+        public void SETFASTREPORT_TKSTOCKSTRANSADD(string SDATE, string EDATE, string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder SQL = new StringBuilder();
+
+            Report report1 = new Report();
+
+            report1.Load(@"REPORT\股權增資.frx");
+
+            SQL = SETSQL_TKSTOCKSTRANSADD(SDATE, EDATE, STOCKACCOUNTNUMBER, STOCKNAME);
+
+
+            //20210902密
+            Class1 TKID = new Class1();//用new 建立類別實體
+            SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+            //資料庫使用者密碼解密
+            sqlsb.Password = TKID.Decryption(sqlsb.Password);
+            sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+            String connectionString;
+            sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+            report1.Dictionary.Connections[0].ConnectionString = sqlsb.ConnectionString;
+            TableDataSource table = report1.GetDataSource("Table") as TableDataSource;
+            table.SelectCommand = SQL.ToString();
+
+            report1.Preview = previewControl3;
+            report1.Show();
+        }
+
+        public StringBuilder SETSQL_TKSTOCKSTRANSADD(string SDATE,string EDATE,string STOCKACCOUNTNUMBER,string STOCKNAME)
+        {
+            StringBuilder SB = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder();
+            StringBuilder SBQUERY2 = new StringBuilder();
+            StringBuilder SBQUERY3 = new StringBuilder();
+
+            if(!string.IsNullOrEmpty(SDATE)&& !string.IsNullOrEmpty(EDATE))
+            {
+                SBQUERY1.AppendFormat(@"
+                                       AND [CAPITALINCREASERECORDDATE]>='{0}' AND [CAPITALINCREASERECORDDATE]<='{1}'
+                                        ", SDATE, EDATE);
+            }
+            else
+            {
+                SBQUERY1.AppendFormat(@" ");
+            }
+            if(!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                SBQUERY2.AppendFormat(@" 
+                                        AND STOCKACCOUNTNUMBER LIKE '%{0}%'
+                                        ", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                SBQUERY2.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                SBQUERY3.AppendFormat(@" 
+                                        AND STOCKNAME LIKE '%{0}%'
+                                        ", STOCKNAME);
+            }
+            else
+            {
+                SBQUERY3.AppendFormat(@" ");
+            }
+
+
+            SB.AppendFormat(@"                      
+                            SELECT 
+                             [SERNO]
+                            ,[ID]
+                            ,[CAPITALINCREASERECORDDATE] AS '增資基準日'
+                            ,[REASONFORCHANGE] AS '異動原因'
+                            ,[STOCKACCOUNTNUMBER] AS '戶號'
+                            ,[STOCKNAME] AS '股東姓名'
+                            ,CONVERT(INT,[INCREASEDSHARES]) AS '增資股數'
+                            ,[PARVALUPERSHARE] AS '每股面額'
+                            ,CONVERT(INT,[TRADINGPRICEPERSHARE]) AS '每股成交價格'
+                            ,CONVERT(INT,[TOTALTRADINGAMOUNT]) AS '成交總額'
+                            ,[INCREASEDSHARESHUNDREDTHOUSANDS] AS '增資股票號碼(十萬股)'
+                            ,[INCREASEDSHARESTENSOFTHOUSANDS] AS '增資股票號碼(萬股)'
+                            ,[INCREASEDSHARESTHOUSANDS] AS '增資股票號碼(千股)'
+                            ,[INCREASEDSHARESIRREGULARLOTS] AS '增資股票號碼(不定額股)'
+                            ,CONVERT(INT,[HOLDINGSHARES]) AS '持有股數'
+                            ,[PARVALUPER] 
+                            ,[STOCKSHARES]
+                            FROM [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                            WHERE 1=1
+                            {0}
+                            {1}
+                            {2}
+                            ORDER BY  [SERNO]
+                            
+                            ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString());
+
+            return SB;
+
+        }
+
+
         #endregion
 
 
@@ -5203,6 +5305,10 @@ namespace TKACT
             SETFASTREPORT_TKSTOCKSNAMES();
         }
 
+        private void button20_Click(object sender, EventArgs e)
+        {
+            SETFASTREPORT_TKSTOCKSTRANSADD(dateTimePicker4.Value.ToString("yyyy/MM/dd"), dateTimePicker6.Value.ToString("yyyy/MM/dd"),textBox64.Text, textBox65.Text);
+        }
 
         #endregion
 
