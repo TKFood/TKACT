@@ -4883,7 +4883,7 @@ namespace TKACT
 
         }
 
-        public void SETFASTREPORT_TKSTOCKSTRANS(string SDATE, string EDATE, string STOCKACCOUNTNUMBERFORM, string STOCKNAMEFORM)
+        public void SETFASTREPORT_TKSTOCKSTRANS(string SDATE, string EDATE, string STOCKACCOUNTNUMBERFORM, string STOCKNAMEFORM,string STOCKACCOUNTNUMBERTO,string STOCKNAMETO)
         {
             StringBuilder SQL = new StringBuilder();
 
@@ -4891,7 +4891,7 @@ namespace TKACT
 
             report1.Load(@"REPORT\股權轉讓.frx");
 
-            SQL = SETSQL_TKSTOCKSTRANS(SDATE, EDATE, STOCKACCOUNTNUMBERFORM, STOCKNAMEFORM);
+            SQL = SETSQL_TKSTOCKSTRANS(SDATE, EDATE, STOCKACCOUNTNUMBERFORM, STOCKNAMEFORM, STOCKACCOUNTNUMBERTO, STOCKNAMETO);
 
 
             //20210902密
@@ -4913,12 +4913,14 @@ namespace TKACT
             report1.Show();
         }
 
-        public StringBuilder SETSQL_TKSTOCKSTRANS(string SDATE, string EDATE, string STOCKACCOUNTNUMBERFORM, string STOCKNAMEFORM)
+        public StringBuilder SETSQL_TKSTOCKSTRANS(string SDATE, string EDATE, string STOCKACCOUNTNUMBERFORM, string STOCKNAMEFORM,string STOCKACCOUNTNUMBERTO, string STOCKNAMETO)
         {
             StringBuilder SB = new StringBuilder();
             StringBuilder SBQUERY1 = new StringBuilder();
             StringBuilder SBQUERY2 = new StringBuilder();
             StringBuilder SBQUERY3 = new StringBuilder();
+            StringBuilder SBQUERY4 = new StringBuilder();
+            StringBuilder SBQUERY5 = new StringBuilder();
 
             if (!string.IsNullOrEmpty(SDATE) && !string.IsNullOrEmpty(EDATE))
             {
@@ -4951,6 +4953,26 @@ namespace TKACT
                 SBQUERY3.AppendFormat(@" ");
             }
 
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBERTO))
+            {
+                SBQUERY4.AppendFormat(@" 
+                                        AND STOCKACCOUNTNUMBERTO LIKE '%{0}%'
+                                        ", STOCKACCOUNTNUMBERTO);
+            }
+            else
+            {
+                SBQUERY4.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAMETO))
+            {
+                SBQUERY5.AppendFormat(@" 
+                                        AND STOCKNAMETO LIKE '%{0}%'
+                                        ", STOCKNAMETO);
+            }
+            else
+            {
+                SBQUERY5.AppendFormat(@" ");
+            }
 
             SB.AppendFormat(@"                      
                           
@@ -5414,7 +5436,7 @@ namespace TKACT
         }
         private void button21_Click(object sender, EventArgs e)
         {
-            SETFASTREPORT_TKSTOCKSTRANS(dateTimePicker9.Value.ToString("yyyy/MM/dd"), dateTimePicker10.Value.ToString("yyyy/MM/dd"), textBox66.Text, textBox67.Text);
+            SETFASTREPORT_TKSTOCKSTRANS(dateTimePicker9.Value.ToString("yyyy/MM/dd"), dateTimePicker10.Value.ToString("yyyy/MM/dd"), textBox66.Text, textBox67.Text, textBox68.Text, textBox69.Text);
         }
 
         #endregion
