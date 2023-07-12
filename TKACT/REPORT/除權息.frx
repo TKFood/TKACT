@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 11:45:33" ReportInfo.Modified="07/12/2023 14:08:13" ReportInfo.CreatorVersion="2016.4.4.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 11:45:33" ReportInfo.Modified="07/12/2023 14:15:42" ReportInfo.CreatorVersion="2016.4.4.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUGLvZolZQ3eCxyXPuHoQx3s">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUFkLijJ1QofbWj058/EDnOY">
       <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="&#13;&#10;SELECT &#13;&#10;[SERNO]&#13;&#10;,[ID]&#13;&#10;,[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[STOCKNAME] AS '股東姓名'&#13;&#10;,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'&#13;&#10;,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'&#13;&#10;,CONVERT(DECIMAL(16,4),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'&#13;&#10;,CONVERT(DECIMAL(16,4),[STOCKDIVIDEND]) AS '每股配發股票股利'&#13;&#10;,CONVERT(DECIMAL(16,4),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'&#13;&#10;,CONVERT(DECIMAL(16,4),[DECLAREDSTOCKDIVIDEND]) AS '應發股利股票股利'&#13;&#10;,CONVERT(INT,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]) AS '應扣補充保費'&#13;&#10;,CONVERT(INT,[ACTUALCASHDIVIDENDPAID]) AS '實發現金股利'&#13;&#10;,CONVERT(INT,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]) AS '盈餘增資配股數'&#13;&#10;,CONVERT(INT,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]) AS '資本公積增資配股數'&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSDIV]&#13;&#10;WHERE 1=1&#13;&#10;ORDER BY [SERNO]">
         <Column Name="SERNO" DataType="System.Decimal"/>
         <Column Name="ID" DataType="System.String"/>

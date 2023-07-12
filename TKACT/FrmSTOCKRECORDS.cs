@@ -5041,7 +5041,7 @@ namespace TKACT
         public StringBuilder SETSQL_TKSTOCKSDIV(string SDATE, string EDATE, string STOCKACCOUNTNUMBER, string STOCKNAME)
         {
             StringBuilder SB = new StringBuilder();
-            StringBuilder SBQUERY1 = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder(); 
             StringBuilder SBQUERY2 = new StringBuilder();
             StringBuilder SBQUERY3 = new StringBuilder();
             StringBuilder SBQUERY4 = new StringBuilder();
