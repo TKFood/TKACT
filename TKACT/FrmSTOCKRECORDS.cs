@@ -1201,7 +1201,7 @@ namespace TKACT
             textBox53.Text = "";
             textBox54.Text = "";
             textBox55.Text = "";
-            textBox56.Text = "";
+            
             textBox57.Text = "";
             textBox58.Text = "";
 
@@ -1224,8 +1224,7 @@ namespace TKACT
                     textBox53.Text = row.Cells["增資股票號碼(萬股)"].Value.ToString();
                     textBox54.Text = row.Cells["增資股票號碼(千股)"].Value.ToString();
                     textBox55.Text = row.Cells["增資股票號碼(不定額股)"].Value.ToString();
-                    textBox56.Text = row.Cells["持有股數"].Value.ToString();
-
+                   
                     dateTimePicker3.Value= Convert.ToDateTime(row.Cells["CAPITALINCREASERECORDDATE"].Value.ToString());
 
                     comboBox1.SelectedValue = row.Cells["異動原因"].Value.ToString();
@@ -1251,7 +1250,7 @@ namespace TKACT
             textBox86.Text = "";
             textBox87.Text = "";
             textBox88.Text = "";
-            textBox89.Text = "";
+            
        
             textBox74.Text = "";
             textBox75.Text = "";
@@ -1278,7 +1277,7 @@ namespace TKACT
                     textBox86.Text = row.Cells["轉讓股票號碼(萬股)"].Value.ToString();
                     textBox87.Text = row.Cells["轉讓股票號碼(千股)"].Value.ToString();
                     textBox88.Text = row.Cells["轉讓股票號碼(不定額股)"].Value.ToString();
-                    textBox89.Text = row.Cells["持有股數"].Value.ToString();
+                  
                     textBox74.Text = row.Cells["IDFORM"].Value.ToString();
                     textBox75.Text = row.Cells["IDTO"].Value.ToString();
 
@@ -5253,7 +5252,7 @@ namespace TKACT
             , textBox53.Text
             , textBox54.Text
             , textBox55.Text
-            , textBox56.Text
+            , "0"
             , textBox131.Text
             , textBox132.Text
             , textBox133.Text
@@ -5283,7 +5282,7 @@ namespace TKACT
          , textBox53.Text
          , textBox54.Text
          , textBox55.Text
-         , textBox56.Text
+         , "0"
         
          );
 
@@ -5366,7 +5365,7 @@ namespace TKACT
              , textBox86.Text
              , textBox87.Text
              , textBox88.Text
-             , textBox89.Text
+             , "0"
              , textBox59.Text
              , textBox60.Text
              , textBox61.Text
@@ -5401,7 +5400,7 @@ namespace TKACT
                 , textBox86.Text.Trim()
                 , textBox87.Text.Trim()
                 , textBox88.Text.Trim()
-                , textBox89.Text.Trim()
+                , "0"
 
                 );
 
