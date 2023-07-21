@@ -1102,8 +1102,8 @@ namespace TKACT
                     textBox11.Text = row.Cells["分行名稱"].Value.ToString();
                     textBox12.Text = row.Cells["銀行代碼"].Value.ToString();
                     textBox13.Text = row.Cells["帳號"].Value.ToString();
-                    textBox14.Text = row.Cells["住家電話"].Value.ToString();
-                    textBox15.Text = row.Cells["手機號碼"].Value.ToString();
+                    textBox15.Text = row.Cells["住家電話"].Value.ToString();
+                    textBox14.Text = row.Cells["手機號碼"].Value.ToString();
                     textBox16.Text = row.Cells["e-mail"].Value.ToString();
                     textBox17.Text = row.Cells["護照號碼"].Value.ToString();
                     textBox18.Text = row.Cells["英文名"].Value.ToString();

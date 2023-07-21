@@ -708,8 +708,8 @@
             this.tableLayoutPanel2.Controls.Add(this.button2, 5, 7);
             this.tableLayoutPanel2.Controls.Add(this.button17, 5, 8);
             this.tableLayoutPanel2.Controls.Add(this.textBox13, 3, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBox15, 3, 4);
-            this.tableLayoutPanel2.Controls.Add(this.textBox14, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.textBox14, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.textBox15, 5, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
@@ -1144,17 +1144,17 @@
             // textBox15
             // 
             this.textBox15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox15.Location = new System.Drawing.Point(413, 166);
+            this.textBox15.Location = new System.Drawing.Point(703, 6);
             this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(196, 27);
+            this.textBox15.Size = new System.Drawing.Size(194, 27);
             this.textBox15.TabIndex = 81;
             // 
             // textBox14
             // 
             this.textBox14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox14.Location = new System.Drawing.Point(703, 6);
+            this.textBox14.Location = new System.Drawing.Point(413, 166);
             this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(194, 27);
+            this.textBox14.Size = new System.Drawing.Size(196, 27);
             this.textBox14.TabIndex = 80;
             // 
             // tabPage7
@@ -4383,7 +4383,7 @@
             this.comboBox5.Items.AddRange(new object[] {
             "遊覽車對帳明細表",
             "多年期月份團務比較表"});
-            this.comboBox5.Location = new System.Drawing.Point(123, 50);
+            this.comboBox5.Location = new System.Drawing.Point(123, 48);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(234, 24);
             this.comboBox5.TabIndex = 613;
