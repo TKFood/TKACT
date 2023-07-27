@@ -982,71 +982,134 @@ namespace TKACT
                 sbSql.AppendFormat(@"                                    
                                     UPDATE [TKACT].[dbo].[TKSTOCKSNAMES]
                                     SET 
-                                    [STOCKACCOUNTNUMBER]=N'{1}'
-                                    ,[STOCKNAME]=N'{2}'
-                                    ,[IDNUMBER]=N'{3}'
-                                    ,[POSTALCODE]=N'{4}'
-                                    ,[MAILINGADDRESS]=N'{5}'
-                                    ,[REGISTEREDPOSTALCODE]=N'{6}'
-                                    ,[REGISTEREDADDRESS]=N'{7}'
-                                    ,[DATEOFBIRTH]='{8}'
-                                    ,[BANKNAME]=N'{9}'
-                                    ,[BRANCHNAME]=N'{10}'
-                                    ,[BANKCODE]=N'{11}'
-                                    ,[ACCOUNTNUMBER]=N'{12}'
-                                    ,[HOMEPHONENUMBER]=N'{13}'
-                                    ,[MOBILEPHONENUMBER]=N'{14}'
-                                    ,[EMAIL]=N'{15}'
-                                    ,[PASSPORTNUMBER]=N'{16}'
-                                    ,[ENGLISHNAME]=N'{17}'
-                                    ,[FATHER]=N'{18}'
-                                    ,[MOTHER]=N'{19}'
-                                    ,[SPOUSE]=N'{20}'
-                                    ,[COMMENTS]=N'{21}'
-                                    WHERE [ID]='{0}'
+                                    [STOCKACCOUNTNUMBER]=@STOCKACCOUNTNUMBER
+                                    ,[STOCKNAME]=@STOCKNAME
+                                    ,[IDNUMBER]=@IDNUMBER
+                                    ,[POSTALCODE]=@POSTALCODE
+                                    ,[MAILINGADDRESS]=@MAILINGADDRESS
+                                    ,[REGISTEREDPOSTALCODE]=@REGISTEREDPOSTALCODE
+                                    ,[REGISTEREDADDRESS]=@REGISTEREDADDRESS
+                                    ,[DATEOFBIRTH]=@DATEOFBIRTH
+                                    ,[BANKNAME]=@BANKNAME
+                                    ,[BRANCHNAME]=@BRANCHNAME
+                                    ,[BANKCODE]=@BANKCODE
+                                    ,[ACCOUNTNUMBER]=@ACCOUNTNUMBER
+                                    ,[HOMEPHONENUMBER]=@HOMEPHONENUMBER
+                                    ,[MOBILEPHONENUMBER]=@MOBILEPHONENUMBER
+                                    ,[EMAIL]=@EMAIL
+                                    ,[PASSPORTNUMBER]=@PASSPORTNUMBER
+                                    ,[ENGLISHNAME]=@ENGLISHNAME
+                                    ,[FATHER]=@FATHER
+                                    ,[MOTHER]=@MOTHER
+                                    ,[SPOUSE]=@SPOUSE
+                                    ,[COMMENTS]=@COMMENTS
+                                    WHERE [ID]=@ID
                                         
-                                        ", ID
-                                        , STOCKACCOUNTNUMBER
-                                        , STOCKNAME
-                                        , IDNUMBER
-                                        , POSTALCODE
-                                        , MAILINGADDRESS
-                                        , REGISTEREDPOSTALCODE
-                                        , REGISTEREDADDRESS
-                                        , DATEOFBIRTH
-                                        , BANKNAME
-                                        , BRANCHNAME
-                                        , BANKCODE
-                                        , ACCOUNTNUMBER
-                                        , HOMEPHONENUMBER
-                                        , MOBILEPHONENUMBER
-                                        , EMAIL
-                                        , PASSPORTNUMBER
-                                        , ENGLISHNAME
-                                        , FATHER
-                                        , MOTHER
-                                        , SPOUSE
-                                        , COMMENTS
-                                        );
+                                        ");
 
-
-                cmd.Connection = sqlConn;
-                cmd.CommandTimeout = 60;
-                cmd.CommandText = sbSql.ToString();
-                cmd.Transaction = tran;
-                result = cmd.ExecuteNonQuery();
-
-                if (result == 0)
+                using (SqlConnection connection = new SqlConnection(sqlsb.ConnectionString))
                 {
-                    tran.Rollback();    //交易取消
-                }
-                else
-                {
-                    tran.Commit();      //執行交易  
+                    connection.Open();
 
-                    MessageBox.Show("完成");
+                    using (SqlCommand command = new SqlCommand(sbSql.ToString(), connection))
+                    {
+                        command.Parameters.AddWithValue("@ID", ID);
+                        command.Parameters.AddWithValue("@STOCKACCOUNTNUMBER", STOCKACCOUNTNUMBER);
+                        command.Parameters.AddWithValue("@STOCKNAME", STOCKNAME);
+                        command.Parameters.AddWithValue("@IDNUMBER", IDNUMBER);
+                        command.Parameters.AddWithValue("@POSTALCODE", POSTALCODE);
+                        command.Parameters.AddWithValue("@MAILINGADDRESS", MAILINGADDRESS);
+                        command.Parameters.AddWithValue("@REGISTEREDPOSTALCODE", REGISTEREDPOSTALCODE);
+                        command.Parameters.AddWithValue("@REGISTEREDADDRESS", REGISTEREDADDRESS);
+                        command.Parameters.AddWithValue("@DATEOFBIRTH", DATEOFBIRTH);
+                        command.Parameters.AddWithValue("@BANKNAME", BANKNAME);
+                        command.Parameters.AddWithValue("@BRANCHNAME", BRANCHNAME);
+                        command.Parameters.AddWithValue("@BANKCODE", BANKCODE);
+                        command.Parameters.AddWithValue("@ACCOUNTNUMBER", ACCOUNTNUMBER);
+                        command.Parameters.AddWithValue("@HOMEPHONENUMBER", HOMEPHONENUMBER);
+                        command.Parameters.AddWithValue("@MOBILEPHONENUMBER", MOBILEPHONENUMBER);
+                        command.Parameters.AddWithValue("@EMAIL", EMAIL);
+                        command.Parameters.AddWithValue("@PASSPORTNUMBER", PASSPORTNUMBER);
+                        command.Parameters.AddWithValue("@ENGLISHNAME", ENGLISHNAME);
+                        command.Parameters.AddWithValue("@FATHER", FATHER);
+                        command.Parameters.AddWithValue("@MOTHER", MOTHER);
+                        command.Parameters.AddWithValue("@SPOUSE", SPOUSE);
+                        command.Parameters.AddWithValue("@COMMENTS", COMMENTS);
+
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("完成");
+                    }
+
 
                 }
+
+                //sbSql.AppendFormat(@"                                    
+                //                    UPDATE [TKACT].[dbo].[TKSTOCKSNAMES]
+                //                    SET 
+                //                    [STOCKACCOUNTNUMBER]=N'{1}'
+                //                    ,[STOCKNAME]=N'{2}'
+                //                    ,[IDNUMBER]=N'{3}'
+                //                    ,[POSTALCODE]=N'{4}'
+                //                    ,[MAILINGADDRESS]=N'{5}'
+                //                    ,[REGISTEREDPOSTALCODE]=N'{6}'
+                //                    ,[REGISTEREDADDRESS]=N'{7}'
+                //                    ,[DATEOFBIRTH]='{8}'
+                //                    ,[BANKNAME]=N'{9}'
+                //                    ,[BRANCHNAME]=N'{10}'
+                //                    ,[BANKCODE]=N'{11}'
+                //                    ,[ACCOUNTNUMBER]=N'{12}'
+                //                    ,[HOMEPHONENUMBER]=N'{13}'
+                //                    ,[MOBILEPHONENUMBER]=N'{14}'
+                //                    ,[EMAIL]=N'{15}'
+                //                    ,[PASSPORTNUMBER]=N'{16}'
+                //                    ,[ENGLISHNAME]=N'{17}'
+                //                    ,[FATHER]=N'{18}'
+                //                    ,[MOTHER]=N'{19}'
+                //                    ,[SPOUSE]=N'{20}'
+                //                    ,[COMMENTS]=N'{21}'
+                //                    WHERE [ID]='{0}'
+
+                //                        ", ID
+                //                        , STOCKACCOUNTNUMBER
+                //                        , STOCKNAME
+                //                        , IDNUMBER
+                //                        , POSTALCODE
+                //                        , MAILINGADDRESS
+                //                        , REGISTEREDPOSTALCODE
+                //                        , REGISTEREDADDRESS
+                //                        , DATEOFBIRTH
+                //                        , BANKNAME
+                //                        , BRANCHNAME
+                //                        , BANKCODE
+                //                        , ACCOUNTNUMBER
+                //                        , HOMEPHONENUMBER
+                //                        , MOBILEPHONENUMBER
+                //                        , EMAIL
+                //                        , PASSPORTNUMBER
+                //                        , ENGLISHNAME
+                //                        , FATHER
+                //                        , MOTHER
+                //                        , SPOUSE
+                //                        , COMMENTS
+                //                        );
+
+                //cmd.Connection = sqlConn;
+                //cmd.CommandTimeout = 60;
+                //cmd.CommandText = sbSql.ToString();
+                //cmd.Transaction = tran;
+                //result = cmd.ExecuteNonQuery();
+
+                //if (result == 0)
+                //{
+                //    tran.Rollback();    //交易取消
+                //}
+                //else
+                //{
+                //    tran.Commit();      //執行交易  
+
+                //    MessageBox.Show("完成");
+
+                //}
 
             }
             catch
