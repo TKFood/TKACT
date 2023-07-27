@@ -4757,7 +4757,7 @@ namespace TKACT
             StringBuilder SB = new StringBuilder();
             StringBuilder SBQUERY1 = new StringBuilder();
 
-            SB.AppendFormat(@"
+            SB.AppendFormat(@" 
                             
                             SELECT 
                             [CREATEDATES]
@@ -4769,7 +4769,7 @@ namespace TKACT
                             ,[TKSTOCKSNAMES].[MAILINGADDRESS] AS '通訊地址'
                             ,[TKSTOCKSNAMES].[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'
                             ,[TKSTOCKSNAMES].[REGISTEREDADDRESS] AS '戶籍/設立地址'
-                            ,[TKSTOCKSNAMES].[DATEOFBIRTH] AS '出生/設立日期'
+                            ,'民國 '+CONVERT(NVARCHAR,DATEPART(YEAR,(CONVERT(DATETIME,[TKSTOCKSNAMES].[DATEOFBIRTH])))-1911)+'年'+CONVERT(NVARCHAR,DATEPART(MONTH,(CONVERT(DATETIME,[TKSTOCKSNAMES].[DATEOFBIRTH]))))+'月'+CONVERT(NVARCHAR,DATEPART(DAY,(CONVERT(DATETIME,[TKSTOCKSNAMES].[DATEOFBIRTH]))))+'日' AS '出生/設立日期'
                             ,[TKSTOCKSNAMES].[BANKNAME] AS '銀行名稱'
                             ,[TKSTOCKSNAMES].[BRANCHNAME] AS '分行名稱'
                             ,[TKSTOCKSNAMES].[BANKCODE] AS '銀行代碼'
