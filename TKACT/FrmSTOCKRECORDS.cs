@@ -983,7 +983,7 @@ namespace TKACT
                                     UPDATE [TKACT].[dbo].[TKSTOCKSNAMES]
                                     SET 
                                     [STOCKACCOUNTNUMBER]='{1}'
-                                    ,[STOCKNAME]='{2}'
+                                    ,[STOCKNAME]=N'{2}'
                                     ,[IDNUMBER]='{3}'
                                     ,[POSTALCODE]='{4}'
                                     ,[MAILINGADDRESS]='{5}'
@@ -1352,6 +1352,7 @@ namespace TKACT
             , string INCREASEDSHARESTHOUSANDS_END
             , string INCREASEDSHARESIRREGULARLOTS_END
             , string ID
+            , string STOCKSHARES
             )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -1445,6 +1446,17 @@ namespace TKACT
                 else
                 {
                     INCREASEDSHARESIRREGULARLOTS_COUNT = 0;
+                }
+
+                ///增資股票(不定額股)股數
+                int number;
+                if (int.TryParse(STOCKSHARES, out number))
+                {
+                    STOCKSHARES = STOCKSHARES;
+                }
+                else
+                {
+                    STOCKSHARES = "1";
                 }
 
                 //增資股票號碼(十萬股) 
@@ -1874,7 +1886,7 @@ namespace TKACT
                                            , HOLDINGSHARES
                                            , ID
                                            ,"10"
-                                           ,"1"
+                                           , STOCKSHARES
                                            );
 
 
@@ -1931,7 +1943,7 @@ namespace TKACT
                                             , HOLDINGSHARES
                                             , ID
                                             , "10"
-                                            , "1"
+                                            , STOCKSHARES
                                             );
                 }
 
@@ -5258,6 +5270,7 @@ namespace TKACT
             , textBox133.Text
             , textBox134.Text
             , textBox57.Text
+            , textBox56.Text
             );
 
             TKSTOCKSREORDS_ADD();
