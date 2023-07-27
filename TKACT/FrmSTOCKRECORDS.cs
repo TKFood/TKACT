@@ -5134,30 +5134,30 @@ namespace TKACT
 
 
             TKSTOCKSNAMES_ADD(DateTime.Now.ToString("yyyy/MM/dd")
-                , textBox3.Text
-                , textBox4.Text
-                , textBox5.Text
-                , textBox6.Text
-                , textBox7.Text
-                , textBox8.Text
-                , textBox9.Text
+                , textBox3.Text.Trim()
+                , textBox4.Text.Trim()
+                , textBox5.Text.Trim()
+                , textBox6.Text.Trim()
+                , textBox7.Text.Trim()
+                , textBox8.Text.Trim()
+                , textBox9.Text.Trim()
                 , dateTimePicker1.Value.ToString("yyyy/MM/dd") 
-                , textBox10.Text
-                , textBox11.Text
-                , textBox12.Text
-                , textBox13.Text
-                , textBox15.Text
-                , textBox14.Text
-                , textBox16.Text
-                , textBox17.Text
-                , textBox18.Text
-                , textBox19.Text
-                , textBox20.Text
-                , textBox21.Text
-                , textBox70.Text
+                , textBox10.Text.Trim()
+                , textBox11.Text.Trim()
+                , textBox12.Text.Trim()
+                , textBox13.Text.Trim()
+                , textBox15.Text.Trim()
+                , textBox14.Text.Trim()
+                , textBox16.Text.Trim()
+                , textBox17.Text.Trim()
+                , textBox18.Text.Trim()
+                , textBox19.Text.Trim()
+                , textBox20.Text.Trim()
+                , textBox21.Text.Trim()
+                , textBox70.Text.Trim()
                 );
 
-            Search(textBox1.Text, textBox2.Text);
+            Search(textBox1.Text.Trim(), textBox2.Text.Trim());
         }
 
 
@@ -5173,57 +5173,57 @@ namespace TKACT
 
 
             TKSTOCKSCHAGES_ADD(DateTime.Now.ToString("yyyy/MM/dd")
-                , textBox26.Text
-                , textBox27.Text
-                , textBox28.Text
-                , textBox29.Text
-                , textBox30.Text
-                , textBox31.Text
-                , textBox32.Text
+                , textBox26.Text.Trim()
+                , textBox27.Text.Trim()
+                , textBox28.Text.Trim()
+                , textBox29.Text.Trim()
+                , textBox30.Text.Trim()
+                , textBox31.Text.Trim()
+                , textBox32.Text.Trim()
                 , dateTimePicker2.Value.ToString("yyyy/MM/dd")
-                , textBox25.Text
-                , textBox33.Text
-                , textBox34.Text
-                , textBox35.Text
-                , textBox24.Text
-                , textBox36.Text
-                , textBox37.Text
-                , textBox38.Text
-                , textBox39.Text
-                , textBox40.Text
-                , textBox41.Text
-                , textBox42.Text
+                , textBox25.Text.Trim()
+                , textBox33.Text.Trim()
+                , textBox34.Text.Trim()
+                , textBox35.Text.Trim()
+                , textBox24.Text.Trim()
+                , textBox36.Text.Trim()
+                , textBox37.Text.Trim()
+                , textBox38.Text.Trim()
+                , textBox39.Text.Trim()
+                , textBox40.Text.Trim()
+                , textBox41.Text.Trim()
+                , textBox42.Text.Trim()
                 , "N"
-                , textBox43.Text
-                , textBox71.Text
+                , textBox43.Text.Trim()
+                , textBox71.Text.Trim()
                 );
 
             TKSTOCKSNAMES_UPDATE(
-                               textBox43.Text
-                               , textBox26.Text
-                               , textBox27.Text
-                               , textBox28.Text
-                               , textBox29.Text
-                               , textBox30.Text
-                               , textBox31.Text
-                               , textBox32.Text
+                               textBox43.Text.Trim()
+                               , textBox26.Text.Trim()
+                               , textBox27.Text.Trim()
+                               , textBox28.Text.Trim()
+                               , textBox29.Text.Trim()
+                               , textBox30.Text.Trim()
+                               , textBox31.Text.Trim()
+                               , textBox32.Text.Trim()
                                , dateTimePicker2.Value.ToString("yyyy/MM/dd")
-                               , textBox25.Text
-                               , textBox33.Text
-                               , textBox34.Text
-                               , textBox35.Text
-                               , textBox24.Text
-                               , textBox36.Text
-                               , textBox37.Text
-                               , textBox38.Text
-                               , textBox39.Text
-                               , textBox40.Text
-                               , textBox41.Text
-                               , textBox42.Text
-                               , textBox71.Text
+                               , textBox25.Text.Trim()
+                               , textBox33.Text.Trim()
+                               , textBox34.Text.Trim()
+                               , textBox35.Text.Trim()
+                               , textBox24.Text.Trim()
+                               , textBox36.Text.Trim()
+                               , textBox37.Text.Trim()
+                               , textBox38.Text.Trim()
+                               , textBox39.Text.Trim()
+                               , textBox40.Text.Trim()
+                               , textBox41.Text.Trim()
+                               , textBox42.Text.Trim()
+                               , textBox71.Text.Trim()
                                );
 
-            Search_DG2(textBox22.Text, textBox23.Text);
+            Search_DG2(textBox22.Text, textBox23.Text); 
         }
 
         private void button5_Click(object sender, EventArgs e)
