@@ -5539,7 +5539,7 @@ namespace TKACT
 
         private void button19_Click(object sender, EventArgs e)
         {
-            SETFASTREPORT_TKSTOCKSNAMES();
+            SETFASTREPORT_TKSTOCKSNAMES();  
         }
 
         private void button20_Click(object sender, EventArgs e)
