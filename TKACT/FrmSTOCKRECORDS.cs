@@ -114,7 +114,7 @@ namespace TKACT
             }
             if(!string.IsNullOrEmpty(STOCKNAME))
             {
-                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE N'%{0}%'", STOCKNAME);
             }
             else
             {
@@ -178,7 +178,7 @@ namespace TKACT
             }
             if (!string.IsNullOrEmpty(STOCKNAME))
             {
-                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE N'%{0}%'", STOCKNAME);
             }
             else
             {
@@ -245,7 +245,7 @@ namespace TKACT
             }
             if (!string.IsNullOrEmpty(STOCKNAME))
             {
-                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE N'%{0}%'", STOCKNAME);
             }
             else
             {
@@ -444,7 +444,7 @@ namespace TKACT
             }
             if (!string.IsNullOrEmpty(STOCKNAME))
             {
-                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE N'%{0}%'", STOCKNAME);
             }
             else
             {
@@ -628,7 +628,7 @@ namespace TKACT
                                     (
                                     '{0}'
                                     ,'{1}'
-                                    ,'{2}'
+                                    ,N'{2}'
                                     ,'{3}'
                                     ,'{4}'
                                     ,'{5}'
@@ -644,9 +644,9 @@ namespace TKACT
                                     ,'{15}'
                                     ,'{16}'
                                     ,'{17}'
-                                    ,'{18}'
-                                    ,'{19}'
-                                    ,'{20}'
+                                    ,N'{18}'
+                                    ,N'{19}'
+                                    ,N'{20}'
                                     ,'{21}'
                                     )
                                         
@@ -850,7 +850,7 @@ namespace TKACT
                                     (
                                     '{0}'
                                     ,'{1}'
-                                    ,'{2}'
+                                    ,N'{2}'
                                     ,'{3}'
                                     ,'{4}'
                                     ,'{5}'
@@ -866,9 +866,9 @@ namespace TKACT
                                     ,'{15}'
                                     ,'{16}'
                                     ,'{17}'
-                                    ,'{18}'
-                                    ,'{19}'
-                                    ,'{20}'
+                                    ,N'{18}'
+                                    ,N'{19}'
+                                    ,N'{20}'
                                     ,'{21}'
                                     ,'{22}'
                                     ,'{23}'
