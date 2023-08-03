@@ -5456,6 +5456,37 @@ namespace TKACT
 
         private void button11_Click(object sender, EventArgs e)
         {
+            //[IDFORM]
+            if (!string.IsNullOrEmpty(textBox76.Text))
+            {
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox76.Text);
+                if (DT != null)
+                {
+                    textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox74.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox77.Text = "";
+                    textBox74.Text = "";
+                }
+            }
+            //[IDTO]
+            if (!string.IsNullOrEmpty(textBox78.Text))
+            {
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox78.Text);
+                if (DT != null)
+                {
+                    textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox75.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox79.Text = "";
+                    textBox75.Text = "";
+                }
+            }
+
             TKSTOCKSTRANS_UPDATE
                 (
                  textBox106.Text.Trim()
