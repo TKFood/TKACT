@@ -4777,7 +4777,7 @@ namespace TKACT
                             ,[TKSTOCKSNAMES].[SPOUSE] AS '配偶'
                             ,[TKSTOCKSNAMES].[COMMENTS] AS '備註'
                             FROM [TKACT].[dbo].[TKSTOCKSREORDS]
-                            LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=[TKSTOCKSREORDS].STOCKIDKEY
+                            LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]=[TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]
                             ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] ) DESC
                             ");
 
