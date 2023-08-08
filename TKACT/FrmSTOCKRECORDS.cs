@@ -339,6 +339,7 @@ namespace TKACT
                                 ,[INCREASEDSHARESTENSOFTHOUSANDS] AS '增資股票號碼(萬股)'
                                 ,[INCREASEDSHARESTHOUSANDS] AS '增資股票號碼(千股)'
                                 ,[INCREASEDSHARESIRREGULARLOTS] AS '增資股票號碼(不定額股)'
+                                ,[STOCKSHARES] AS '增資股票(不定額股)股數'
                                 ,[HOLDINGSHARES] AS '持有股數'
                                 ,[SERNO]
                                 ,[CAPITALINCREASERECORDDATE]
@@ -1264,7 +1265,7 @@ namespace TKACT
             textBox53.Text = "";
             textBox54.Text = "";
             textBox55.Text = "";
-            
+            textBox56.Text = "";
             textBox57.Text = "";
             textBox58.Text = "";
 
@@ -1287,7 +1288,7 @@ namespace TKACT
                     textBox53.Text = row.Cells["增資股票號碼(萬股)"].Value.ToString();
                     textBox54.Text = row.Cells["增資股票號碼(千股)"].Value.ToString();
                     textBox55.Text = row.Cells["增資股票號碼(不定額股)"].Value.ToString();
-                   
+                    textBox56.Text = row.Cells["增資股票(不定額股)股數"].Value.ToString();
                     dateTimePicker3.Value= Convert.ToDateTime(row.Cells["CAPITALINCREASERECORDDATE"].Value.ToString());
 
                     comboBox1.SelectedValue = row.Cells["異動原因"].Value.ToString();
@@ -4462,6 +4463,11 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@"
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    SET ID=[TKSTOCKSNAMES].ID
+                                    FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                                    WHERE [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]=[TKSTOCKSTRANSADD].[STOCKACCOUNTNUMBER]
+                                    AND [TKSTOCKSTRANSADD].ID<>[TKSTOCKSNAMES].ID
 
                                     DELETE  [TKACT].[dbo].[TKSTOCKSREORDS]
                                     WHERE [STOCKID] NOT  IN  (SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] )
@@ -4549,7 +4555,18 @@ namespace TKACT
 
                 sbSql.Clear();
 
-                sbSql.AppendFormat(@"                                 
+                sbSql.AppendFormat(@"         
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    SET [IDFORM]=[TKSTOCKSNAMES].ID
+                                    FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                                    WHERE [TKSTOCKSTRANS].[STOCKACCOUNTNUMBERFORM]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]
+                                    AND [TKSTOCKSTRANS].[IDFORM]<>[TKSTOCKSNAMES].ID
+
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    SET [IDTO]=[TKSTOCKSNAMES].ID
+                                    FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                                    WHERE [TKSTOCKSTRANS].[STOCKACCOUNTNUMBERTO]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]
+                                    AND [TKSTOCKSTRANS].[IDTO]<>[TKSTOCKSNAMES].ID                        
                                  
                                     UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
                                     SET [STOCKIDKEY]=TEMP2.IDTO
@@ -4783,7 +4800,7 @@ namespace TKACT
 
             return SB;
 
-        }
+        } 
 
         public void SETFASTREPORT_TKSTOCKSNAMES()
         {
