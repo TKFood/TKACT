@@ -4274,6 +4274,25 @@ namespace TKACT
            
         }
 
+        private void textBox46_Leave(object sender, EventArgs e)
+        {
+            textBox47.Text = "";
+            if (!string.IsNullOrEmpty(textBox46.Text))
+            {
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox46.Text);
+                if (DT != null)
+                {
+                    textBox47.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox57.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox47.Text = "";
+                    textBox57.Text = "";
+                }
+            }
+        }
+
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
            
@@ -4318,6 +4337,26 @@ namespace TKACT
             }
         }
 
+        private void textBox76_Leave(object sender, EventArgs e)
+        {
+            textBox77.Text = "";
+            if (!string.IsNullOrEmpty(textBox76.Text))
+            {
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox76.Text);
+                if (DT != null)
+                {
+                    textBox77.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox74.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox77.Text = "";
+                    textBox74.Text = "";
+                }
+            }
+        }
+
+
         private void textBox77_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBox76.Text = "";
@@ -4356,6 +4395,24 @@ namespace TKACT
             }
         }
 
+        private void textBox78_Leave(object sender, EventArgs e)
+        {
+            textBox79.Text = "";
+            if (!string.IsNullOrEmpty(textBox78.Text))
+            {
+                DataTable DT = FINE_TKSTOCKSNAMES_STOCKNAME(textBox78.Text);
+                if (DT != null)
+                {
+                    textBox79.Text = DT.Rows[0]["STOCKNAME"].ToString();
+                    textBox75.Text = DT.Rows[0]["ID"].ToString();
+                }
+                else
+                {
+                    textBox79.Text = "";
+                    textBox75.Text = "";
+                }
+            }
+        }
         private void textBox79_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBox78.Text = "";
@@ -5199,7 +5256,7 @@ namespace TKACT
             return SB;
 
         }
-
+       
         #endregion
 
 
@@ -5666,8 +5723,11 @@ namespace TKACT
             SETFASTREPORT_TKSTOCKSDIV(dateTimePicker11.Value.ToString("yyyy/MM/dd"), dateTimePicker12.Value.ToString("yyyy/MM/dd"), textBox90.Text, textBox91.Text);
         }
 
+
+
+
         #endregion
 
-
+     
     }
 }
