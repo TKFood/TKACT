@@ -556,6 +556,9 @@ namespace TKACT
             textBox98.Text = "";
             textBox99.Text = "";
 
+            textBox103.Text = "";
+            textBox104.Text = "0";
+
             if (dataGridView7.CurrentRow != null)
             {
                 int rowindex = dataGridView7.CurrentRow.Index;
@@ -568,6 +571,8 @@ namespace TKACT
                     textBox97.Text = row.Cells["每股面額"].Value.ToString();
                     textBox98.Text = row.Cells["股數"].Value.ToString();
                     textBox99.Text = row.Cells["STOCKIDKEY"].Value.ToString();
+
+                    Search_DG8(textBox94.Text.Trim(),"N");
                 }
                 else
                 {
@@ -575,6 +580,91 @@ namespace TKACT
                 }
 
             }
+        }
+
+        public void Search_DG8(string OLDSTOCKID,string VALIDS)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+            StringBuilder sbSqlQuery3 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+            sbSqlQuery3.Clear();
+
+            if (!string.IsNullOrEmpty(OLDSTOCKID))
+            {
+                sbSqlQuery1.AppendFormat(@" AND OLDSTOCKID LIKE '%{0}%'", OLDSTOCKID);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+
+            if (!string.IsNullOrEmpty(VALIDS))
+            {
+                sbSqlQuery2.AppendFormat(@" AND VALIDS LIKE '%{0}%'", VALIDS);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+
+
+            sbSql.AppendFormat(@"
+                                SELECT 
+                                [NEWSTOCKID] AS '分割後的股票號碼'
+                                ,[NEWPARVALUPER] AS '分割後的每股面額'
+                                ,[NEWSTOCKSHARES] AS '分割後的股數'
+                                ,[OLDSTOCKID] AS '分割前的股票號碼'
+                                ,[OLDPARVALUPER] AS '分割前的每股面額'
+                                ,[OLDSTOCKSHARES] AS '分割前的股數'
+                                ,[STOCKACCOUNTNUMBER] AS '戶號'
+                                ,[STOCKNAME] AS '股東姓名'
+                                ,[VALIDS]
+                                ,[STOCKIDKEY] 
+                                FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV]
+                                WHERE 1=1
+                                {0}
+                                {1}
+                               
+
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString());
+
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView8, SortedColumn, SortedModel);
+        }
+
+        private void dataGridView8_SelectionChanged(object sender, EventArgs e)
+        {
+            textBox103.Text = "";
+            textBox104.Text = "0";
+
+            if (dataGridView8.CurrentRow != null)
+            {
+                int rowindex = dataGridView8.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView8.Rows[rowindex];
+                    textBox103.Text = row.Cells["分割後的股票號碼"].Value.ToString();
+
+                    //計算暫時分割的股數
+                    DataTable DT= FINE_TKSTOCKSREORDSDIV(textBox94.Text.Trim(),"N");
+
+                    textBox104.Text = DT.Rows[0]["NEWSTOCKSHARES"].ToString();
+
+
+
+                }
+                else
+                {
+                  
+                }
+
+            }
+          
         }
 
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
@@ -5348,6 +5438,244 @@ namespace TKACT
 
         }
        
+
+        public void TKSTOCKSREORDSDIV_ADD(
+                                            string NEWSTOCKID
+                                            , string NEWPARVALUPER
+                                            , string NEWSTOCKSHARES
+                                            , string OLDSTOCKID
+                                            , string OLDPARVALUPER
+                                            , string OLDSTOCKSHARES
+                                            , string STOCKIDKEY
+                                            , string STOCKACCOUNTNUMBER
+                                            , string STOCKNAME
+                                            , string VALIDS
+                                        )
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"      
+                                    INSERT INTO  [TKACT].[dbo].[TKSTOCKSREORDSDIV]
+                                    (
+                                    [NEWSTOCKID]
+                                    ,[NEWPARVALUPER]
+                                    ,[NEWSTOCKSHARES]
+                                    ,[OLDSTOCKID]
+                                    ,[OLDPARVALUPER]
+                                    ,[OLDSTOCKSHARES]
+                                    ,[STOCKIDKEY]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    ,[VALIDS])
+                                    VALUES
+                                    (
+                                    '{0}'
+                                    ,'{1}'
+                                    ,'{2}'
+                                    ,'{3}'
+                                    ,'{4}'
+                                    ,'{5}'
+                                    ,'{6}'
+                                    ,'{7}'
+                                    ,'{8}'
+                                    ,'{9}'
+                                    )
+
+
+                                     ", NEWSTOCKID
+                                            , NEWPARVALUPER
+                                            , NEWSTOCKSHARES
+                                            , OLDSTOCKID
+                                            , OLDPARVALUPER
+                                            , OLDSTOCKSHARES
+                                            , STOCKIDKEY
+                                            , STOCKACCOUNTNUMBER
+                                            , STOCKNAME
+                                            , VALIDS);
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易                     
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+
+        }
+
+        public void TKSTOCKSREORDSDIV_DELETE(string NEWSTOCKID,string OLDSTOCKID)
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"      
+                                    DELETE [TKACT].[dbo].[TKSTOCKSREORDSDIV]
+                                    WHERE NEWSTOCKID='{0}'
+                                    AND OLDSTOCKID='{1}'
+                                    
+
+
+                                     ", NEWSTOCKID , OLDSTOCKID
+                                          );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易                     
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
+        public DataTable FINE_TKSTOCKSREORDSDIV(string OLDSTOCKID,string VALIDS)
+        {
+            DataTable DT = new DataTable();
+            SqlConnection sqlConn = new SqlConnection();
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+            SqlCommandBuilder sqlCmdBuilder1 = new SqlCommandBuilder();
+            DataSet ds1 = new DataSet();
+            StringBuilder QUERYS = new StringBuilder();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sbSql.Clear();
+                QUERYS.Clear();
+
+
+                sbSql.AppendFormat(@"  
+                                    SELECT ISNULL(SUM(NEWSTOCKSHARES),0) NEWSTOCKSHARES
+                                    FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV]
+                                    WHERE [OLDSTOCKID]='{0}'
+                                    AND [VALIDS]='N'
+
+                                    ", OLDSTOCKID);
+
+
+
+
+                adapter1 = new SqlDataAdapter(@"" + sbSql, sqlConn);
+
+                sqlCmdBuilder1 = new SqlCommandBuilder(adapter1);
+                sqlConn.Open();
+                ds1.Clear();
+                adapter1.Fill(ds1, "TEMPds1");
+                sqlConn.Close();
+
+
+                if (ds1.Tables["TEMPds1"].Rows.Count > 0)
+                {
+                    return ds1.Tables["TEMPds1"];
+                }
+                else
+                {
+                    return null;
+                }
+
+
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
+
         #endregion
 
 
@@ -5824,7 +6152,19 @@ namespace TKACT
 
         private void button24_Click(object sender, EventArgs e)
         {
+            TKSTOCKSREORDSDIV_ADD(textBox100.Text.Trim()
+                                            , textBox102.Text.Trim()
+                                            , textBox101.Text.Trim()
+                                            , textBox94.Text.Trim()
+                                            , textBox97.Text.Trim()
+                                            , textBox98.Text.Trim()
+                                            , textBox99.Text.Trim()
+                                            , textBox95.Text.Trim()
+                                            , textBox96.Text.Trim()
+                                            , "N"
+                                            );
 
+            Search_DG8(textBox94.Text.Trim(), "N");
         }
 
         private void button26_Click(object sender, EventArgs e)
@@ -5834,10 +6174,31 @@ namespace TKACT
 
         private void button25_Click(object sender, EventArgs e)
         {
+           
+            // 顯示確認對話框
+            DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
 
+            // 檢查使用者是否按下了確定按鈕
+            if (result == DialogResult.OK)
+            {
+                // 確認後執行的動作
+                // TODO: 在這裡執行您的程式碼
+                // 例如：
+                if (!string.IsNullOrEmpty(textBox103.Text))
+                {
+                    TKSTOCKSREORDSDIV_DELETE(textBox103.Text.Trim(), textBox94.Text.Trim());
+                    Search_DG8(textBox94.Text.Trim(), "N");
+
+                }
+
+
+            }
+
+           
         }
 
         #endregion
 
+     
     }
 }
