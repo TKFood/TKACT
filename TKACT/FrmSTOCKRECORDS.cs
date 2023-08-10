@@ -486,6 +486,67 @@ namespace TKACT
             SEARCH(sbSql.ToString(), dataGridView6, SortedColumn, SortedModel);
         }
 
+        public void Search_DG7(string STOCKID, string STOCKACCOUNTNUMBER, string STOCKNAME)
+        {
+            StringBuilder sbSqlQuery1 = new StringBuilder();
+            StringBuilder sbSqlQuery2 = new StringBuilder();
+            StringBuilder sbSqlQuery3 = new StringBuilder();
+
+            sbSql.Clear();
+            sbSqlQuery1.Clear();
+            sbSqlQuery2.Clear();
+            sbSqlQuery3.Clear();
+
+            if (!string.IsNullOrEmpty(STOCKID))
+            {
+                sbSqlQuery1.AppendFormat(@" AND STOCKID LIKE '%{0}%'", STOCKID);
+            }
+            else
+            {
+                sbSqlQuery1.AppendFormat(@" ");
+            }
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                sbSqlQuery2.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                sbSqlQuery2.AppendFormat(@" ");
+            }
+            if (!string.IsNullOrEmpty(STOCKNAME))
+            {
+                sbSqlQuery3.AppendFormat(@" AND STOCKNAME LIKE N'%{0}%'", STOCKNAME);
+            }
+            else
+            {
+                sbSqlQuery3.AppendFormat(@" ");
+            }
+
+
+
+            sbSql.AppendFormat(@"
+                                SELECT
+                                [STOCKID] AS '股票號碼'
+                                ,[PARVALUPER] AS '每股面額'
+                                ,[STOCKSHARES] AS '股數'
+                                ,[STOCKACCOUNTNUMBER] AS '戶號'
+                                ,[STOCKNAME] AS '股東姓名'
+                                ,[STOCKIDKEY]
+                                FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+                                WHERE 1=1
+                                {0}
+                                {1}
+                                {2}
+                                ORDER BY [STOCKID]
+
+                                  ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
+
+            sbSql.AppendFormat(@"  ");
+
+            SEARCH(sbSql.ToString(), dataGridView7, SortedColumn, SortedModel);
+        }
+
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -5724,10 +5785,14 @@ namespace TKACT
         }
 
 
+        private void button23_Click(object sender, EventArgs e)
+        {
+            Search_DG7(textBox89.Text.Trim(), textBox92.Text.Trim(), textBox93.Text.Trim());
+        }
 
 
         #endregion
 
-     
+
     }
 }
