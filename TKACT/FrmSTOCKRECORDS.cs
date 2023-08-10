@@ -538,13 +538,43 @@ namespace TKACT
                                 {0}
                                 {1}
                                 {2}
-                                ORDER BY [STOCKID]
+                                ORDER BY [STOCKACCOUNTNUMBER],[STOCKID]
 
                                   ", sbSqlQuery1.ToString(), sbSqlQuery2.ToString(), sbSqlQuery3.ToString());
 
             sbSql.AppendFormat(@"  ");
 
             SEARCH(sbSql.ToString(), dataGridView7, SortedColumn, SortedModel);
+        }
+
+        private void dataGridView7_SelectionChanged(object sender, EventArgs e)
+        {
+            textBox94.Text = "";
+            textBox95.Text = "";
+            textBox96.Text = "";
+            textBox97.Text = "";
+            textBox98.Text = "";
+            textBox99.Text = "";
+
+            if (dataGridView7.CurrentRow != null)
+            {
+                int rowindex = dataGridView7.CurrentRow.Index;
+                if (rowindex >= 0)
+                {
+                    DataGridViewRow row = dataGridView7.Rows[rowindex];
+                    textBox94.Text = row.Cells["股票號碼"].Value.ToString();
+                    textBox95.Text = row.Cells["戶號"].Value.ToString();
+                    textBox96.Text = row.Cells["股東姓名"].Value.ToString();
+                    textBox97.Text = row.Cells["每股面額"].Value.ToString();
+                    textBox98.Text = row.Cells["股數"].Value.ToString();
+                    textBox99.Text = row.Cells["STOCKIDKEY"].Value.ToString();
+                }
+                else
+                {
+
+                }
+
+            }
         }
 
         public void SEARCH(string QUERY, DataGridView DataGridViewNew, string SortedColumn, string SortedModel)
@@ -5791,8 +5821,23 @@ namespace TKACT
         }
 
 
-        #endregion
 
+        private void button24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
     }
 }
