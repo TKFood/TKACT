@@ -6169,12 +6169,33 @@ namespace TKACT
 
         private void button26_Click(object sender, EventArgs e)
         {
+            // 顯示確認對話框
+            DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
+
+            // 檢查使用者是否按下了確定按鈕
+            if (result == DialogResult.OK)
+            {
+                // 確認後執行的動作
+                // TODO: 在這裡執行您的程式碼
+                // 例如：
+                if (textBox98.Text.Equals(textBox104.Text))
+                {
+                    
+                    Search_DG8(textBox94.Text.Trim(), "N");
+
+                }
+                else
+                {
+                    MessageBox.Show("分割前後的總股權不相同，不能執行分割");
+                }
+
+
+            }
 
         }
 
         private void button25_Click(object sender, EventArgs e)
-        {
-           
+        {           
             // 顯示確認對話框
             DialogResult result = MessageBox.Show("確定要執行此操作嗎？", "確認", MessageBoxButtons.OKCancel);
 
