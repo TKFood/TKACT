@@ -371,7 +371,7 @@ namespace TKACT
 
             if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
             {
-                sbSqlQuery1.AppendFormat(@" AND STOCKACCOUNTNUMBER LIKE '%{0}%'", STOCKACCOUNTNUMBER);
+                sbSqlQuery1.AppendFormat(@" AND (STOCKACCOUNTNUMBERFORM LIKE '%{0}%' OR STOCKACCOUNTNUMBERTO LIKE '%{0}%' )", STOCKACCOUNTNUMBER);
             }
             else
             {
@@ -379,7 +379,7 @@ namespace TKACT
             }
             if (!string.IsNullOrEmpty(STOCKNAME))
             {
-                sbSqlQuery2.AppendFormat(@" AND STOCKNAME LIKE '%{0}%'", STOCKNAME);
+                sbSqlQuery2.AppendFormat(@" AND ([STOCKNAMEFORM] LIKE '%{0}%' OR [STOCKNAMETO] LIKE '%{0}%')", STOCKNAME);
             }
             else
             {
