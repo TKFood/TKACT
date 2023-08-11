@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="08/11/2023 11:52:22" ReportInfo.Modified="08/11/2023 14:11:13" ReportInfo.CreatorVersion="2016.4.4.0">
+  <Dictionary>
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUHdg5eKRi0FUGOJcMFAVpYc">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="&#13;&#10;SELECT  &#13;&#10;[NEWSTOCKID] AS '分割新股票號碼'&#13;&#10;,[NEWPARVALUPER] AS '分割新每股面額'&#13;&#10;,[NEWSTOCKSHARES] AS '分割新股數'&#13;&#10;,[OLDSTOCKID] AS '待分割的股票號碼'&#13;&#10;,[OLDPARVALUPER] AS '待分割的每股面額'&#13;&#10;,[OLDSTOCKSHARES] AS '待分割的股數'&#13;&#10;,[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[STOCKNAME] AS '股東姓名'&#13;&#10;,CASE WHEN [VALIDS]='N' THEN '未完分割' ELSE '已分割' END AS '狀態'&#13;&#10;,[VALIDS]&#13;&#10;,[STOCKIDKEY] &#13;&#10;&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV]&#13;&#10;WHERE 1=1&#13;&#10;ORDER BY [OLDSTOCKID],[NEWSTOCKID]&#13;&#10;">
+        <Column Name="分割新股票號碼" DataType="System.String"/>
+        <Column Name="分割新每股面額" DataType="System.Int32"/>
+        <Column Name="分割新股數" DataType="System.Int32"/>
+        <Column Name="待分割的股票號碼" DataType="System.String"/>
+        <Column Name="待分割的每股面額" DataType="System.Int32"/>
+        <Column Name="待分割的股數" DataType="System.Int32"/>
+        <Column Name="戶號" DataType="System.String"/>
+        <Column Name="股東姓名" DataType="System.String"/>
+        <Column Name="STOCKIDKEY" DataType="System.String"/>
+        <Column Name="VALIDS" DataType="System.String"/>
+        <Column Name="狀態" DataType="System.String"/>
+      </TableDataSource>
+    </MsSqlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210">
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="37.8">
+      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="分割明細表"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="42.4" Width="1047.06" Height="18.9">
+      <TextObject Name="Text3" Width="94.5" Height="18.9" Border.Lines="All" Text="分割新股票號碼" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text5" Left="94.5" Width="94.5" Height="18.9" Border.Lines="All" Text="分割新每股面額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text7" Left="189" Width="94.5" Height="18.9" Border.Lines="All" Text="分割新股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text9" Left="283.5" Width="113.4" Height="18.9" Border.Lines="All" Text="待分割的股票號碼" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text11" Left="396.9" Width="113.4" Height="18.9" Border.Lines="All" Text="待分割的每股面額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text13" Left="510.3" Width="94.5" Height="18.9" Border.Lines="All" Text="待分割的股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="604.8" Width="94.5" Height="18.9" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="699.3" Width="226.8" Height="18.9" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text19" Left="926.1" Width="113.4" Height="18.9" Border.Lines="All" Text="狀態" HorzAlign="Center" VertAlign="Center"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="65.9" Width="1047.06" Height="18.9" CanGrow="true" DataSource="Table">
+      <TextObject Name="Text2" Width="94.5" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.分割新股票號碼]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text4" Left="94.5" Width="94.5" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.分割新每股面額]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text6" Left="189" Width="94.5" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.分割新股數]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text8" Left="283.5" Width="113.4" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.待分割的股票號碼]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text10" Left="396.9" Width="113.4" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.待分割的每股面額]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text12" Left="510.3" Width="94.5" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.待分割的股數]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text14" Left="604.8" Width="94.5" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.戶號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text16" Left="699.3" Width="226.8" Height="18.9" Border.Lines="All" GrowToBottom="true" Text="[Table.股東姓名]" VertAlign="Center"/>
+      <TextObject Name="Text18" Left="926.1" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.狀態]" HorzAlign="Center" VertAlign="Center"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="89.39" Width="1047.06" Height="18.9"/>
+  </ReportPage>
+</Report>
