@@ -5033,7 +5033,7 @@ namespace TKACT
                             ,[TKSTOCKSNAMES].[COMMENTS] AS '備註'
                             FROM [TKACT].[dbo].[TKSTOCKSREORDS]
                             LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]=[TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]
-                            ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],[TKSTOCKSREORDS].[STOCKID]  
+                            ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] ) DESC,[TKSTOCKSREORDS
                             ");
 
             return SB;
