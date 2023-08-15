@@ -5800,6 +5800,10 @@ namespace TKACT
                                     UPDATE [TKACT].[dbo].[TKSTOCKSREORDSDIV]
                                     SET [VALIDS]='Y'
                                     WHERE OLDSTOCKID='{0}'
+
+                                    DELETE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    WHERE [STOCKID] IN (SELECT [OLDSTOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV] WHERE [VALIDS]='Y' GROUP BY [OLDSTOCKID])
+
                                      ", OLDSTOCKID
                                     );
 
@@ -5832,6 +5836,133 @@ namespace TKACT
             }
         }
 
+        /// <summary>
+        /// 增資+異動的過帳
+        /// </summary>
+        public void TKSTOCKSDIV_AFTER()
+        {
+            SqlConnection sqlConn = new SqlConnection();
+            SqlCommand sqlComm = new SqlCommand();
+
+            try
+            {
+                //20210902密
+                Class1 TKID = new Class1();//用new 建立類別實體
+                SqlConnectionStringBuilder sqlsb = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["dbconn"].ConnectionString);
+
+                //資料庫使用者密碼解密
+                sqlsb.Password = TKID.Decryption(sqlsb.Password);
+                sqlsb.UserID = TKID.Decryption(sqlsb.UserID);
+
+                String connectionString;
+                sqlConn = new SqlConnection(sqlsb.ConnectionString);
+
+
+                sqlConn.Close();
+                sqlConn.Open();
+                tran = sqlConn.BeginTransaction();
+
+                sbSql.Clear();
+
+                sbSql.AppendFormat(@"  
+                                    --增資的過帳
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    SET ID=[TKSTOCKSNAMES].ID
+                                    FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                                    WHERE [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]=[TKSTOCKSTRANSADD].[STOCKACCOUNTNUMBER]
+                                    AND [TKSTOCKSTRANSADD].ID<>[TKSTOCKSNAMES].ID
+
+                                    DELETE  [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    WHERE [STOCKID] NOT  IN  (SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] )
+
+
+                                    INSERT INTO [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    (
+                                    [STOCKID]
+                                    ,[PARVALUPER]
+                                    ,[STOCKSHARES]
+                                    ,[STOCKIDKEY]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    )
+                                    SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') 
+                                    ,[PARVALUPER]
+                                    ,[STOCKSHARES]
+                                    ,[ID]
+                                    ,[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]
+                                    FROM  [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    WHERE (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') )<>''
+                                    AND (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') ) NOT IN (SELECT [STOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDS])
+                                    AND (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') ) NOT IN (SELECT [OLDSTOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV] WHERE [VALIDS] IN ('Y') GROUP BY [OLDSTOCKID])
+
+
+                                    --轉讓的過帳
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    SET [IDFORM]=[TKSTOCKSNAMES].ID
+                                    FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                                    WHERE [TKSTOCKSTRANS].[STOCKACCOUNTNUMBERFORM]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]
+                                    AND [TKSTOCKSTRANS].[IDFORM]<>[TKSTOCKSNAMES].ID
+
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    SET [IDTO]=[TKSTOCKSNAMES].ID
+                                    FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                                    WHERE [TKSTOCKSTRANS].[STOCKACCOUNTNUMBERTO]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]
+                                    AND [TKSTOCKSTRANS].[IDTO]<>[TKSTOCKSNAMES].ID                        
+                                 
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET [STOCKIDKEY]=TEMP2.IDTO
+                                    ,[STOCKACCOUNTNUMBER]=TEMP2.[STOCKACCOUNTNUMBER]
+                                    ,[STOCKNAME]=TEMP2.[STOCKNAME]
+                                    FROM (
+	                                    SELECT *
+	                                    FROM 
+	                                    (
+		                                    SELECT
+		                                    [STOCKID]
+		                                    ,[PARVALUPER]
+		                                    ,[STOCKSHARES]
+		                                    ,[STOCKIDKEY]
+		                                    ,(SELECT TOP 1 [IDTO] FROM  [TKACT].[dbo].[TKSTOCKSTRANS] WHERE ([TRANSFERREDSHARESHUNDREDTHOUSANDS]=[STOCKID]  OR [TRANSFERREDSHARESTENSOFTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESTHOUSANDS]=[STOCKID] OR [TRANSFERREDSHARESIRREGULARLOTS]=[STOCKID] ) ORDER BY [SERNO] DESC ) AS 'IDTO'
+		                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+	                                    ) AS TEMP
+	                                    LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=IDTO
+	                                    WHERE ISNULL(TEMP.IDTO,'')<>''
+                                    ) AS TEMP2
+                                    WHERE TEMP2.STOCKID=[TKSTOCKSREORDS].STOCKID
+                                    AND [TKSTOCKSREORDS].[STOCKIDKEY]<>TEMP2.IDTO
+
+                                    "
+                                    );
+
+
+                cmd.Connection = sqlConn;
+                cmd.CommandTimeout = 60;
+                cmd.CommandText = sbSql.ToString();
+                cmd.Transaction = tran;
+                result = cmd.ExecuteNonQuery();
+
+                if (result == 0)
+                {
+                    tran.Rollback();    //交易取消
+                }
+                else
+                {
+                    tran.Commit();      //執行交易                     
+
+                }
+
+            }
+            catch
+            {
+
+            }
+
+            finally
+            {
+                sqlConn.Close();
+            }
+        }
         #endregion
 
 
@@ -5845,7 +5976,7 @@ namespace TKACT
         {
 
 
-            TKSTOCKSNAMES_ADD(DateTime.Now.ToString("yyyy/MM/dd")
+            TKSTOCKSNAMES_ADD(DateTime.Now.ToString("yyyy /MM/dd")
                 , textBox3.Text.Trim()
                 , textBox4.Text.Trim()
                 , textBox5.Text.Trim()
@@ -5985,7 +6116,8 @@ namespace TKACT
             , textBox56.Text
             );
 
-            TKSTOCKSREORDS_ADD();
+            //TKSTOCKSREORDS_ADD();
+            TKSTOCKSDIV_AFTER();
 
             Search_DG4(textBox44.Text, textBox45.Text);
         }
@@ -6012,7 +6144,8 @@ namespace TKACT
          );
 
 
-            TKSTOCKSREORDS_ADD();
+            //TKSTOCKSREORDS_ADD();
+            TKSTOCKSDIV_AFTER();
 
             Search_DG4(textBox44.Text, textBox45.Text);
         }
@@ -6030,7 +6163,9 @@ namespace TKACT
                 // 例如：
                 TKSTOCKSTRANSADD_DELETE(textBox58.Text);
 
-                TKSTOCKSREORDS_ADD();
+                //TKSTOCKSREORDS_ADD();
+                TKSTOCKSDIV_AFTER();
+
                 Search_DG4(textBox44.Text, textBox45.Text);
             }
         }
@@ -6098,7 +6233,9 @@ namespace TKACT
             
              );
 
-            TKSTOCKSREORDS_UPDATE();
+            //TKSTOCKSREORDS_UPDATE();
+            TKSTOCKSDIV_AFTER();
+
             Search_DG5(textBox72.Text, textBox73.Text);
         }
 
@@ -6160,7 +6297,9 @@ namespace TKACT
 
                 );
 
-            TKSTOCKSREORDS_UPDATE();
+            //TKSTOCKSREORDS_UPDATE();
+            TKSTOCKSDIV_AFTER();
+
             Search_DG5(textBox72.Text, textBox73.Text);
         }
 
@@ -6178,7 +6317,9 @@ namespace TKACT
                 //TKSTOCKSREORDS_UPDATE_BEFROEDELETE(textBox106.Text.Trim());
                 TKSTOCKSTRANS_DELETE(textBox106.Text.Trim());
 
-                TKSTOCKSREORDS_UPDATE();
+                //TKSTOCKSREORDS_UPDATE();
+                TKSTOCKSDIV_AFTER();
+
                 Search_DG5(textBox72.Text, textBox73.Text);
 
             }
