@@ -6473,6 +6473,7 @@ namespace TKACT
                 {
                     //分割後新增、刪除股票
                     TKSTOCKSREORDS_AFTER_DIV(textBox94.Text.Trim());
+                    TKSTOCKSDIV_AFTER();
 
                     Search_DG7(textBox89.Text.Trim(), textBox92.Text.Trim(), textBox93.Text.Trim());
                     Search_DG8(textBox94.Text.Trim(), "N");
