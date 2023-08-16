@@ -2383,7 +2383,14 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@"                                
-                                   
+                                    DELETE  [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    WHERE [STOCKID] IN (
+                                    SELECT 
+                                    ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'')
+                                    FROM [TKACT].[dbo].[TKSTOCKSTRANSADD]
+                                    WHERE SERNO='{0}'
+                                    )
+
                                     DELETE  [TKACT].[dbo].[TKSTOCKSTRANSADD]                                  
                                     WHERE [SERNO]='{0}'
                                         
