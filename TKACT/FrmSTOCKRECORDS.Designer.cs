@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -424,6 +424,10 @@
             this.label66 = new System.Windows.Forms.Label();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.previewControl1 = new FastReport.Preview.PreviewControl();
+            this.label124 = new System.Windows.Forms.Label();
+            this.label127 = new System.Windows.Forms.Label();
+            this.textBox119 = new System.Windows.Forms.TextBox();
+            this.textBox120 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -711,8 +715,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle58.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle58;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -1480,8 +1484,8 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle59.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle59;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
@@ -1508,8 +1512,8 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle60.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle60;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
@@ -2155,8 +2159,8 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle61.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle61;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
@@ -3021,8 +3025,8 @@
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle62.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle62;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView5.Location = new System.Drawing.Point(0, 0);
@@ -3874,8 +3878,8 @@
             // 
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle57.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle57;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
@@ -3922,16 +3926,12 @@
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.tableLayoutPanel12.Controls.Add(this.label113, 0, 0);
             this.tableLayoutPanel12.Controls.Add(this.textBox109, 1, 0);
-            this.tableLayoutPanel12.Controls.Add(this.label114, 0, 1);
-            this.tableLayoutPanel12.Controls.Add(this.textBox110, 1, 1);
             this.tableLayoutPanel12.Controls.Add(this.label115, 0, 2);
             this.tableLayoutPanel12.Controls.Add(this.dateTimePicker7, 1, 2);
             this.tableLayoutPanel12.Controls.Add(this.label116, 0, 3);
             this.tableLayoutPanel12.Controls.Add(this.dateTimePicker8, 1, 3);
             this.tableLayoutPanel12.Controls.Add(this.label117, 0, 4);
-            this.tableLayoutPanel12.Controls.Add(this.label123, 0, 5);
             this.tableLayoutPanel12.Controls.Add(this.textBox111, 1, 4);
-            this.tableLayoutPanel12.Controls.Add(this.textBox112, 1, 5);
             this.tableLayoutPanel12.Controls.Add(this.label122, 2, 2);
             this.tableLayoutPanel12.Controls.Add(this.label121, 2, 3);
             this.tableLayoutPanel12.Controls.Add(this.label120, 2, 4);
@@ -3948,8 +3948,16 @@
             this.tableLayoutPanel12.Controls.Add(this.textBox63, 6, 4);
             this.tableLayoutPanel12.Controls.Add(this.button16, 5, 6);
             this.tableLayoutPanel12.Controls.Add(this.button15, 5, 5);
-            this.tableLayoutPanel12.Controls.Add(this.label137, 0, 6);
-            this.tableLayoutPanel12.Controls.Add(this.textBox129, 1, 6);
+            this.tableLayoutPanel12.Controls.Add(this.label137, 0, 7);
+            this.tableLayoutPanel12.Controls.Add(this.textBox129, 1, 7);
+            this.tableLayoutPanel12.Controls.Add(this.textBox112, 1, 5);
+            this.tableLayoutPanel12.Controls.Add(this.textBox110, 3, 0);
+            this.tableLayoutPanel12.Controls.Add(this.label114, 2, 0);
+            this.tableLayoutPanel12.Controls.Add(this.label124, 0, 1);
+            this.tableLayoutPanel12.Controls.Add(this.label127, 0, 5);
+            this.tableLayoutPanel12.Controls.Add(this.label123, 0, 6);
+            this.tableLayoutPanel12.Controls.Add(this.textBox119, 1, 6);
+            this.tableLayoutPanel12.Controls.Add(this.textBox120, 1, 1);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(4);
@@ -3990,9 +3998,9 @@
             // 
             this.label114.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label114.AutoSize = true;
-            this.label114.Location = new System.Drawing.Point(3, 52);
+            this.label114.Location = new System.Drawing.Point(285, 12);
             this.label114.Name = "label114";
-            this.label114.Size = new System.Drawing.Size(139, 16);
+            this.label114.Size = new System.Drawing.Size(150, 16);
             this.label114.TabIndex = 49;
             this.label114.Text = "股東姓名";
             // 
@@ -4000,9 +4008,9 @@
             // 
             this.textBox110.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel12.SetColumnSpan(this.textBox110, 2);
-            this.textBox110.Location = new System.Drawing.Point(148, 46);
+            this.textBox110.Location = new System.Drawing.Point(441, 6);
             this.textBox110.Name = "textBox110";
-            this.textBox110.Size = new System.Drawing.Size(287, 27);
+            this.textBox110.Size = new System.Drawing.Size(291, 27);
             this.textBox110.TabIndex = 51;
             // 
             // label115
@@ -4057,11 +4065,11 @@
             // 
             this.label123.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label123.AutoSize = true;
-            this.label123.Location = new System.Drawing.Point(3, 212);
+            this.label123.Location = new System.Drawing.Point(3, 252);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(139, 16);
             this.label123.TabIndex = 60;
-            this.label123.Text = "每股配發股票股利";
+            this.label123.Text = "每股配發資本公積";
             // 
             // textBox111
             // 
@@ -4238,7 +4246,7 @@
             // 
             this.label137.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label137.AutoSize = true;
-            this.label137.Location = new System.Drawing.Point(3, 252);
+            this.label137.Location = new System.Drawing.Point(3, 292);
             this.label137.Name = "label137";
             this.label137.Size = new System.Drawing.Size(139, 16);
             this.label137.TabIndex = 86;
@@ -4248,7 +4256,7 @@
             // 
             this.textBox129.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox129.Enabled = false;
-            this.textBox129.Location = new System.Drawing.Point(148, 246);
+            this.textBox129.Location = new System.Drawing.Point(148, 286);
             this.textBox129.Name = "textBox129";
             this.textBox129.ReadOnly = true;
             this.textBox129.Size = new System.Drawing.Size(131, 27);
@@ -4564,8 +4572,8 @@
             // 
             this.dataGridView7.AllowUserToAddRows = false;
             this.dataGridView7.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView7.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle63.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView7.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle63;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView7.Location = new System.Drawing.Point(0, 0);
@@ -4994,8 +5002,8 @@
             // 
             this.dataGridView8.AllowUserToAddRows = false;
             this.dataGridView8.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView8.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle64.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView8.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle64;
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView8.Location = new System.Drawing.Point(3, 3);
@@ -5204,6 +5212,42 @@
             this.previewControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.previewControl1.Size = new System.Drawing.Size(972, 524);
             this.previewControl1.TabIndex = 1;
+            // 
+            // label124
+            // 
+            this.label124.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label124.AutoSize = true;
+            this.label124.Location = new System.Drawing.Point(3, 52);
+            this.label124.Name = "label124";
+            this.label124.Size = new System.Drawing.Size(139, 16);
+            this.label124.TabIndex = 88;
+            this.label124.Text = "分配年度";
+            // 
+            // label127
+            // 
+            this.label127.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label127.AutoSize = true;
+            this.label127.Location = new System.Drawing.Point(3, 212);
+            this.label127.Name = "label127";
+            this.label127.Size = new System.Drawing.Size(139, 16);
+            this.label127.TabIndex = 90;
+            this.label127.Text = "每股配發股票股利";
+            // 
+            // textBox119
+            // 
+            this.textBox119.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox119.Location = new System.Drawing.Point(148, 246);
+            this.textBox119.Name = "textBox119";
+            this.textBox119.Size = new System.Drawing.Size(131, 27);
+            this.textBox119.TabIndex = 91;
+            // 
+            // textBox120
+            // 
+            this.textBox120.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox120.Location = new System.Drawing.Point(148, 46);
+            this.textBox120.Name = "textBox120";
+            this.textBox120.Size = new System.Drawing.Size(131, 27);
+            this.textBox120.TabIndex = 92;
             // 
             // FrmSTOCKRECORDS
             // 
@@ -5768,5 +5812,9 @@
         private System.Windows.Forms.TextBox textBox105;
         private System.Windows.Forms.Label label126;
         private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Label label124;
+        private System.Windows.Forms.Label label127;
+        private System.Windows.Forms.TextBox textBox119;
+        private System.Windows.Forms.TextBox textBox120;
     }
 }

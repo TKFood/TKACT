@@ -1551,6 +1551,8 @@ namespace TKACT
             textBox117.Text = "";
             textBox118.Text = "";
             textBox129.Text = "";
+            textBox120.Text = "";
+            textBox119.Text = "";
 
             if (dataGridView6.CurrentRow != null)
             {
@@ -1570,7 +1572,8 @@ namespace TKACT
                     textBox117.Text = row.Cells["盈餘增資配股數"].Value.ToString();
                     textBox118.Text = row.Cells["資本公積增資配股數"].Value.ToString();
                     textBox129.Text = row.Cells["流水號"].Value.ToString();
-
+                    textBox120.Text = row.Cells["分配年度"].Value.ToString();
+                    textBox119.Text = row.Cells["每股配發資本公積"].Value.ToString();
                     dateTimePicker7.Value = Convert.ToDateTime(row.Cells["EXDIVIDENDINTERESTRECORDDATE"].Value.ToString());
                     dateTimePicker8.Value = Convert.ToDateTime(row.Cells["CASHDIVIDENDPAYMENTDATE"].Value.ToString());
 
