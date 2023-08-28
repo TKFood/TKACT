@@ -3389,6 +3389,8 @@ namespace TKACT
             , string CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
             , string CAPITALIZATIONOFCAPITALSURPLUSSHARES
             , string ID
+            , string DIVYEARS
+            , string DIVAMOUNTS
             )
         {
             SqlConnection sqlConn = new SqlConnection();
@@ -3429,7 +3431,10 @@ namespace TKACT
                                     ,[ACTUALCASHDIVIDENDPAID]
                                     ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]
                                     ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]
+                                    ,[DIVYEARS]
+                                    ,[DIVAMOUNTS]
                                     ,[ID]
+                                    
                                     )
                                     VALUES
                                     (
@@ -3446,6 +3451,8 @@ namespace TKACT
                                     ,'{10}'
                                     ,'{11}'
                                     ,'{12}'
+                                    ,'{13}'
+                                    ,'{14}'
                                     )
 
                                         ", STOCKACCOUNTNUMBER
@@ -3460,6 +3467,8 @@ namespace TKACT
                                     , ACTUALCASHDIVIDENDPAID
                                     , CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
                                     , CAPITALIZATIONOFCAPITALSURPLUSSHARES
+                                    , DIVYEARS
+                                    , DIVAMOUNTS
                                     , ID
                                         );
 
@@ -3508,6 +3517,8 @@ namespace TKACT
             , string ACTUALCASHDIVIDENDPAID
             , string CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
             , string CAPITALIZATIONOFCAPITALSURPLUSSHARES
+            , string DIVYEARS
+            , string DIVAMOUNTS
 
             )
         {
@@ -3549,6 +3560,8 @@ namespace TKACT
                                     ,[ACTUALCASHDIVIDENDPAID]='{10}'
                                     ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]='{11}'
                                     ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]='{12}'
+                                    ,[DIVYEARS]='{13}'
+                                    ,[DIVAMOUNTS]='{14}'
                                     WHERE  [SERNO]='{0}'
                                    
                                     ", SERNO
@@ -3564,7 +3577,8 @@ namespace TKACT
                                     , ACTUALCASHDIVIDENDPAID
                                     , CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES
                                     , CAPITALIZATIONOFCAPITALSURPLUSSHARES
-
+                                    , DIVYEARS
+                                    , DIVAMOUNTS
                                         );
 
 
@@ -6388,6 +6402,8 @@ namespace TKACT
             , textBox117.Text
             , textBox118.Text
             , textBox63.Text
+            , textBox120.Text
+            , textBox119.Text
             );
             Search_DG6(textBox107.Text, textBox108.Text);
         }
@@ -6408,6 +6424,8 @@ namespace TKACT
            , textBox116.Text
            , textBox117.Text
            , textBox118.Text
+           , textBox120.Text
+           , textBox119.Text
 
            );
             Search_DG6(textBox107.Text, textBox108.Text);
