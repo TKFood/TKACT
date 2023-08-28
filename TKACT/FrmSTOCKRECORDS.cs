@@ -6020,6 +6020,13 @@ namespace TKACT
                 textBox116.Text = (textBox113 - textBox115).ToString();
             }
         }
+        private void dateTimePicker8_ValueChanged(object sender, EventArgs e)
+        {
+            textBox120.Text = dateTimePicker8.Value.ToString("yyyy");
+        }
+
+
+
         #endregion
 
 
@@ -6587,8 +6594,9 @@ namespace TKACT
         }
 
 
+
         #endregion
 
-     
+      
     }
 }
