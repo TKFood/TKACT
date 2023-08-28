@@ -5964,6 +5964,43 @@ namespace TKACT
                 sqlConn.Close();
             }
         }
+
+        private void textBox113_TextChanged(object sender, EventArgs e)
+        {           
+            CHECK_textBox116(textBox113.Text, textBox115.Text);
+        }
+
+        private void textBox115_TextChanged(object sender, EventArgs e)
+        {
+            CHECK_textBox116(textBox113.Text, textBox115.Text);
+        }
+
+        public void CHECK_textBox116(string textBox113,string textBox115)
+        {            
+            decimal value1;
+            decimal value2;
+
+            if(!string.IsNullOrEmpty(textBox113)&& !string.IsNullOrEmpty(textBox115) )
+            {
+                if (decimal.TryParse(textBox113, out value1) && value1 > 0 && (decimal.TryParse(textBox115, out value2) && value2 > 0))
+                {
+                    CAL_textBox116(value1, value2);
+                }
+                else
+                {
+                    // 輸入無效或小於等於0
+                    MessageBox.Show("請輸入有效的正小數且大於0。");
+                }
+            }
+           
+        }
+        public void CAL_textBox116(decimal textBox113, decimal textBox115)
+        {
+            if (textBox113>0 && textBox115>0)
+            {
+                textBox116.Text = (textBox113 - textBox115).ToString();
+            }
+        }
         #endregion
 
 
@@ -6526,8 +6563,9 @@ namespace TKACT
             SETFASTREPORT_TKSTOCKSREORDSDIV(textBox105.Text.Trim());
         }
 
+
         #endregion
 
-
+     
     }
 }
