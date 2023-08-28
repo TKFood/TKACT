@@ -470,6 +470,8 @@ namespace TKACT
                                 ,[ACTUALCASHDIVIDENDPAID] AS '實發現金股利'
                                 ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES] AS '盈餘增資配股數'
                                 ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES] AS '資本公積增資配股數'
+                                ,[DIVYEARS] AS '分配年度'
+                                ,[DIVAMOUNTS] AS '每股配發資本公積'
                                 ,[EXDIVIDENDINTERESTRECORDDATE]
                                 ,[CASHDIVIDENDPAYMENTDATE]
 
