@@ -5984,7 +5984,7 @@ namespace TKACT
 
             if(!string.IsNullOrEmpty(textBox113)&& !string.IsNullOrEmpty(textBox115) )
             {
-                if (decimal.TryParse(textBox113, out value1) && value1 > 0 && (decimal.TryParse(textBox115, out value2) && value2 > 0))
+                if (decimal.TryParse(textBox113, out value1) && value1 >= 0 && (decimal.TryParse(textBox115, out value2) && value2 >= 0))
                 {
                     CAL_textBox116(value1, value2);
                 }
