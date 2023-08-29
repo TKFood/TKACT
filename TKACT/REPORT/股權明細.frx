@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 08:19:26" ReportInfo.Modified="08/08/2023 15:39:43" ReportInfo.CreatorVersion="2016.4.4.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 08:19:26" ReportInfo.Modified="08/29/2023 10:38:52" ReportInfo.CreatorVersion="2016.4.4.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUHI3RPtOy9sGHgIIse7a+AG">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUHW6g6hN0hF2jMQLg/zFfLL">
       <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="/****** SSMS 中 SelectTopNRows 命令的指令碼  ******/&#13;&#10;SELECT &#13;&#10;[TKSTOCKSREORDS].[STOCKID] AS '股票號碼'&#13;&#10;,[TKSTOCKSREORDS].[PARVALUPER] &#13;&#10;,CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] )AS '股數'&#13;&#10;,[TKSTOCKSREORDS].[STOCKIDKEY] &#13;&#10;,[TKSTOCKSREORDS].[STOCKACCOUNTNUMBER] &#13;&#10;,[TKSTOCKSREORDS].[STOCKNAME] &#13;&#10;,[CREATEDATES]&#13;&#10;,[TKSTOCKSNAMES].[ID]&#13;&#10;,[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[TKSTOCKSNAMES].[STOCKNAME] AS '股東姓名'&#13;&#10;,[TKSTOCKSNAMES].[IDNUMBER] AS '身份證字號或統一編號'&#13;&#10;,[TKSTOCKSNAMES].[POSTALCODE] AS '通訊地郵遞區號'&#13;&#10;,[TKSTOCKSNAMES].[MAILINGADDRESS] AS '通訊地址'&#13;&#10;,[TKSTOCKSNAMES].[REGISTEREDPOSTALCODE] AS '戶籍地郵遞區號'&#13;&#10;,[TKSTOCKSNAMES].[REGISTEREDADDRESS] AS '戶籍/設立地址'&#13;&#10;,[TKSTOCKSNAMES].[DATEOFBIRTH] AS '出生/設立日期'&#13;&#10;,[TKSTOCKSNAMES].[BANKNAME] AS '銀行名稱'&#13;&#10;,[TKSTOCKSNAMES].[BRANCHNAME] AS '分行名稱'&#13;&#10;,[TKSTOCKSNAMES].[BANKCODE] AS '銀行代碼'&#13;&#10;,[TKSTOCKSNAMES].[ACCOUNTNUMBER] AS '帳號'&#13;&#10;,[TKSTOCKSNAMES].[HOMEPHONENUMBER] AS '住家電話'&#13;&#10;,[TKSTOCKSNAMES].[MOBILEPHONENUMBER] AS '手機號碼'&#13;&#10;,[TKSTOCKSNAMES].[EMAIL] AS 'e-mail'&#13;&#10;,[TKSTOCKSNAMES].[PASSPORTNUMBER] AS '護照號碼'&#13;&#10;,[TKSTOCKSNAMES].[ENGLISHNAME] AS '英文名'&#13;&#10;,[TKSTOCKSNAMES].[FATHER] AS '父'&#13;&#10;,[TKSTOCKSNAMES].[MOTHER] AS '母'&#13;&#10;,[TKSTOCKSNAMES].[SPOUSE] AS '配偶'&#13;&#10;,[TKSTOCKSNAMES].[COMMENTS] AS '備註'&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSREORDS]&#13;&#10;LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].ID=[TKSTOCKSREORDS].STOCKIDKEY&#13;&#10;ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] ) DESC">
         <Column Name="股票號碼" DataType="System.String"/>
         <Column Name="PARVALUPER" DataType="System.Int32"/>
@@ -35,32 +35,35 @@
       </TableDataSource>
     </MsSqlDataConnection>
     <Total Name="Total股數" Expression="[Table.股數]" Evaluator="Data1" PrintOn="GroupFooter1"/>
+    <Total Name="TTOTALS股數" Expression="[Table.股數]" Evaluator="Data1" PrintOn="ReportSummary1"/>
   </Dictionary>
   <ReportPage Name="Page1" Landscape="true" PaperWidth="297" PaperHeight="210">
-    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="18.9">
-      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="股權明細"/>
+    <ReportTitleBand Name="ReportTitle1" Width="1047.06" Height="37.8">
+      <TextObject Name="Text1" Width="538.65" Height="18.9" Text="股票明細清單" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text7" Left="349.65" Top="18.9" Width="94.5" Height="18.9" Border.Lines="All" Text="股票號碼" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text3" Top="18.9" Width="94.5" Height="18.9" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text5" Left="94.5" Top="18.9" Width="255.15" Height="18.9" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text9" Left="444.15" Top="18.9" Width="94.5" Height="18.9" Border.Lines="All" Text="股數" HorzAlign="Center" VertAlign="Center"/>
     </ReportTitleBand>
-    <ColumnHeaderBand Name="ColumnHeader1" Top="23.5" Width="1047.06" Height="18.9">
-      <TextObject Name="Text3" Width="94.5" Height="18.9" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text5" Left="94.5" Width="255.15" Height="18.9" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text7" Left="349.65" Width="94.5" Height="18.9" Border.Lines="All" Text="股票號碼" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text9" Left="444.15" Width="94.5" Height="18.9" Border.Lines="All" Text="股數" HorzAlign="Center" VertAlign="Center"/>
-    </ColumnHeaderBand>
-    <GroupHeaderBand Name="GroupHeader1" Top="47" Width="1047.06" Height="18.9" Condition="[Table.戶號]" SortOrder="None">
+    <GroupHeaderBand Name="GroupHeader1" Top="42.4" Width="1047.06" Height="18.9" Condition="[Table.戶號]" SortOrder="None">
       <TextObject Name="Text2" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.戶號]" HorzAlign="Center" VertAlign="Center"/>
       <TextObject Name="Text4" Left="94.5" Width="255.15" Height="18.9" Border.Lines="All" Text="[Table.股東姓名]" VertAlign="Center"/>
       <TextObject Name="Text12" Left="349.65" Width="94.5" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center"/>
       <TextObject Name="Text13" Left="444.15" Width="94.5" Height="18.9" Border.Lines="All" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <DataBand Name="Data1" Top="70.49" Width="1047.06" Height="18.9" DataSource="Table">
+      <DataBand Name="Data1" Top="65.9" Width="1047.06" Height="18.9" DataSource="Table">
         <TextObject Name="Text6" Left="349.65" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.股票號碼]" HorzAlign="Center" VertAlign="Center"/>
         <TextObject Name="Text8" Left="444.15" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
         <TextObject Name="Text10" Width="94.5" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center"/>
         <TextObject Name="Text11" Left="94.5" Width="255.15" Height="18.9" Border.Lines="All" VertAlign="Center"/>
       </DataBand>
-      <GroupFooterBand Name="GroupFooter1" Top="93.99" Width="1047.06" Height="18.9">
+      <GroupFooterBand Name="GroupFooter1" Top="89.39" Width="1047.06" Height="18.9">
         <TextObject Name="Text14" Left="444.15" Width="94.5" Height="18.9" Border.Lines="All" Text="[Total股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
         <TextObject Name="Text15" Width="444.15" Height="18.9" Border.Lines="All" Text="合計" HorzAlign="Right" VertAlign="Center"/>
       </GroupFooterBand>
     </GroupHeaderBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="112.89" Width="1047.06" Height="37.8">
+      <TextObject Name="Text16" Left="444.15" Width="94.5" Height="18.9" Border.Lines="All" Text="[TTOTALS股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Width="444.15" Height="18.9" Border.Lines="All" Text="總計" HorzAlign="Right" VertAlign="Center"/>
+    </ReportSummaryBand>
   </ReportPage>
 </Report>

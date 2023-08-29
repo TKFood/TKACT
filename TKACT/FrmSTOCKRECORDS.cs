@@ -4990,12 +4990,16 @@ namespace TKACT
 
             Report report1 = new Report();
 
-            if (REPORTS.Equals("股權明細"))
+            if (REPORTS.Equals("股票明細清單"))
             {
                 report1.Load(@"REPORT\股權明細.frx");
 
                 SQL = SETSQL();
             } 
+            else
+            {
+
+            }
           
 
             //20210902密
@@ -6486,6 +6490,8 @@ namespace TKACT
         private void button18_Click(object sender, EventArgs e)
         {
             SETFASTREPORT(comboBox5.Text.ToString());
+
+           
         }
 
 
