@@ -4984,7 +4984,7 @@ namespace TKACT
             }
         }
 
-        public void SETFASTREPORT(string REPORTS)
+        public void SETFASTREPORT(string REPORTS,string STOCKACCOUNTNUMBER)
         {          
             StringBuilder SQL = new StringBuilder();
 
@@ -4994,7 +4994,7 @@ namespace TKACT
             {
                 report1.Load(@"REPORT\股權明細.frx");
 
-                SQL = SETSQL();
+                SQL = SETSQL(STOCKACCOUNTNUMBER);
             } 
             else
             {
@@ -5021,10 +5021,19 @@ namespace TKACT
             report1.Show();
         }
 
-        public StringBuilder SETSQL()
+        public StringBuilder SETSQL(string STOCKACCOUNTNUMBER)
         {
             StringBuilder SB = new StringBuilder();
             StringBuilder SBQUERY1 = new StringBuilder();
+
+            if(!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                SBQUERY1.AppendFormat(@" AND ([TKSTOCKSREORDS].STOCKACCOUNTNUMBER LIKE '%{0}%'  OR [TKSTOCKSREORDS].STOCKNAME LIKE '%{0}%')", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                SBQUERY1.AppendFormat(@" ");
+            }
 
             SB.AppendFormat(@" 
                             
@@ -5060,8 +5069,10 @@ namespace TKACT
                             ,[TKSTOCKSNAMES].[COMMENTS] AS '備註'
                             FROM [TKACT].[dbo].[TKSTOCKSREORDS]
                             LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]=[TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]
+                            WHERE 1=1
+                            {0}
                             ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] ) DESC,[TKSTOCKSREORDS].[STOCKID]
-                            ");
+                            ", SBQUERY1.ToString());
 
             return SB;
 
@@ -6489,9 +6500,7 @@ namespace TKACT
         
         private void button18_Click(object sender, EventArgs e)
         {
-            SETFASTREPORT(comboBox5.Text.ToString());
-
-           
+            SETFASTREPORT(comboBox5.Text.ToString(),textBox121.Text.Trim());           
         }
 
 
