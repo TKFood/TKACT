@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 10:53:21" ReportInfo.Modified="07/12/2023 11:07:46" ReportInfo.CreatorVersion="2016.4.4.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 10:53:21" ReportInfo.Modified="08/29/2023 14:27:56" ReportInfo.CreatorVersion="2016.4.4.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUFedX+y2em3jH8GoyAa4fvk">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUGegv3nqlirfVbg6a0VAjRJ">
       <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="/****** SSMS 中 SelectTopNRows 命令的指令碼  ******/&#13;&#10;SELECT &#13;&#10; [SERNO]&#13;&#10;,[ID]&#13;&#10;,[CAPITALINCREASERECORDDATE] AS '增資基準日'&#13;&#10;,[REASONFORCHANGE] AS '異動原因'&#13;&#10;,[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[STOCKNAME] AS '股東姓名'&#13;&#10;,CONVERT(INT,[INCREASEDSHARES]) AS '增資股數'&#13;&#10;,[PARVALUPERSHARE] AS '每股面額'&#13;&#10;,CONVERT(INT,[TRADINGPRICEPERSHARE]) AS '每股成交價格'&#13;&#10;,CONVERT(INT,[TOTALTRADINGAMOUNT]) AS '成交總額'&#13;&#10;,[INCREASEDSHARESHUNDREDTHOUSANDS] AS '增資股票號碼(十萬股)'&#13;&#10;,[INCREASEDSHARESTENSOFTHOUSANDS] AS '增資股票號碼(萬股)'&#13;&#10;,[INCREASEDSHARESTHOUSANDS] AS '增資股票號碼(千股)'&#13;&#10;,[INCREASEDSHARESIRREGULARLOTS] AS '增資股票號碼(不定額股)'&#13;&#10;,CONVERT(INT,[HOLDINGSHARES]) AS '持有股數'&#13;&#10;,[PARVALUPER] &#13;&#10;,[STOCKSHARES]&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSTRANSADD]&#13;&#10;WHERE [CAPITALINCREASERECORDDATE]&gt;='2023/01/01' AND [CAPITALINCREASERECORDDATE]&lt;='2023/12/01'&#13;&#10;ORDER BY  [SERNO]">
         <Column Name="SERNO" DataType="System.Decimal"/>
         <Column Name="ID" DataType="System.String"/>
@@ -22,42 +22,44 @@
         <Column Name="STOCKSHARES" DataType="System.String"/>
       </TableDataSource>
     </MsSqlDataConnection>
+    <Total Name="Total增資股數" Expression="[Table.增資股數]" Evaluator="Data1"/>
   </Dictionary>
   <ReportPage Name="Page1" Landscape="true" PaperWidth="400" PaperHeight="210">
-    <ReportTitleBand Name="ReportTitle1" Width="1436.4" Height="18.9">
-      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="股權增資" VertAlign="Center"/>
+    <ReportTitleBand Name="ReportTitle1" Width="1436.4" Height="56.7">
+      <TextObject Name="Text1" Width="1436.4" Height="18.9" Text="股權增資" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text3" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資基準日" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text5" Left="94.5" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="異動原因" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text7" Left="189" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text9" Left="283.5" Top="18.9" Width="302.4" Height="37.8" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text11" Left="585.9" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text13" Left="680.4" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="每股面額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="774.9" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="每股成交價格" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="869.4" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="成交總額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text19" Left="963.9" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="成交總額" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text21" Left="1152.9" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(萬股)" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text23" Left="1058.4" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(十萬股)" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text25" Left="1247.4" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(千股)" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text27" Left="1341.9" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(不定額股)" HorzAlign="Center" VertAlign="Center"/>
     </ReportTitleBand>
-    <ColumnHeaderBand Name="ColumnHeader1" Top="23.5" Width="1436.4" Height="37.8">
-      <TextObject Name="Text3" Width="94.5" Height="37.8" Border.Lines="All" Text="增資基準日" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text5" Left="94.5" Width="94.5" Height="37.8" Border.Lines="All" Text="異動原因" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text7" Left="189" Width="94.5" Height="37.8" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text9" Left="283.5" Width="207.9" Height="37.8" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text11" Left="491.4" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股數" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text13" Left="585.9" Width="94.5" Height="37.8" Border.Lines="All" Text="每股面額" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text15" Left="680.4" Width="94.5" Height="37.8" Border.Lines="All" Text="每股成交價格" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text17" Left="774.9" Width="94.5" Height="37.8" Border.Lines="All" Text="成交總額" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text19" Left="869.4" Width="94.5" Height="37.8" Border.Lines="All" Text="成交總額" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text21" Left="1058.4" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(萬股)" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text23" Left="963.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(十萬股)" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text25" Left="1152.9" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(千股)" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text27" Left="1247.4" Width="94.5" Height="37.8" Border.Lines="All" Text="增資股票號碼(不定額股)" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text29" Left="1341.9" Width="94.5" Height="37.8" Border.Lines="All" Text="持有股數" HorzAlign="Center" VertAlign="Center"/>
-    </ColumnHeaderBand>
-    <DataBand Name="Data1" Top="65.9" Width="1436.4" Height="18.9" DataSource="Table">
+    <DataBand Name="Data1" Top="61.3" Width="1436.4" Height="18.9" DataSource="Table">
       <TextObject Name="Text2" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資基準日]" HorzAlign="Center" VertAlign="Center"/>
       <TextObject Name="Text4" Left="94.5" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.異動原因]" HorzAlign="Center" VertAlign="Center"/>
       <TextObject Name="Text6" Left="189" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.戶號]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text8" Left="283.5" Width="207.9" Height="18.9" Border.Lines="All" Text="[Table.股東姓名]" VertAlign="Center"/>
-      <TextObject Name="Text10" Left="491.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text12" Left="585.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.每股面額]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text14" Left="680.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.每股成交價格]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
-      <TextObject Name="Text16" Left="774.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.成交總額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text18" Left="869.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.成交總額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text20" Left="1058.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(萬股)]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text22" Left="963.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(十萬股)]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text24" Left="1152.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(千股)]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text26" Left="1247.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(不定額股)]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text28" Left="1341.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.持有股數]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text8" Left="283.5" Width="302.4" Height="18.9" Border.Lines="All" Text="[Table.股東姓名]" VertAlign="Center"/>
+      <TextObject Name="Text10" Left="585.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text12" Left="680.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.每股面額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text14" Left="774.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.每股成交價格]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text16" Left="869.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.成交總額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text18" Left="963.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.成交總額]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text20" Left="1152.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(萬股)]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text22" Left="1058.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(十萬股)]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text24" Left="1247.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(千股)]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text26" Left="1341.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.增資股票號碼(不定額股)]" HorzAlign="Center" VertAlign="Center"/>
     </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="84.8" Width="1436.4" Height="18.9">
+      <TextObject Name="Text28" Left="585.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Total增資股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text29" Width="585.9" Height="18.9" Border.Lines="All" Text="合計" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text30" Left="680.4" Width="756" Height="18.9" Border.Lines="All" HorzAlign="Right" VertAlign="Center"/>
+    </ReportSummaryBand>
   </ReportPage>
 </Report>

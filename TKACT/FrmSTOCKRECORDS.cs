@@ -5280,8 +5280,8 @@ namespace TKACT
                             WHERE 1=1
                             {0}
                             {1}
-                            {2}
-                            ORDER BY  [SERNO]
+                            {2} 
+                            ORDER BY  [CAPITALINCREASERECORDDATE]
                             
                             ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString());
 

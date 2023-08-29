@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -717,8 +717,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle57.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle57;
+            dataGridViewCellStyle66.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle66;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -1486,8 +1486,8 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle58.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle58;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView2.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle67;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
@@ -1514,8 +1514,8 @@
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle59.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle59;
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView3.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle68;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(3, 3);
@@ -2161,8 +2161,8 @@
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle60.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle60;
+            dataGridViewCellStyle65.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView4.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle65;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView4.Location = new System.Drawing.Point(0, 0);
@@ -2744,9 +2744,9 @@
             // tabPage15
             // 
             this.tabPage15.Controls.Add(this.splitContainer13);
-            this.tabPage15.Location = new System.Drawing.Point(4, 22);
+            this.tabPage15.Location = new System.Drawing.Point(4, 26);
             this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Size = new System.Drawing.Size(964, 350);
+            this.tabPage15.Size = new System.Drawing.Size(964, 346);
             this.tabPage15.TabIndex = 1;
             this.tabPage15.Text = "報表";
             this.tabPage15.UseVisualStyleBackColor = true;
@@ -2766,8 +2766,8 @@
             // splitContainer13.Panel2
             // 
             this.splitContainer13.Panel2.Controls.Add(this.previewControl3);
-            this.splitContainer13.Size = new System.Drawing.Size(964, 350);
-            this.splitContainer13.SplitterDistance = 130;
+            this.splitContainer13.Size = new System.Drawing.Size(964, 346);
+            this.splitContainer13.SplitterDistance = 128;
             this.splitContainer13.TabIndex = 0;
             // 
             // tableLayoutPanel13
@@ -2799,7 +2799,7 @@
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(960, 126);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(960, 124);
             this.tableLayoutPanel13.TabIndex = 22;
             // 
             // textBox65
@@ -2897,7 +2897,7 @@
             this.previewControl3.Name = "previewControl3";
             this.previewControl3.PageOffset = new System.Drawing.Point(10, 10);
             this.previewControl3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl3.Size = new System.Drawing.Size(960, 212);
+            this.previewControl3.Size = new System.Drawing.Size(960, 210);
             this.previewControl3.TabIndex = 3;
             // 
             // tabPage4
@@ -3027,8 +3027,8 @@
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle61.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle61;
+            dataGridViewCellStyle69.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView5.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle69;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView5.Location = new System.Drawing.Point(0, 0);
@@ -3880,8 +3880,8 @@
             // 
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle62.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle62;
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView6.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle70;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView6.Location = new System.Drawing.Point(0, 0);
@@ -4611,8 +4611,8 @@
             // 
             this.dataGridView7.AllowUserToAddRows = false;
             this.dataGridView7.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle63.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView7.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle63;
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView7.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle71;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView7.Location = new System.Drawing.Point(0, 0);
@@ -5041,8 +5041,8 @@
             // 
             this.dataGridView8.AllowUserToAddRows = false;
             this.dataGridView8.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle64.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dataGridView8.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle72.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dataGridView8.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle72;
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView8.Location = new System.Drawing.Point(3, 3);
