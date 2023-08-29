@@ -4996,11 +4996,17 @@ namespace TKACT
 
                 SQL = SETSQL(STOCKACCOUNTNUMBER);
             } 
+            else if (REPORTS.Equals("股票名冊"))
+            {
+                report1.Load(@"REPORT\股東名冊.frx");
+
+                SQL= SETSQL2(STOCKACCOUNTNUMBER);
+            }
             else
             {
 
             }
-          
+
 
             //20210902密
             Class1 TKID = new Class1();//用new 建立類別實體
@@ -5076,7 +5082,40 @@ namespace TKACT
 
             return SB;
 
-        } 
+        }
+
+        public StringBuilder SETSQL2(string STOCKACCOUNTNUMBER)
+        {
+            StringBuilder SB = new StringBuilder();
+            StringBuilder SBQUERY1 = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(STOCKACCOUNTNUMBER))
+            {
+                SBQUERY1.AppendFormat(@" AND ([TKSTOCKSNAMES].STOCKACCOUNTNUMBER LIKE '%{0}%'  OR [TKSTOCKSNAMES].STOCKNAME LIKE '%{0}%')", STOCKACCOUNTNUMBER);
+            }
+            else
+            {
+                SBQUERY1.AppendFormat(@"  ");
+            }
+
+            SB.AppendFormat(@" 
+                            SELECT 
+                            [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] AS '戶號'
+                            ,[TKSTOCKSNAMES].[STOCKNAME] AS '股東姓名'
+                            ,[TKSTOCKSNAMES].[IDNUMBER] AS '身份證字號或統一編號'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '股數'
+                            ,'10' AS '每股面額(元)'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0)*10 FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '股款'
+                            FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
+                            WHERE 1=1
+                            AND (SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER])>0
+                            {0}
+                            ORDER BY [STOCKACCOUNTNUMBER]
+                            ", SBQUERY1.ToString());
+
+            return SB;
+
+        }
 
         public void SETFASTREPORT_TKSTOCKSNAMES()
         {
