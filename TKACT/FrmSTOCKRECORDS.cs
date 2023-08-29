@@ -5458,7 +5458,7 @@ namespace TKACT
 
             if (!string.IsNullOrEmpty(SDATE) && !string.IsNullOrEmpty(EDATE))
             {
-                SBQUERY1.AppendFormat(@"
+                SBQUERY1.AppendFormat(@" 
                                        AND [EXDIVIDENDINTERESTRECORDDATE]>='{0}' AND [EXDIVIDENDINTERESTRECORDDATE]<='{1}'
                                         ", SDATE, EDATE);
             }
