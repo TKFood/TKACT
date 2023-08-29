@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 11:45:33" ReportInfo.Modified="07/12/2023 14:15:42" ReportInfo.CreatorVersion="2016.4.4.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="07/12/2023 11:45:33" ReportInfo.Modified="08/29/2023 15:45:49" ReportInfo.CreatorVersion="2016.4.4.0">
   <Dictionary>
-    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUFkLijJ1QofbWj058/EDnOY">
-      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="&#13;&#10;SELECT &#13;&#10;[SERNO]&#13;&#10;,[ID]&#13;&#10;,[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[STOCKNAME] AS '股東姓名'&#13;&#10;,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'&#13;&#10;,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'&#13;&#10;,CONVERT(DECIMAL(16,4),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'&#13;&#10;,CONVERT(DECIMAL(16,4),[STOCKDIVIDEND]) AS '每股配發股票股利'&#13;&#10;,CONVERT(DECIMAL(16,4),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'&#13;&#10;,CONVERT(DECIMAL(16,4),[DECLAREDSTOCKDIVIDEND]) AS '應發股利股票股利'&#13;&#10;,CONVERT(INT,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]) AS '應扣補充保費'&#13;&#10;,CONVERT(INT,[ACTUALCASHDIVIDENDPAID]) AS '實發現金股利'&#13;&#10;,CONVERT(INT,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]) AS '盈餘增資配股數'&#13;&#10;,CONVERT(INT,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]) AS '資本公積增資配股數'&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSDIV]&#13;&#10;WHERE 1=1&#13;&#10;ORDER BY [SERNO]">
+    <MsSqlDataConnection Name="Connection" ConnectionString="rijcmlqHwzMSgwTFaHpjtG3vsOj8Zy6q+uhwpDsytgWqwZQZyEQUQyQ022aWUGqU90pHzzNjHuzu89K+RQ2LIBVx1fpgNkNJhwC4eetn2/Uy0fMrO7zDUE5AmRb+0bcYI+lxqpN+i5gA3VDGcwlcfm6L9ZMsLrZ3U+wEDtHCQtd9vw2XUE3WiD8cI0T6vTcuQXZDqNB">
+      <TableDataSource Name="Table" DataType="System.Int32" Enabled="true" SelectCommand="SELECT *&#13;&#10;,(增資+轉入-轉出) AS '除息基準日持有股數'&#13;&#10;FROM (&#13;&#10;SELECT &#13;&#10;[SERNO]&#13;&#10;,[ID]&#13;&#10;,[STOCKACCOUNTNUMBER] AS '戶號'&#13;&#10;,[STOCKNAME] AS '股東姓名'&#13;&#10;,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'&#13;&#10;,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'&#13;&#10;,CONVERT(DECIMAL(16,5),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'&#13;&#10;,CONVERT(DECIMAL(16,5),[STOCKDIVIDEND]) AS '每股配發股票股利'&#13;&#10;,CONVERT(DECIMAL(16,5),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'&#13;&#10;,CONVERT(DECIMAL(16,5),[DECLAREDSTOCKDIVIDEND]) AS '應發股利股票股利'&#13;&#10;,CONVERT(INT,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]) AS '應扣補充保費'&#13;&#10;,CONVERT(INT,[ACTUALCASHDIVIDENDPAID]) AS '實發現金股利'&#13;&#10;,CONVERT(INT,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]) AS '盈餘增資配股數'&#13;&#10;,CONVERT(INT,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]) AS '資本公積增資配股數'&#13;&#10;,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] WHERE [TKSTOCKSTRANSADD].[STOCKACCOUNTNUMBER]=[TKSTOCKSDIV].[STOCKACCOUNTNUMBER] AND [TKSTOCKSTRANSADD].[CAPITALINCREASERECORDDATE]&gt;=[TKSTOCKSDIV].[EXDIVIDENDINTERESTRECORDDATE]) AS '增資'&#13;&#10;,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSTRANS],[TKACT].[dbo].[TKSTOCKSREORDS] WHERE ([TKSTOCKSTRANS].[TRANSFERREDSHARESHUNDREDTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTENSOFTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESIRREGULARLOTS]=[TKSTOCKSREORDS].STOCKID ) AND [STOCKACCOUNTNUMBERTO]=[TKSTOCKSDIV].[STOCKACCOUNTNUMBER] AND [TKSTOCKSTRANS].[DATEOFCHANGE]&gt;=[TKSTOCKSDIV].[EXDIVIDENDINTERESTRECORDDATE]) AS '轉入'&#13;&#10;,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSTRANS],[TKACT].[dbo].[TKSTOCKSREORDS] WHERE ([TKSTOCKSTRANS].[TRANSFERREDSHARESHUNDREDTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTENSOFTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESIRREGULARLOTS]=[TKSTOCKSREORDS].STOCKID ) AND [STOCKACCOUNTNUMBERFORM]=[TKSTOCKSDIV].[STOCKACCOUNTNUMBER] AND [TKSTOCKSTRANS].[DATEOFCHANGE]&gt;=[TKSTOCKSDIV].[EXDIVIDENDINTERESTRECORDDATE]) AS '轉出'&#13;&#10;FROM [TKACT].[dbo].[TKSTOCKSDIV]&#13;&#10;WHERE 1=1  &#13;&#10;) AS TEMP&#13;&#10;ORDER BY '除權/息基準日'">
         <Column Name="SERNO" DataType="System.Decimal"/>
         <Column Name="ID" DataType="System.String"/>
         <Column Name="戶號" DataType="System.String"/>
@@ -17,40 +17,61 @@
         <Column Name="實發現金股利" DataType="System.Int32"/>
         <Column Name="盈餘增資配股數" DataType="System.Int32"/>
         <Column Name="資本公積增資配股數" DataType="System.Int32"/>
+        <Column Name="增資" DataType="System.Int32"/>
+        <Column Name="轉入" DataType="System.Int32"/>
+        <Column Name="轉出" DataType="System.Int32"/>
+        <Column Name="除息基準日持有股數" DataType="System.Int32"/>
       </TableDataSource>
     </MsSqlDataConnection>
+    <Total Name="Total每股配發現金股利" Expression="[Table.每股配發現金股利]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total每股配發股票股利" Expression="[Table.每股配發股票股利]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total應發股利現金股利" Expression="[Table.應發股利現金股利]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total應發股利股票股利" Expression="[Table.應發股利股票股利]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total應扣補充保費" Expression="[Table.應扣補充保費]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total實發現金股利" Expression="[Table.實發現金股利]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total盈餘增資配股數" Expression="[Table.盈餘增資配股數]" Evaluator="Data1" PrintOn="ReportSummary1"/>
+    <Total Name="Total資本公積增資配股數" Expression="[Table.資本公積增資配股數]" Evaluator="Data1" PrintOn="ReportSummary1"/>
   </Dictionary>
   <ReportPage Name="Page1" Landscape="true" PaperWidth="460" PaperHeight="210">
-    <ReportTitleBand Name="ReportTitle1" Width="1663.2" Height="18.9">
-      <TextObject Name="Text1" Width="94.5" Height="18.9" Text="除權息"/>
+    <ReportTitleBand Name="ReportTitle1" Width="1663.2" Height="56.7">
+      <TextObject Name="Text1" Width="1663.2" Height="18.9" Text="除權息" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text7" Left="151.2" Top="18.9" Width="283.5" Height="37.8" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text3" Left="434.7" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="除權/息基準日" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text9" Left="689.85" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="現金股利發放日" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text11" Left="784.35" Top="18.9" Width="113.4" Height="37.8" Border.Lines="All" Text="每股配發現金股利" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text13" Left="897.75" Top="18.9" Width="113.4" Height="37.8" Border.Lines="All" Text="每股配發股票股利" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text15" Left="1011.15" Top="18.9" Width="113.4" Height="37.8" Border.Lines="All" Text="應發股利現金股利" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text17" Left="1124.55" Top="18.9" Width="122.85" Height="37.8" Border.Lines="All" Text="應發股利股票股利" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text19" Left="1247.4" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="應扣補充保費" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text21" Left="1341.9" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="實發現金股利" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text23" Left="1436.4" Top="18.9" Width="94.5" Height="37.8" Border.Lines="All" Text="盈餘增資配股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text25" Left="1530.9" Top="18.9" Width="132.3" Height="37.8" Border.Lines="All" Text="資本公積增資配股數" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text5" Top="18.9" Width="151.2" Height="37.8" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text27" Left="529.2" Top="18.9" Width="160.65" Height="37.8" Border.Lines="All" Text="除息基準日持有股數" HorzAlign="Center" VertAlign="Center"/>
     </ReportTitleBand>
-    <ColumnHeaderBand Name="ColumnHeader1" Top="23.5" Width="1663.2" Height="37.8">
-      <TextObject Name="Text3" Left="434.7" Width="94.5" Height="37.8" Border.Lines="All" Text="除權/息基準日" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text7" Left="151.2" Width="283.5" Height="37.8" Border.Lines="All" Text="股東姓名" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text9" Left="529.2" Width="94.5" Height="37.8" Border.Lines="All" Text="現金股利發放日" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text11" Left="623.7" Width="113.4" Height="37.8" Border.Lines="All" Text="每股配發現金股利" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text13" Left="737.1" Width="113.4" Height="37.8" Border.Lines="All" Text="每股配發股票股利" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text15" Left="850.5" Width="113.4" Height="37.8" Border.Lines="All" Text="應發股利現金股利" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text17" Left="963.9" Width="122.85" Height="37.8" Border.Lines="All" Text="應發股利股票股利" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text19" Left="1086.75" Width="94.5" Height="37.8" Border.Lines="All" Text="應扣補充保費" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text21" Left="1181.25" Width="94.5" Height="37.8" Border.Lines="All" Text="實發現金股利" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text23" Left="1275.75" Width="94.5" Height="37.8" Border.Lines="All" Text="盈餘增資配股數" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text25" Left="1370.25" Width="132.3" Height="37.8" Border.Lines="All" Text="資本公積增資配股數" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text5" Width="151.2" Height="37.8" Border.Lines="All" Text="戶號" HorzAlign="Center" VertAlign="Center"/>
-    </ColumnHeaderBand>
-    <DataBand Name="Data1" Top="65.9" Width="1663.2" Height="18.9" DataSource="Table">
+    <DataBand Name="Data1" Top="61.3" Width="1663.2" Height="18.9" DataSource="Table">
       <TextObject Name="Text2" Left="434.7" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.除權/息基準日]" HorzAlign="Center" VertAlign="Center"/>
       <TextObject Name="Text6" Left="151.2" Width="283.5" Height="18.9" Border.Lines="All" Text="[Table.股東姓名]" VertAlign="Center"/>
-      <TextObject Name="Text8" Left="529.2" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.現金股利發放日]" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text10" Left="623.7" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.每股配發現金股利]" Format="Number" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
-      <TextObject Name="Text12" Left="737.1" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.每股配發股票股利]" Format="Number" Format.UseLocale="true" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
-      <TextObject Name="Text14" Left="850.5" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.應發股利現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
-      <TextObject Name="Text16" Left="963.9" Width="122.85" Height="18.9" Border.Lines="All" Text="[Table.應發股利股票股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text18" Left="1086.75" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.應扣補充保費]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text20" Left="1181.25" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.實發現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text22" Left="1275.75" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.盈餘增資配股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
-      <TextObject Name="Text24" Left="1370.25" Width="132.3" Height="18.9" Border.Lines="All" Text="[Table.資本公積增資配股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text8" Left="689.85" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.現金股利發放日]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text10" Left="784.35" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.每股配發現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="5" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text12" Left="897.75" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.每股配發股票股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="5" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text18" Left="1246.25" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.應扣補充保費]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text20" Left="1340.75" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.實發現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text22" Left="1435.25" Width="94.5" Height="18.9" Border.Lines="All" Text="[Table.盈餘增資配股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text24" Left="1529.75" Width="132.3" Height="18.9" Border.Lines="All" Text="[Table.資本公積增資配股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
       <TextObject Name="Text4" Width="151.2" Height="18.9" Border.Lines="All" Text="[Table.戶號]" HorzAlign="Center" VertAlign="Center"/>
+      <TextObject Name="Text26" Left="529.2" Width="160.65" Height="18.9" Border.Lines="All" Text="[Table.除息基準日持有股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text14" Left="1011.15" Width="113.4" Height="18.9" Border.Lines="All" Text="[Table.應發股利現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center" WordWrap="false" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text16" Left="1124.55" Width="122.85" Height="18.9" Border.Lines="Left, Top, Bottom" Text="[Table.應發股利股票股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
     </DataBand>
+    <ReportSummaryBand Name="ReportSummary1" Top="84.8" Width="1663.2" Height="18.9">
+      <TextObject Name="Text28" Left="1011.15" Width="113.4" Height="18.9" Border.Lines="All" Text="[Total應發股利現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text29" Left="1124.55" Width="122.85" Height="18.9" Border.Lines="All" Text="[Total應發股利股票股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text30" Left="1247.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Total應扣補充保費]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text31" Left="1341.9" Width="94.5" Height="18.9" Border.Lines="All" Text="[Total實發現金股利]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text32" Left="1436.4" Width="94.5" Height="18.9" Border.Lines="All" Text="[Total盈餘增資配股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text33" Left="1530.9" Width="132.3" Height="18.9" Border.Lines="All" Text="[Total資本公積增資配股數]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" VertAlign="Center"/>
+      <TextObject Name="Text34" Width="1011.15" Height="18.9" Border.Lines="All" Text="合計" HorzAlign="Right" VertAlign="Center"/>
+    </ReportSummaryBand>
   </ReportPage>
 </Report>

@@ -5487,9 +5487,10 @@ namespace TKACT
                 SBQUERY3.AppendFormat(@" ");
             }
 
-            SB.AppendFormat(@"                      
-                          
-                          
+            SB.AppendFormat(@"  
+                            SELECT *
+                            ,(增資+轉入-轉出) AS '除息基準日持有股數'
+                            FROM (
                             SELECT 
                             [SERNO]
                             ,[ID]
@@ -5497,21 +5498,25 @@ namespace TKACT
                             ,[STOCKNAME] AS '股東姓名'
                             ,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'
                             ,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'
-                            ,CONVERT(DECIMAL(16,4),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'
-                            ,CONVERT(DECIMAL(16,4),[STOCKDIVIDEND]) AS '每股配發股票股利'
-                            ,CONVERT(DECIMAL(16,4),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'
-                            ,CONVERT(DECIMAL(16,4),[DECLAREDSTOCKDIVIDEND]) AS '應發股利股票股利'
+                            ,CONVERT(DECIMAL(16,5),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'
+                            ,CONVERT(DECIMAL(16,5),[STOCKDIVIDEND]) AS '每股配發股票股利'
+                            ,CONVERT(DECIMAL(16,5),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'
+                            ,CONVERT(DECIMAL(16,5),[DECLAREDSTOCKDIVIDEND]) AS '應發股利股票股利'
                             ,CONVERT(INT,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED]) AS '應扣補充保費'
                             ,CONVERT(INT,[ACTUALCASHDIVIDENDPAID]) AS '實發現金股利'
                             ,CONVERT(INT,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES]) AS '盈餘增資配股數'
                             ,CONVERT(INT,[CAPITALIZATIONOFCAPITALSURPLUSSHARES]) AS '資本公積增資配股數'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] WHERE [TKSTOCKSTRANSADD].[STOCKACCOUNTNUMBER]=[TKSTOCKSDIV].[STOCKACCOUNTNUMBER] AND [TKSTOCKSTRANSADD].[CAPITALINCREASERECORDDATE]<=[TKSTOCKSDIV].[EXDIVIDENDINTERESTRECORDDATE]) AS '增資'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSTRANS],[TKACT].[dbo].[TKSTOCKSREORDS] WHERE ([TKSTOCKSTRANS].[TRANSFERREDSHARESHUNDREDTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTENSOFTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESIRREGULARLOTS]=[TKSTOCKSREORDS].STOCKID ) AND [STOCKACCOUNTNUMBERTO]=[TKSTOCKSDIV].[STOCKACCOUNTNUMBER] AND [TKSTOCKSTRANS].[DATEOFCHANGE]<=[TKSTOCKSDIV].[EXDIVIDENDINTERESTRECORDDATE]) AS '轉入'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSTRANS],[TKACT].[dbo].[TKSTOCKSREORDS] WHERE ([TKSTOCKSTRANS].[TRANSFERREDSHARESHUNDREDTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTENSOFTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESTHOUSANDS]=[TKSTOCKSREORDS].STOCKID OR [TKSTOCKSTRANS].[TRANSFERREDSHARESIRREGULARLOTS]=[TKSTOCKSREORDS].STOCKID ) AND [STOCKACCOUNTNUMBERFORM]=[TKSTOCKSDIV].[STOCKACCOUNTNUMBER] AND [TKSTOCKSTRANS].[DATEOFCHANGE]<=[TKSTOCKSDIV].[EXDIVIDENDINTERESTRECORDDATE]) AS '轉出'
                             FROM [TKACT].[dbo].[TKSTOCKSDIV]
                             WHERE 1=1  
                             {0}
                             {1}
-                            {2}
-
-                            ORDER BY [SERNO]
+                            {2} 
+ 
+                            ) AS TEMP
+                            ORDER BY '除權/息基準日'
                             ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString());
 
             return SB;
