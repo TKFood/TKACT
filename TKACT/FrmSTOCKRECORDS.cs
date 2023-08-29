@@ -5382,7 +5382,7 @@ namespace TKACT
 
             SB.AppendFormat(@"                      
                           
-                            SELECT
+                          SELECT
                             [SERNO]
                             ,[IDFORM]
                             ,[IDTO]
@@ -5392,23 +5392,26 @@ namespace TKACT
                             ,[STOCKNAMEFORM] AS '轉讓人股東姓名'
                             ,[STOCKACCOUNTNUMBERTO] AS '受讓人戶號'
                             ,[STOCKNAMETO] AS '受讓人股東姓名'
-                            ,CONVERT(INT,[TRANSFERREDSHARES]) AS '轉讓股數'
+                            ,CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES]) AS '轉讓股數'
                             ,[PARVALUEPERSHARE] AS '每股面額'
                             ,CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]) AS '每股成交價格'
-                            ,CONVERT(DECIMAL(16,2),[TOTALTRADINGAMOUNT]) AS '成交總額'
-                            ,CONVERT(DECIMAL(16,2),[SECURITIESTRANSACTIONTAXAMOUNT]) AS '證券交易稅額'
+                            ,(CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES])*CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE])) AS '成交總額'
+                            ,CONVERT(DECIMAL(16,2),(CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES])*CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]))*0.003) AS '證券交易稅額'
                             ,[TRANSFERREDSHARESHUNDREDTHOUSANDS] AS '轉讓股票號碼(十萬股)'
                             ,[TRANSFERREDSHARESTENSOFTHOUSANDS] AS '轉讓股票號碼(萬股)'
                             ,[TRANSFERREDSHARESTHOUSANDS] AS '轉讓股票號碼(千股)'
-                            ,[TRANSFERREDSHARESIRREGULARLOTS] AS '轉讓股票號碼(不定額股'
+                            ,[TRANSFERREDSHARESIRREGULARLOTS] AS '轉讓股票號碼(不定額股)'
                             ,[HOLDINGSHARES] AS '持有股數'
                             FROM [TKACT].[dbo].[TKSTOCKSTRANS]
+                            LEFT JOIN [TKACT].[dbo].[TKSTOCKSREORDS] ON ([TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESHUNDREDTHOUSANDS] OR [TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESTENSOFTHOUSANDS] OR [TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESTHOUSANDS] OR  [TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESIRREGULARLOTS] )
                             WHERE 1=1
                             {0}
                             {1}
                             {2}
-                            
-                            ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString());
+                            {3}
+                            {4}
+                            ORDER BY [DATEOFCHANGE] 
+                            ", SBQUERY1.ToString(), SBQUERY2.ToString(), SBQUERY3.ToString(), SBQUERY4.ToString(), SBQUERY5.ToString());
 
             return SB;
 
