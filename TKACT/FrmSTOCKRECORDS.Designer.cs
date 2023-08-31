@@ -3557,9 +3557,9 @@
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.splitContainer14);
-            this.tabPage9.Location = new System.Drawing.Point(4, 26);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(964, 457);
+            this.tabPage9.Size = new System.Drawing.Size(964, 461);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "報表";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -3579,8 +3579,8 @@
             // splitContainer14.Panel2
             // 
             this.splitContainer14.Panel2.Controls.Add(this.previewControl4);
-            this.splitContainer14.Size = new System.Drawing.Size(964, 457);
-            this.splitContainer14.SplitterDistance = 141;
+            this.splitContainer14.Size = new System.Drawing.Size(964, 461);
+            this.splitContainer14.SplitterDistance = 142;
             this.splitContainer14.TabIndex = 0;
             // 
             // tableLayoutPanel14
@@ -3616,7 +3616,7 @@
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(960, 137);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(960, 138);
             this.tableLayoutPanel14.TabIndex = 23;
             // 
             // label69
@@ -3750,7 +3750,7 @@
             this.previewControl4.Name = "previewControl4";
             this.previewControl4.PageOffset = new System.Drawing.Point(10, 10);
             this.previewControl4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl4.Size = new System.Drawing.Size(960, 308);
+            this.previewControl4.Size = new System.Drawing.Size(960, 311);
             this.previewControl4.TabIndex = 4;
             // 
             // tabPage5
@@ -5225,7 +5225,7 @@
             this.comboBox5.Items.AddRange(new object[] {
             "遊覽車對帳明細表",
             "多年期月份團務比較表"});
-            this.comboBox5.Location = new System.Drawing.Point(123, 48);
+            this.comboBox5.Location = new System.Drawing.Point(123, 50);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(234, 24);
             this.comboBox5.TabIndex = 613;
