@@ -6009,6 +6009,15 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@"  
+                                    --轉讓的[STOCKSHARES]
+                                    UPDATE  [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    SET [TKSTOCKSTRANS].[STOCKSHARES]=[TKSTOCKSREORDS].[STOCKSHARES]
+                                    FROM [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    WHERE [TKSTOCKSTRANS].[STOCKSHARES]=0
+                                    AND [TKSTOCKSTRANS].[STOCKSHARES]<>[TKSTOCKSREORDS].[STOCKSHARES]
+                                    AND ([TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESHUNDREDTHOUSANDS] OR [TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESTENSOFTHOUSANDS]  OR [TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESTHOUSANDS] OR [TKSTOCKSREORDS].STOCKID=[TRANSFERREDSHARESIRREGULARLOTS] )
+
+
                                     --增資的過帳
                                     UPDATE [TKACT].[dbo].[TKSTOCKSTRANSADD]
                                     SET ID=[TKSTOCKSNAMES].ID
