@@ -5124,7 +5124,7 @@ namespace TKACT
         }
 
         public StringBuilder SETSQL3(string STOCKACCOUNTNUMBER)
-        {
+        { 
             StringBuilder SB = new StringBuilder();
             StringBuilder SBQUERY1 = new StringBuilder();
 
