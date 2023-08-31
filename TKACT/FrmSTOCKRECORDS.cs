@@ -5439,9 +5439,8 @@ namespace TKACT
                 SBQUERY5.AppendFormat(@" ");
             }
 
-            SB.AppendFormat(@"                      
-                          
-                          SELECT
+            SB.AppendFormat(@"   
+                            SELECT
                             [SERNO]
                             ,[IDFORM]
                             ,[IDTO]
@@ -5451,11 +5450,11 @@ namespace TKACT
                             ,[STOCKNAMEFORM] AS '轉讓人股東姓名'
                             ,[STOCKACCOUNTNUMBERTO] AS '受讓人戶號'
                             ,[STOCKNAMETO] AS '受讓人股東姓名'
-                            ,CONVERT(INT,[TKSTOCKSTRANS]) AS '轉讓股數'
+                            ,CONVERT(INT,[TKSTOCKSTRANS].[STOCKSHARES]) AS '轉讓股數'
                             ,[PARVALUEPERSHARE] AS '每股面額'
                             ,CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]) AS '每股成交價格'
-                            ,(CONVERT(INT,[TKSTOCKSTRANS]))*CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE])) AS '成交總額'
-                            ,CONVERT(DECIMAL(16,2),(CONVERT(INT,[TKSTOCKSTRANS]))*CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]))*0.003) AS '證券交易稅額'
+                            ,(CONVERT(INT,[TKSTOCKSTRANS].[STOCKSHARES]))*CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]) AS '成交總額'
+                            ,(CONVERT(DECIMAL(16,2),(CONVERT(INT,[TKSTOCKSTRANS].[STOCKSHARES]))*CONVERT(DECIMAL(16,2),[TRADINGPRICEPERSHARE]))*0.003) AS '證券交易稅額'
                             ,[TRANSFERREDSHARESHUNDREDTHOUSANDS] AS '轉讓股票號碼(十萬股)'
                             ,[TRANSFERREDSHARESTENSOFTHOUSANDS] AS '轉讓股票號碼(萬股)'
                             ,[TRANSFERREDSHARESTHOUSANDS] AS '轉讓股票號碼(千股)'
