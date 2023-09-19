@@ -454,7 +454,7 @@ namespace TKACT
 
 
 
-            sbSql.AppendFormat(@"
+            sbSql.AppendFormat(@" 
                                 SELECT 
                                 [SERNO] AS '流水號'
                                 ,[STOCKACCOUNTNUMBER] AS '戶號'
@@ -5557,6 +5557,7 @@ namespace TKACT
                             ,[STOCKNAME] AS '股東姓名'
                             ,[EXDIVIDENDINTERESTRECORDDATE] AS '除權/息基準日'
                             ,[CASHDIVIDENDPAYMENTDATE] AS '現金股利發放日'
+                            ,CONVERT(DECIMAL(16,5),[DIVAMOUNTS]) AS '每股配發資本公積'
                             ,CONVERT(DECIMAL(16,5),[CASHDIVIDENDPERSHARE]) AS '每股配發現金股利'
                             ,CONVERT(DECIMAL(16,5),[STOCKDIVIDEND]) AS '每股配發股票股利'
                             ,CONVERT(DECIMAL(16,5),[DECLAREDCASHDIVIDEND]) AS '應發股利現金股利'
