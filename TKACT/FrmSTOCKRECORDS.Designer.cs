@@ -585,7 +585,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(984, 758);
+            this.tabControl1.Size = new System.Drawing.Size(984, 756);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -594,7 +594,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(976, 728);
+            this.tabPage1.Size = new System.Drawing.Size(976, 726);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基本資料建立";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -614,8 +614,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(970, 722);
-            this.splitContainer1.SplitterDistance = 105;
+            this.splitContainer1.Size = new System.Drawing.Size(970, 720);
+            this.splitContainer1.SplitterDistance = 104;
             this.splitContainer1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -643,7 +643,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(966, 101);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(966, 100);
             this.tableLayoutPanel1.TabIndex = 19;
             // 
             // button1
@@ -709,8 +709,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tabControl2);
-            this.splitContainer2.Size = new System.Drawing.Size(970, 613);
-            this.splitContainer2.SplitterDistance = 167;
+            this.splitContainer2.Size = new System.Drawing.Size(970, 612);
+            this.splitContainer2.SplitterDistance = 166;
             this.splitContainer2.TabIndex = 0;
             // 
             // dataGridView1
@@ -726,7 +726,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(966, 163);
+            this.dataGridView1.Size = new System.Drawing.Size(966, 162);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -3758,7 +3758,7 @@
             this.tabPage5.Controls.Add(this.splitContainer9);
             this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(976, 728);
+            this.tabPage5.Size = new System.Drawing.Size(976, 726);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "除權息";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -3778,8 +3778,8 @@
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.splitContainer10);
-            this.splitContainer9.Size = new System.Drawing.Size(976, 728);
-            this.splitContainer9.SplitterDistance = 107;
+            this.splitContainer9.Size = new System.Drawing.Size(976, 726);
+            this.splitContainer9.SplitterDistance = 106;
             this.splitContainer9.TabIndex = 0;
             // 
             // tableLayoutPanel11
@@ -3806,7 +3806,7 @@
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel11.Size = new System.Drawing.Size(972, 103);
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(972, 102);
             this.tableLayoutPanel11.TabIndex = 23;
             // 
             // label111
@@ -3872,8 +3872,8 @@
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.tabControl7);
-            this.splitContainer10.Size = new System.Drawing.Size(976, 617);
-            this.splitContainer10.SplitterDistance = 268;
+            this.splitContainer10.Size = new System.Drawing.Size(976, 616);
+            this.splitContainer10.SplitterDistance = 267;
             this.splitContainer10.TabIndex = 0;
             // 
             // dataGridView6
@@ -3889,7 +3889,7 @@
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.RowTemplate.Height = 24;
             this.dataGridView6.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView6.Size = new System.Drawing.Size(972, 264);
+            this.dataGridView6.Size = new System.Drawing.Size(972, 263);
             this.dataGridView6.TabIndex = 10;
             this.dataGridView6.SelectionChanged += new System.EventHandler(this.dataGridView6_SelectionChanged);
             // 
@@ -4304,9 +4304,9 @@
             // tabPage17
             // 
             this.tabPage17.Controls.Add(this.splitContainer15);
-            this.tabPage17.Location = new System.Drawing.Point(4, 22);
+            this.tabPage17.Location = new System.Drawing.Point(4, 26);
             this.tabPage17.Name = "tabPage17";
-            this.tabPage17.Size = new System.Drawing.Size(964, 315);
+            this.tabPage17.Size = new System.Drawing.Size(964, 311);
             this.tabPage17.TabIndex = 1;
             this.tabPage17.Text = "報表";
             this.tabPage17.UseVisualStyleBackColor = true;
@@ -4326,8 +4326,8 @@
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.previewControl5);
-            this.splitContainer15.Size = new System.Drawing.Size(964, 315);
-            this.splitContainer15.SplitterDistance = 118;
+            this.splitContainer15.Size = new System.Drawing.Size(964, 311);
+            this.splitContainer15.SplitterDistance = 116;
             this.splitContainer15.TabIndex = 0;
             // 
             // tableLayoutPanel15
@@ -4359,7 +4359,7 @@
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(960, 114);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(960, 112);
             this.tableLayoutPanel15.TabIndex = 23;
             // 
             // label92
@@ -4457,7 +4457,7 @@
             this.previewControl5.Name = "previewControl5";
             this.previewControl5.PageOffset = new System.Drawing.Point(10, 10);
             this.previewControl5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl5.Size = new System.Drawing.Size(960, 189);
+            this.previewControl5.Size = new System.Drawing.Size(960, 187);
             this.previewControl5.TabIndex = 5;
             // 
             // tabPage18
@@ -5225,7 +5225,7 @@
             this.comboBox5.Items.AddRange(new object[] {
             "遊覽車對帳明細表",
             "多年期月份團務比較表"});
-            this.comboBox5.Location = new System.Drawing.Point(123, 50);
+            this.comboBox5.Location = new System.Drawing.Point(123, 48);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(234, 24);
             this.comboBox5.TabIndex = 613;
@@ -5278,7 +5278,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 758);
+            this.ClientSize = new System.Drawing.Size(984, 756);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
