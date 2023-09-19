@@ -464,6 +464,7 @@ namespace TKACT
 
                                 ,[CASHDIVIDENDPERSHARE] AS '每股配發現金股利'
                                 ,[STOCKDIVIDEND] AS '每股配發股票股利'
+                                ,[DIVAMOUNTS] AS '每股配發資本公積'
                                 ,[DECLAREDCASHDIVIDEND] AS '應發股利現金股利'
                                 ,[DECLAREDSTOCKDIVIDEND] AS '應發股利股票股利'
                                 ,[SUPPLEMENTARYPREMIUMTOBEDEDUCTED] AS '應扣補充保費'
@@ -471,7 +472,7 @@ namespace TKACT
                                 ,[CAPITALIZATIONOFSURPLUSDISTRIBUTIONSHARES] AS '盈餘增資配股數'
                                 ,[CAPITALIZATIONOFCAPITALSURPLUSSHARES] AS '資本公積增資配股數'
                                 ,[DIVYEARS] AS '分配年度'
-                                ,[DIVAMOUNTS] AS '每股配發資本公積'
+                               
                                 ,[EXDIVIDENDINTERESTRECORDDATE]
                                 ,[CASHDIVIDENDPAYMENTDATE]
 
