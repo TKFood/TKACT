@@ -5168,6 +5168,7 @@ namespace TKACT
                             ) AS TEMP
                             WHERE 結餘股數 > 0
                             ) AS TEMP2
+                            WHERE 1=1
                             {0}
                             ORDER BY 戶號
 
