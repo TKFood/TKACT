@@ -3338,7 +3338,16 @@ namespace TKACT
                 sbSql.Clear();
 
                 sbSql.AppendFormat(@"                              
-                                   
+                                   UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET  [STOCKIDKEY]=TEMP.[IDFORM],[STOCKACCOUNTNUMBER]=TEMP.[STOCKACCOUNTNUMBERFORM],[STOCKNAME]=TEMP.[STOCKNAMEFORM]
+                                    FROM 
+                                    (
+                                    SELECT ISNULL([TRANSFERREDSHARESHUNDREDTHOUSANDS],'')+ISNULL([TRANSFERREDSHARESTENSOFTHOUSANDS],'')+ISNULL([TRANSFERREDSHARESTHOUSANDS],'')+ISNULL([TRANSFERREDSHARESIRREGULARLOTS],'') AS 'STOCKID',[IDFORM],[STOCKACCOUNTNUMBERFORM],[STOCKNAMEFORM]
+                                    FROM [TKACT].[dbo].[TKSTOCKSTRANS]
+                                    WHERE SERNO='{0}'
+                                    ) AS TEMP
+                                    WHERE TEMP.STOCKID=[TKSTOCKSREORDS].STOCKID
+
                                     DELETE  [TKACT].[dbo].[TKSTOCKSTRANS]                                   
                                     WHERE [SERNO]='{0}'
                                     ", SERNO                                   
@@ -4743,6 +4752,7 @@ namespace TKACT
                                     ,[STOCKIDKEY]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
+                                    ,[VALID]
                                     )
                                     SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') 
                                     ,[PARVALUPER]
@@ -4750,6 +4760,7 @@ namespace TKACT
                                     ,[ID]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
+                                    ,'Y'
                                     FROM  [TKACT].[dbo].[TKSTOCKSTRANSADD]
                                     WHERE (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') )<>''
                                     AND (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') ) NOT IN (SELECT [STOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDS])
@@ -5083,6 +5094,7 @@ namespace TKACT
                             FROM [TKACT].[dbo].[TKSTOCKSREORDS]
                             LEFT JOIN [TKACT].[dbo].[TKSTOCKSNAMES] ON [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]=[TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]
                             WHERE 1=1
+                            AND  [TKSTOCKSREORDS].[VALID]='Y'
                             {0}
                             ORDER BY [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER],CONVERT(INT,[TKSTOCKSREORDS].[STOCKSHARES] ) DESC,[TKSTOCKSREORDS].[STOCKID]
                             ", SBQUERY1.ToString());
@@ -5110,12 +5122,12 @@ namespace TKACT
                             [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] AS '戶號'
                             ,[TKSTOCKSNAMES].[STOCKNAME] AS '股東姓名'
                             ,[TKSTOCKSNAMES].[IDNUMBER] AS '身份證字號或統一編號'
-                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '股數'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE   [TKSTOCKSREORDS].[VALID]='Y' AND [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '股數'
                             ,'10' AS '每股面額(元)'
-                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0)*10 FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '股款'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0)*10 FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[VALID]='Y' AND [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '股款'
                             FROM  [TKACT].[dbo].[TKSTOCKSNAMES]
                             WHERE 1=1
-                            AND (SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER])>0
+                            AND (SELECT ISNULL(SUM(CONVERT(INT,[STOCKSHARES])),0) FROM  [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[VALID]='Y' AND [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER]=[TKSTOCKSNAMES].[STOCKACCOUNTNUMBER])>0
                             {0}
                             ORDER BY [STOCKACCOUNTNUMBER]
                             ", SBQUERY1.ToString());
@@ -5157,7 +5169,7 @@ namespace TKACT
                             ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES])), 0) FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] WHERE  REASONFORCHANGE IN ('資本公積分配','盈餘分配') AND [TKSTOCKSTRANSADD].[STOCKACCOUNTNUMBER] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] )AS '歷年分配股數'
                             ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES])), 0) FROM [TKACT].[dbo].[TKSTOCKSTRANS] WHERE [STOCKACCOUNTNUMBERTO] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] ) AS '轉入股數'
                             ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES])), 0) FROM [TKACT].[dbo].[TKSTOCKSTRANS] WHERE [STOCKACCOUNTNUMBERFORM] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER]) AS '轉出股數'
-                            ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES])), 0) FROM [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] ) AS '結餘股數'
+                            ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES])), 0) FROM [TKACT].[dbo].[TKSTOCKSREORDS] WHERE [TKSTOCKSREORDS].[VALID]='Y' AND [TKSTOCKSREORDS].[STOCKACCOUNTNUMBER] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] ) AS '結餘股數'
                             ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES]) * [TRADINGPRICEPERSHARE]), 0) FROM [TKACT].[dbo].[TKSTOCKSTRANSADD] WHERE REASONFORCHANGE NOT IN ('資本公積分配','盈餘分配') AND [TKSTOCKSTRANSADD].[STOCKACCOUNTNUMBER] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] ) AS '增資股數金額'
                             ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES]) * [TRADINGPRICEPERSHARE]), 0) FROM [TKACT].[dbo].[TKSTOCKSTRANS]  WHERE [STOCKACCOUNTNUMBERTO] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] ) AS '轉入股數金額'
                             ,(SELECT ISNULL(SUM(CONVERT(INT, [STOCKSHARES]) * [TRADINGPRICEPERSHARE]), 0) FROM [TKACT].[dbo].[TKSTOCKSTRANS]  WHERE [STOCKACCOUNTNUMBERFORM] = [TKSTOCKSNAMES].[STOCKACCOUNTNUMBER] ) AS '轉出股數金額'
@@ -5929,6 +5941,7 @@ namespace TKACT
                                     ,[STOCKIDKEY]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
+                                    ,[VALID]
                                     )
                                     SELECT 
                                     [NEWSTOCKID] 
@@ -5937,17 +5950,20 @@ namespace TKACT
                                     ,[STOCKIDKEY] 
                                     ,[STOCKACCOUNTNUMBER] 
                                     ,[STOCKNAME] 
+                                    ,'Y'
                                     FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV]
                                     WHERE OLDSTOCKID='{0}' AND [VALIDS]='N'
 
-                                    DELETE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET [VALID]='N'
                                     WHERE STOCKID='{0}'
 
                                     UPDATE [TKACT].[dbo].[TKSTOCKSREORDSDIV]
                                     SET [VALIDS]='Y'
                                     WHERE OLDSTOCKID='{0}'
 
-                                    DELETE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    UPDATE [TKACT].[dbo].[TKSTOCKSREORDS]
+                                    SET [VALID]='N'
                                     WHERE [STOCKID] IN (SELECT [OLDSTOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDSDIV] WHERE [VALIDS]='Y' GROUP BY [OLDSTOCKID])
 
                                      ", OLDSTOCKID
@@ -6036,6 +6052,7 @@ namespace TKACT
                                     ,[STOCKIDKEY]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
+                                    ,[VALID]
                                     )
                                     SELECT ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') 
                                     ,[PARVALUPER]
@@ -6043,6 +6060,7 @@ namespace TKACT
                                     ,[ID]
                                     ,[STOCKACCOUNTNUMBER]
                                     ,[STOCKNAME]
+                                    ,'Y'
                                     FROM  [TKACT].[dbo].[TKSTOCKSTRANSADD]
                                     WHERE (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') )<>''
                                     AND (ISNULL([INCREASEDSHARESHUNDREDTHOUSANDS],'')+ISNULL([INCREASEDSHARESTENSOFTHOUSANDS],'')+ISNULL([INCREASEDSHARESTHOUSANDS],'')+ISNULL([INCREASEDSHARESIRREGULARLOTS],'') ) NOT IN (SELECT [STOCKID] FROM [TKACT].[dbo].[TKSTOCKSREORDS])
