@@ -5008,9 +5008,9 @@ namespace TKACT
 
                 SQL = SETSQL(STOCKACCOUNTNUMBER);
             } 
-            else if (REPORTS.Equals("股票名冊"))
+            else if (REPORTS.Equals("股東名冊"))
             {
-                report1.Load(@"REPORT\股東名冊.frx");
+                report1.Load(@"REPORT\股東名冊ALL.frx");
 
                 SQL= SETSQL2(STOCKACCOUNTNUMBER);
             }
