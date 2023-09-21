@@ -1505,7 +1505,7 @@
             this.tabPage11.Location = new System.Drawing.Point(4, 22);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(958, 132);
+            this.tabPage11.Size = new System.Drawing.Size(958, 131);
             this.tabPage11.TabIndex = 1;
             this.tabPage11.Text = "異動";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -1523,7 +1523,7 @@
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(952, 126);
+            this.dataGridView3.Size = new System.Drawing.Size(952, 125);
             this.dataGridView3.TabIndex = 7;
             // 
             // tabControl3
@@ -4304,9 +4304,9 @@
             // tabPage17
             // 
             this.tabPage17.Controls.Add(this.splitContainer15);
-            this.tabPage17.Location = new System.Drawing.Point(4, 22);
+            this.tabPage17.Location = new System.Drawing.Point(4, 26);
             this.tabPage17.Name = "tabPage17";
-            this.tabPage17.Size = new System.Drawing.Size(964, 315);
+            this.tabPage17.Size = new System.Drawing.Size(964, 311);
             this.tabPage17.TabIndex = 1;
             this.tabPage17.Text = "報表";
             this.tabPage17.UseVisualStyleBackColor = true;
@@ -4326,8 +4326,8 @@
             // splitContainer15.Panel2
             // 
             this.splitContainer15.Panel2.Controls.Add(this.previewControl5);
-            this.splitContainer15.Size = new System.Drawing.Size(964, 315);
-            this.splitContainer15.SplitterDistance = 117;
+            this.splitContainer15.Size = new System.Drawing.Size(964, 311);
+            this.splitContainer15.SplitterDistance = 115;
             this.splitContainer15.TabIndex = 0;
             // 
             // tableLayoutPanel15
@@ -4359,7 +4359,7 @@
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel15.Size = new System.Drawing.Size(960, 113);
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(960, 111);
             this.tableLayoutPanel15.TabIndex = 23;
             // 
             // label92
@@ -4457,7 +4457,7 @@
             this.previewControl5.Name = "previewControl5";
             this.previewControl5.PageOffset = new System.Drawing.Point(10, 10);
             this.previewControl5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.previewControl5.Size = new System.Drawing.Size(960, 190);
+            this.previewControl5.Size = new System.Drawing.Size(960, 188);
             this.previewControl5.TabIndex = 5;
             // 
             // tabPage18
@@ -5225,7 +5225,7 @@
             this.comboBox5.Items.AddRange(new object[] {
             "遊覽車對帳明細表",
             "多年期月份團務比較表"});
-            this.comboBox5.Location = new System.Drawing.Point(123, 50);
+            this.comboBox5.Location = new System.Drawing.Point(123, 48);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(234, 24);
             this.comboBox5.TabIndex = 613;

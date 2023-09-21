@@ -5495,7 +5495,7 @@ namespace TKACT
 
             Report report1 = new Report();
 
-            report1.Load(@"REPORT\除權息.frx");
+            report1.Load(@"REPORT\除權息.frx"); 
 
             SQL = SETSQL_TKSTOCKSDIV(SDATE, EDATE, STOCKACCOUNTNUMBER, STOCKNAME);
 
